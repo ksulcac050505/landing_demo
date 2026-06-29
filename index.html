@@ -117,7 +117,9 @@
       --icon: url("assets/icons/carta.svg");
     }
 
-    /* HEADER MOBILE FIRST */
+    /* =========================
+       HEADER MOBILE FIRST
+    ========================= */
 
     .site-header {
       position: relative;
@@ -318,13 +320,19 @@
       box-shadow: 0 12px 24px rgba(0, 75, 165, 0.22);
     }
 
-    /* HERO MOBILE FIRST */
+    /* =========================
+       HERO MOBILE FIRST
+       Orden mobile:
+       1. Imagen
+       2. Título + texto
+       3. Botones
+    ========================= */
 
     .hero {
       position: relative;
       z-index: 5;
       width: 100%;
-      padding: 18px 18px 24px;
+      padding: 16px 18px 8px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -334,7 +342,7 @@
       position: relative;
       order: 1;
       width: min(370px, 100%);
-      height: 312px;
+      height: 355px;
       margin-top: 0;
       display: flex;
       align-items: flex-end;
@@ -346,7 +354,7 @@
       left: 50%;
       bottom: 0;
       z-index: 2;
-      width: min(315px, 86vw);
+      width: min(286px, 77vw);
       height: auto;
       transform: translateX(-50%);
       user-select: none;
@@ -355,11 +363,11 @@
 
     .fresh-seal {
       position: absolute;
-      left: 6px;
-      top: 118px;
+      left: 22px;
+      top: 150px;
       z-index: 6;
-      width: 72px;
-      height: 72px;
+      width: 70px;
+      height: 70px;
       object-fit: contain;
       user-select: none;
       pointer-events: none;
@@ -368,10 +376,10 @@
     .hero-caption {
       position: absolute;
       left: 50%;
-      top: 48%;
+      top: 166px;
       z-index: 7;
       width: 170px;
-      transform: translate(-50%, -50%);
+      transform: translateX(-50%);
       color: var(--white);
       text-align: center;
       pointer-events: none;
@@ -403,16 +411,16 @@
       z-index: 8;
       order: 2;
       width: min(430px, 100%);
-      margin-top: 6px;
+      margin-top: 4px;
       text-align: center;
     }
 
     .hero-title {
       color: var(--white);
       font-family: "RocGrotesk", Arial, sans-serif;
-      font-size: clamp(42px, 12vw, 56px);
+      font-size: clamp(40px, 11.4vw, 52px);
       font-weight: 500;
-      line-height: 0.86;
+      line-height: 0.84;
       letter-spacing: -0.045em;
     }
 
@@ -425,20 +433,20 @@
     }
 
     .hero-copy {
-      width: min(360px, 100%);
+      width: min(345px, 100%);
       margin: 14px auto 0;
       color: var(--white);
       font-family: "RocGrotesk", Arial, sans-serif;
-      font-size: 15.2px;
+      font-size: 14.8px;
       font-weight: 400;
-      line-height: 1.25;
+      line-height: 1.22;
       letter-spacing: 0.01em;
     }
 
     .hero-actions {
       order: 3;
       width: min(360px, 100%);
-      margin-top: 16px;
+      margin-top: 14px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
@@ -447,15 +455,15 @@
 
     .btn {
       width: 100%;
-      min-height: 48px;
-      padding: 0 14px;
+      min-height: 46px;
+      padding: 0 12px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
       gap: 7px;
       border-radius: var(--pill);
       font-family: "RocGrotesk", Arial, sans-serif;
-      font-size: 14.8px;
+      font-size: 14.5px;
       font-weight: 500;
       line-height: 1;
       white-space: nowrap;
@@ -468,8 +476,8 @@
     }
 
     .btn .svg-icon {
-      width: 18px;
-      height: 18px;
+      width: 17px;
+      height: 17px;
     }
 
     .btn-white {
@@ -497,7 +505,9 @@
       box-shadow: 0 12px 28px rgba(0, 40, 120, 0.2);
     }
 
-    /* MOBILE MUY PEQUEÑO */
+    /* =========================
+       MOBILE MUY PEQUEÑO
+    ========================= */
 
     @media (max-width: 390px) {
       .site-header {
@@ -525,25 +535,26 @@
         padding-left: 14px;
         padding-right: 14px;
         padding-top: 14px;
+        padding-bottom: 6px;
       }
 
       .hero-visual {
-        height: 292px;
+        height: 330px;
       }
 
       .hero-person {
-        width: min(296px, 85vw);
+        width: min(270px, 76vw);
       }
 
       .fresh-seal {
-        width: 68px;
-        height: 68px;
-        top: 110px;
-        left: 6px;
+        width: 64px;
+        height: 64px;
+        top: 143px;
+        left: 18px;
       }
 
       .hero-caption {
-        top: 48%;
+        top: 154px;
       }
 
       .hero-caption .small {
@@ -555,37 +566,39 @@
       }
 
       .hero-content {
-        margin-top: 4px;
+        margin-top: 2px;
       }
 
       .hero-title {
-        font-size: clamp(38px, 11.8vw, 50px);
+        font-size: clamp(38px, 10.8vw, 48px);
       }
 
       .hero-copy {
         margin-top: 12px;
-        font-size: 14.5px;
-        line-height: 1.23;
+        font-size: 14.2px;
+        line-height: 1.18;
       }
 
       .hero-actions {
-        margin-top: 14px;
+        margin-top: 12px;
         gap: 8px;
       }
 
       .btn {
-        min-height: 46px;
-        font-size: 14px;
-        padding: 0 10px;
+        min-height: 44px;
+        font-size: 13.6px;
+        padding: 0 9px;
       }
 
       .btn .svg-icon {
-        width: 17px;
-        height: 17px;
+        width: 16px;
+        height: 16px;
       }
     }
 
-    /* TABLET */
+    /* =========================
+       TABLET
+    ========================= */
 
     @media (min-width: 768px) {
       .site-header {
@@ -606,6 +619,7 @@
 
       .hero {
         padding-top: 50px;
+        padding-bottom: 24px;
       }
 
       .hero-visual {
@@ -628,7 +642,6 @@
       .hero-caption {
         top: auto;
         bottom: 68px;
-        transform: translateX(-50%);
       }
 
       .hero-caption .small {
@@ -641,7 +654,7 @@
 
       .hero-content {
         width: min(620px, 100%);
-        margin-top: 10px;
+        margin-top: 16px;
       }
 
       .hero-title {
@@ -669,7 +682,10 @@
       }
     }
 
-    /* DESKTOP - NO TOCAR LA ESTRUCTURA ORIGINAL */
+    /* =========================
+       DESKTOP
+       No tocar composición desktop
+    ========================= */
 
     @media (min-width: 1024px) {
       .site-header {
@@ -915,18 +931,6 @@
 
     <section class="hero" id="inicio">
 
-      <div class="hero-content">
-        <h1 class="hero-title">
-          <span>El mar</span>
-          <span>en un solo</span>
-          <span class="soft">bocado</span>
-        </h1>
-
-        <p class="hero-copy">
-          Pescados y mariscos con sabor criollo, frescura del mar y platos abundantes que te conquistan desde el primer bocado.
-        </p>
-      </div>
-
       <div class="hero-visual">
         <img
           src="assets/img/imgen_hero.png"
@@ -944,6 +948,18 @@
           <span class="small">Más rico de</span>
           <span class="script">todo el Perú</span>
         </div>
+      </div>
+
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <span>El mar</span>
+          <span>en un solo</span>
+          <span class="soft">bocado</span>
+        </h1>
+
+        <p class="hero-copy">
+          Pescados y mariscos con sabor criollo, frescura del mar y platos abundantes que te conquistan desde el primer bocado.
+        </p>
       </div>
 
       <div class="hero-actions">
