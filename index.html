@@ -99,9 +99,7 @@
       background: var(--blue);
     }
 
-    /* =========================
-       ICONOS SVG CON COLOR
-    ========================= */
+    /* ICONOS SVG */
 
     .svg-icon {
       width: 22px;
@@ -121,9 +119,7 @@
       --icon: url("assets/icons/carta.svg");
     }
 
-    /* =========================
-       HEADER MOBILE FIRST
-    ========================= */
+    /* HEADER MOBILE FIRST */
 
     .site-header {
       position: relative;
@@ -209,6 +205,7 @@
       position: absolute;
       top: calc(100% + 12px);
       left: 50%;
+      z-index: 80;
       width: min(360px, calc(100vw - 28px));
       padding: 16px;
       display: grid;
@@ -323,15 +320,13 @@
       box-shadow: 0 12px 24px rgba(0, 75, 165, 0.22);
     }
 
-    /* =========================
-       HERO MOBILE FIRST
-    ========================= */
+    /* HERO MOBILE FIRST */
 
     .hero {
       position: relative;
       z-index: 5;
       width: 100%;
-      padding: 42px 18px 0;
+      padding: 42px 18px 34px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -342,6 +337,7 @@
       z-index: 8;
       width: min(430px, 100%);
       text-align: center;
+      order: 1;
     }
 
     .hero-title {
@@ -372,62 +368,9 @@
       letter-spacing: 0.01em;
     }
 
-    .hero-actions {
-      width: 100%;
-      margin-top: 26px;
-      display: grid;
-      gap: 13px;
-      justify-items: center;
-    }
-
-    .btn {
-      width: min(310px, 100%);
-      min-height: 56px;
-      padding: 0 28px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      border-radius: var(--pill);
-      font-family: "RocGrotesk", Arial, sans-serif;
-      font-size: 17px;
-      font-weight: 500;
-      line-height: 1;
-      transition:
-        background 0.25s ease,
-        color 0.25s ease,
-        border-color 0.25s ease,
-        transform 0.25s ease,
-        box-shadow 0.25s ease;
-    }
-
-    .btn-white {
-      color: var(--blue);
-      background: var(--white);
-      border: 2px solid var(--white);
-    }
-
-    .btn-white:hover {
-      color: var(--blue-dark);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(0, 40, 120, 0.24);
-    }
-
-    .btn-outline {
-      color: var(--white);
-      background: transparent;
-      border: 2px solid var(--white);
-    }
-
-    .btn-outline:hover {
-      color: var(--blue);
-      background: var(--white);
-      transform: translateY(-2px);
-      box-shadow: 0 12px 28px rgba(0, 40, 120, 0.2);
-    }
-
     .hero-visual {
       position: relative;
+      order: 2;
       width: min(390px, 100%);
       height: 430px;
       margin-top: 28px;
@@ -493,9 +436,62 @@
       text-shadow: 0 2px 5px rgba(0, 30, 90, 0.12);
     }
 
-    /* =========================
-       MOBILE PEQUEÑO
-    ========================= */
+    .hero-actions {
+      order: 3;
+      width: 100%;
+      margin-top: 26px;
+      display: grid;
+      gap: 13px;
+      justify-items: center;
+    }
+
+    .btn {
+      width: min(310px, 100%);
+      min-height: 56px;
+      padding: 0 28px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      border-radius: var(--pill);
+      font-family: "RocGrotesk", Arial, sans-serif;
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1;
+      transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+    }
+
+    .btn-white {
+      color: var(--blue);
+      background: var(--white);
+      border: 2px solid var(--white);
+    }
+
+    .btn-white:hover {
+      color: var(--blue-dark);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0, 40, 120, 0.24);
+    }
+
+    .btn-outline {
+      color: var(--white);
+      background: transparent;
+      border: 2px solid var(--white);
+    }
+
+    .btn-outline:hover {
+      color: var(--blue);
+      background: var(--white);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 28px rgba(0, 40, 120, 0.2);
+    }
+
+    /* MOBILE PEQUEÑO */
 
     @media (max-width: 390px) {
       .site-header {
@@ -542,9 +538,7 @@
       }
     }
 
-    /* =========================
-       TABLET
-    ========================= */
+    /* TABLET */
 
     @media (min-width: 768px) {
       .site-header {
@@ -580,18 +574,6 @@
         font-size: 22px;
       }
 
-      .hero-actions {
-        display: flex;
-        justify-content: center;
-        gap: 22px;
-      }
-
-      .btn {
-        width: auto;
-        min-width: 180px;
-        min-height: 58px;
-      }
-
       .hero-visual {
         width: min(500px, 100%);
         height: 560px;
@@ -619,11 +601,21 @@
       .hero-caption .script {
         font-size: 31px;
       }
+
+      .hero-actions {
+        display: flex;
+        justify-content: center;
+        gap: 22px;
+      }
+
+      .btn {
+        width: auto;
+        min-width: 180px;
+        min-height: 58px;
+      }
     }
 
-    /* =========================
-       DESKTOP CORREGIDO
-    ========================= */
+    /* DESKTOP */
 
     @media (min-width: 1024px) {
       .site-header {
@@ -704,16 +696,44 @@
         padding: 38px 0 0;
         display: grid;
         grid-template-columns: 46% 54%;
+        grid-template-rows: auto auto;
         align-items: center;
       }
 
+      .hero-visual {
+        grid-column: 1;
+        grid-row: 1 / 3;
+        order: initial;
+        width: 100%;
+        height: 100%;
+        min-height: 535px;
+        margin-top: 0;
+        display: flex;
+        align-items: flex-end;
+        justify-content: flex-start;
+      }
+
       .hero-content {
+        grid-column: 2;
+        grid-row: 1;
+        order: initial;
         width: 100%;
         max-width: none;
-        order: initial;
         padding-left: 12px;
         text-align: left;
-        transform: translateY(-10px);
+        transform: translateY(22px);
+      }
+
+      .hero-actions {
+        grid-column: 2;
+        grid-row: 2;
+        order: initial;
+        width: 100%;
+        margin-top: -18px;
+        padding-left: 12px;
+        display: flex;
+        justify-content: flex-start;
+        gap: 34px;
       }
 
       .hero-title {
@@ -733,13 +753,6 @@
         line-height: 1.28;
       }
 
-      .hero-actions {
-        margin-top: 32px;
-        display: flex;
-        justify-content: flex-start;
-        gap: 34px;
-      }
-
       .btn {
         width: auto;
         min-height: 60px;
@@ -750,16 +763,6 @@
 
       .btn-outline {
         min-width: 218px;
-      }
-
-      .hero-visual {
-        width: 100%;
-        height: 100%;
-        min-height: 535px;
-        margin-top: 0;
-        display: flex;
-        align-items: flex-end;
-        justify-content: flex-start;
       }
 
       .hero-person {
@@ -860,23 +863,6 @@
         <p class="hero-copy">
           Pescados y mariscos con sabor criollo, frescura del mar y platos abundantes que te conquistan desde el primer bocado.
         </p>
-
-        <div class="hero-actions">
-          <a href="#carta" class="btn btn-white">
-            <span class="svg-icon icon-carta"></span>
-            <span>Ver carta</span>
-          </a>
-
-          <a
-            href="https://wa.me/51972667751?text=Hola%20La%20Barra%20de%20Jackili%2C%20quiero%20reservar%20una%20mesa."
-            class="btn btn-outline"
-            target="_blank"
-            rel="noopener"
-          >
-            <span class="svg-icon icon-whatsapp"></span>
-            <span>Reservar</span>
-          </a>
-        </div>
       </div>
 
       <div class="hero-visual">
@@ -896,6 +882,23 @@
           <span class="small">Más rico de</span>
           <span class="script">todo el Perú</span>
         </div>
+      </div>
+
+      <div class="hero-actions">
+        <a href="#carta" class="btn btn-white">
+          <span class="svg-icon icon-carta"></span>
+          <span>Ver carta</span>
+        </a>
+
+        <a
+          href="https://wa.me/51972667751?text=Hola%20La%20Barra%20de%20Jackili%2C%20quiero%20reservar%20una%20mesa."
+          class="btn btn-outline"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="svg-icon icon-whatsapp"></span>
+          <span>Reservar</span>
+        </a>
       </div>
 
     </section>
