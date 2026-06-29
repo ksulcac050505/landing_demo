@@ -3,80 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>La Barra de Jackili | Cevichería Peruana</title>
-  <meta name="description" content="La Barra de Jackili, cevichería peruana con pescados y mariscos frescos, platos abundantes y reservas por WhatsApp." />
-
-  <!--
-    LANDING PAGE MOBILE-FIRST
-    Estructura de assets esperada:
-    assets/img/logo.png
-    assets/img/hero.png
-    assets/img/plato-1.jpg
-    assets/img/plato-2.jpg
-    assets/img/plato-3.jpg
-    assets/img/plato-4.jpg
-    assets/img/plato-5.jpg
-    assets/img/promo.jpg
-    assets/img/local.jpg
-    assets/img/mapa.jpg
-    assets/img/avatar-1.jpg
-    assets/img/avatar-2.jpg
-    assets/img/avatar-3.jpg
-    assets/img/video-1.jpg
-    assets/img/video-2.jpg
-    assets/img/video-3.jpg
-
-    Iconos opcionales:
-    assets/icons/icon-carta.svg
-    assets/icons/icon-historia.svg
-    assets/icons/icon-whatsapp.svg
-    assets/icons/icon-pescado.svg
-    assets/icons/icon-receta.svg
-    assets/icons/icon-olas.svg
-    assets/icons/icon-reloj.svg
-    assets/icons/icon-clientes.svg
-    assets/icons/icon-corazon.svg
-    assets/icons/icon-sol.svg
-    assets/icons/arrow-left.svg
-    assets/icons/arrow-right.svg
-    assets/icons/icon-play.svg
-    assets/icons/icon-location.svg
-    assets/icons/icon-instagram.svg
-    assets/icons/icon-facebook.svg
-    assets/icons/icon-tiktok.svg
-  -->
+  <title>La Barra de Jackili - Hero</title>
 
   <style>
-    /* Fuente preparada para reemplazo local */
     @font-face {
-      font-family: 'JackiliCustom';
-      src: url('assets/fonts/jackili.woff2') format('woff2');
-      font-weight: 100 900;
+      font-family: "RocGrotesk";
+      src: url("assets/fonts/Roc Grotesk medium.otf") format("opentype");
+      font-weight: 500;
+      font-style: normal;
+      font-display: swap;
+    }
+
+    @font-face {
+      font-family: "SansitaSwashed";
+      src: url("assets/fonts/SansitaSwashed-Medium.ttf") format("truetype");
+      font-weight: 500;
+      font-style: normal;
       font-display: swap;
     }
 
     :root {
-      --blue: #006ceb;
-      --blue-2: #0073f7;
-      --blue-dark: #001f4b;
-      --blue-footer: #061b3b;
-      --blue-soft: #b5dcff;
+      --blue: #006eed;
+      --blue-soft: #69aef7;
       --white: #ffffff;
-      --text: #ffffff;
-      --text-blue: #006ceb;
-      --muted: #d9edff;
-      --card-radius: 26px;
-      --pill-radius: 999px;
-      --shadow: 0 20px 45px rgba(0, 38, 96, .18);
-      --shadow-hover: 0 28px 55px rgba(0, 35, 90, .24);
-      --container: 1110px;
-      --font-main: 'JackiliCustom', 'Poppins', 'Montserrat', 'Inter', Arial, sans-serif;
+      --text-blue: #0056bd;
+      --nav-height: 82px;
+      --nav-width: 1115px;
+      --radius-pill: 999px;
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     html {
@@ -85,1842 +44,680 @@
 
     body {
       min-height: 100vh;
+      font-family: "RocGrotesk", Arial, sans-serif;
       background: var(--blue);
       color: var(--white);
-      font-family: var(--font-main);
       overflow-x: hidden;
     }
 
     a {
-      color: inherit;
       text-decoration: none;
+      color: inherit;
     }
 
-    img {
-      max-width: 100%;
-      display: block;
-    }
-
-    button,
-    input,
-    select,
-    textarea {
-      font: inherit;
-    }
-
-    .page {
-      width: min(100%, 1440px);
-      margin: 0 auto;
-      background: var(--blue);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .container {
-      width: min(calc(100% - 32px), var(--container));
-      margin-inline: auto;
-    }
-
-    .section {
-      position: relative;
-      margin-top: 26px;
-    }
-
-    .visually-hidden {
-      position: absolute;
-      width: 1px;
-      height: 1px;
-      padding: 0;
-      margin: -1px;
-      overflow: hidden;
-      clip: rect(0, 0, 0, 0);
-      white-space: nowrap;
-      border: 0;
-    }
-
-    /* ---------- COMPONENTES ---------- */
-    .btn {
-      border: 0;
-      border-radius: var(--pill-radius);
-      min-height: 46px;
-      padding: 0 24px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 9px;
+    button {
+      font-family: inherit;
+      border: none;
       cursor: pointer;
-      transition: transform .22s ease, box-shadow .22s ease, background .22s ease, color .22s ease, border-color .22s ease;
-      font-weight: 800;
-      letter-spacing: .01em;
-      white-space: nowrap;
     }
 
-    .btn:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 16px 32px rgba(0, 30, 80, .2);
-    }
-
-    .btn-primary {
-      background: var(--white);
-      color: var(--text-blue);
-      border: 1px solid var(--white);
-    }
-
-    .btn-primary:hover {
-      background: #edf7ff;
-    }
-
-    .btn-outline {
-      background: transparent;
-      color: var(--white);
-      border: 2px solid rgba(255, 255, 255, .78);
-    }
-
-    .btn-outline:hover {
-      background: rgba(255, 255, 255, .12);
-      border-color: var(--white);
-    }
-
-    .btn-blue {
-      background: var(--blue);
-      color: var(--white);
-      border: 1px solid var(--blue);
-    }
-
-    .btn-blue:hover {
-      background: #005bd0;
-    }
-
-    .icon-img {
-      width: 22px;
-      height: 22px;
-      object-fit: contain;
-    }
-
-    .icon-img.small {
-      width: 17px;
-      height: 17px;
-    }
-
-    .logo-img {
-      max-height: 52px;
-      width: auto;
-      object-fit: contain;
-    }
-
-    .card-white {
-      background: var(--white);
-      color: var(--text-blue);
-      border-radius: var(--card-radius);
-      box-shadow: var(--shadow);
-    }
-
-    .section-title-pill {
+    .page-hero {
       position: relative;
-      z-index: 2;
-      width: fit-content;
-      margin: 0 auto -22px;
+      min-height: 100vh;
       background: var(--blue);
-      border: 5px solid var(--white);
-      color: var(--white);
-      border-radius: var(--pill-radius);
-      padding: 8px 22px;
-      display: flex;
-      align-items: center;
-      gap: 9px;
-      font-weight: 850;
-      font-size: clamp(1rem, 3.8vw, 1.35rem);
-      letter-spacing: .01em;
-      box-shadow: 0 12px 30px rgba(0, 40, 120, .12);
+      overflow: hidden;
     }
 
-    .section-title-pill .title-icon {
-      width: 22px;
-      height: 22px;
-      object-fit: contain;
-    }
+    /* =========================
+       HEADER / MENU SUPERIOR
+    ========================== */
 
-    /* ---------- HEADER ---------- */
     .site-header {
-      position: sticky;
-      top: 14px;
-      z-index: 50;
-      padding-top: 12px;
-      pointer-events: none;
-    }
-
-    .nav-shell {
-      pointer-events: auto;
-      background: var(--white);
-      color: var(--text-blue);
-      min-height: 64px;
-      border-radius: 999px;
-      display: grid;
-      grid-template-columns: 44px 1fr 44px;
-      align-items: center;
-      gap: 10px;
-      padding: 8px 12px;
-      box-shadow: 0 14px 30px rgba(0, 37, 94, .12);
       position: relative;
+      z-index: 20;
+      width: 100%;
+      padding: 38px 20px 0;
     }
 
-    .nav-logo {
-      justify-self: center;
-      display: flex;
+    .navbar {
+      width: min(var(--nav-width), calc(100vw - 32px));
+      height: var(--nav-height);
+      margin: 0 auto;
+      padding: 0 22px;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
       align-items: center;
-      justify-content: center;
-      min-width: 120px;
-      transition: transform .22s ease;
-    }
-
-    .nav-logo:hover {
-      transform: scale(1.03);
-    }
-
-    .menu-toggle {
-      width: 42px;
-      height: 42px;
-      border-radius: 999px;
-      border: 0;
-      background: #ecf6ff;
-      display: inline-flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 5px;
-      cursor: pointer;
-      transition: transform .22s ease, background .22s ease;
-    }
-
-    .menu-toggle:hover {
-      transform: translateY(-2px);
-      background: #dff0ff;
-    }
-
-    .menu-toggle span {
-      width: 18px;
-      height: 2px;
-      border-radius: 4px;
-      background: var(--blue);
-      transition: transform .2s ease, opacity .2s ease;
-    }
-
-    .nav-shell.open .menu-toggle span:nth-child(1) {
-      transform: translateY(7px) rotate(45deg);
-    }
-
-    .nav-shell.open .menu-toggle span:nth-child(2) {
-      opacity: 0;
-    }
-
-    .nav-shell.open .menu-toggle span:nth-child(3) {
-      transform: translateY(-7px) rotate(-45deg);
-    }
-
-    .nav-links {
-      position: absolute;
-      left: 0;
-      right: 0;
-      top: calc(100% + 10px);
       background: var(--white);
-      border-radius: 26px;
-      padding: 14px;
-      display: none;
-      flex-direction: column;
-      gap: 7px;
-      box-shadow: var(--shadow);
+      border-radius: var(--radius-pill);
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
     }
 
-    .nav-shell.open .nav-links {
+    .nav-group {
       display: flex;
-      animation: dropDown .18s ease both;
+      align-items: center;
+      gap: 36px;
     }
 
-    @keyframes dropDown {
-      from { opacity: 0; transform: translateY(-8px); }
-      to { opacity: 1; transform: translateY(0); }
+    .nav-group.left {
+      justify-content: flex-start;
+      padding-left: 10px;
+    }
+
+    .nav-group.right {
+      justify-content: flex-end;
     }
 
     .nav-link {
-      color: var(--text-blue);
-      font-weight: 800;
-      padding: 12px 14px;
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      transition: background .2s ease, transform .2s ease;
-    }
-
-    .nav-link:hover {
-      background: #eef7ff;
-      transform: translateX(3px);
-    }
-
-    .nav-whatsapp-mobile {
-      width: 42px;
-      height: 42px;
-      border-radius: 999px;
+      position: relative;
       display: inline-flex;
       align-items: center;
       justify-content: center;
+      min-height: 34px;
+      color: var(--text-blue);
+      font-size: 17px;
+      line-height: 1;
+      letter-spacing: 0.01em;
+      transition: transform 0.25s ease, color 0.25s ease;
+      white-space: nowrap;
+    }
+
+    .nav-link:hover {
+      color: var(--blue);
+      transform: translateY(-1px);
+    }
+
+    .nav-link.has-hover-fish {
+      padding: 0 24px;
+    }
+
+    .nav-link.has-hover-fish::before,
+    .nav-link.has-hover-fish::after {
+      content: "";
+      position: absolute;
+      top: 50%;
+      width: 28px;
+      height: 16px;
+      background-repeat: no-repeat;
+      background-position: center;
+      background-size: contain;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .nav-link.has-hover-fish::before {
+      left: -4px;
+      background-image: url("assets/img/left.png");
+      transform: translate(-8px, -50%);
+    }
+
+    .nav-link.has-hover-fish::after {
+      right: -4px;
+      background-image: url("assets/img/right.png");
+      transform: translate(8px, -50%);
+    }
+
+    .nav-link.has-hover-fish:hover::before,
+    .nav-link.has-hover-fish:hover::after {
+      opacity: 1;
+      transform: translate(0, -50%);
+    }
+
+    .brand {
+      width: 190px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .brand img {
+      width: 100%;
+      height: auto;
+      display: block;
+      transition: transform 0.28s ease;
+    }
+
+    .brand:hover img {
+      transform: scale(1.035);
+    }
+
+    .reserve-top {
+      height: 58px;
+      padding: 0 29px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 9px;
       background: var(--blue);
       color: var(--white);
-      transition: transform .22s ease, box-shadow .22s ease;
+      border-radius: var(--radius-pill);
+      font-size: 17px;
+      letter-spacing: 0.01em;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease;
     }
 
-    .nav-whatsapp-mobile:hover {
-      transform: translateY(-2px) scale(1.04);
-      box-shadow: 0 10px 20px rgba(0, 108, 235, .25);
+    .reserve-top img {
+      width: 25px;
+      height: 25px;
+      object-fit: contain;
+      display: block;
     }
 
-    .nav-reserve {
+    .reserve-top:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 24px rgba(0, 55, 130, 0.22);
+      background: #005fd1;
+    }
+
+    .menu-toggle {
       display: none;
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      background: var(--blue);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 5px;
     }
 
-    /* ---------- HERO ---------- */
+    .menu-toggle span {
+      width: 20px;
+      height: 2px;
+      background: var(--white);
+      border-radius: 10px;
+      transition: 0.25s ease;
+    }
+
+    .menu-toggle.is-active span:nth-child(1) {
+      transform: translateY(7px) rotate(45deg);
+    }
+
+    .menu-toggle.is-active span:nth-child(2) {
+      opacity: 0;
+    }
+
+    .menu-toggle.is-active span:nth-child(3) {
+      transform: translateY(-7px) rotate(-45deg);
+    }
+
+    /* =========================
+       HERO
+    ========================== */
+
     .hero {
-      padding: 34px 0 10px;
-      min-height: 710px;
-      display: flex;
-      align-items: center;
       position: relative;
-    }
-
-    .hero-grid {
+      z-index: 5;
+      width: min(1115px, calc(100vw - 32px));
+      min-height: calc(100vh - 120px);
+      margin: 0 auto;
       display: grid;
-      gap: 12px;
+      grid-template-columns: 46% 54%;
       align-items: center;
+      padding-top: 38px;
     }
 
-    .hero-media {
+    .hero-visual {
       position: relative;
-      min-height: 285px;
+      height: 100%;
+      min-height: 535px;
       display: flex;
       align-items: flex-end;
-      justify-content: center;
-      order: 1;
+      justify-content: flex-start;
     }
 
     .hero-person {
-      width: min(92vw, 430px);
+      position: absolute;
+      left: -33px;
+      bottom: -1px;
+      width: min(457.35px, 42vw);
       height: auto;
-      object-fit: contain;
-      filter: drop-shadow(0 24px 26px rgba(0, 20, 70, .18));
-      transform-origin: bottom center;
-      animation: heroFloat 5.5s ease-in-out infinite;
-    }
-
-    @keyframes heroFloat {
-      0%, 100% { transform: translateY(0); }
-      50% { transform: translateY(-7px); }
+      z-index: 2;
+      display: block;
+      user-select: none;
+      pointer-events: none;
     }
 
     .fresh-badge {
       position: absolute;
-      left: 4px;
-      bottom: 52px;
-      width: 102px;
-      height: 102px;
+      left: -4px;
+      top: 305px;
+      width: 112px;
+      height: 112px;
+      z-index: 4;
       border: 2px solid var(--white);
-      border-radius: 999px;
-      color: var(--white);
+      border-radius: 50%;
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      text-align: center;
-      font-size: .72rem;
-      font-weight: 850;
-      line-height: 1.05;
+      color: var(--white);
       text-transform: uppercase;
-      box-shadow: 0 13px 20px rgba(0, 33, 90, .12);
-      background: rgba(0, 108, 235, .18);
-      backdrop-filter: blur(3px);
-    }
-
-    .fresh-badge::after {
-      content: '≋≋';
-      position: absolute;
-      bottom: 24px;
-      font-size: 1.15rem;
-      letter-spacing: -4px;
-    }
-
-    .hero-copy {
-      order: 2;
+      font-size: 15px;
+      line-height: 0.95;
+      letter-spacing: 0.06em;
       text-align: center;
+      background: transparent;
+    }
+
+    .fresh-badge .waves {
+      width: 58px;
+      height: 22px;
+      margin-top: 8px;
+      display: block;
+      background:
+        radial-gradient(ellipse at center, transparent 43%, var(--white) 45%, var(--white) 53%, transparent 55%);
+      background-size: 29px 11px;
+      background-position: 0 0;
+      opacity: 0.95;
+    }
+
+    .hero-caption {
+      position: absolute;
+      left: 160px;
+      bottom: 80px;
+      z-index: 5;
+      width: 190px;
+      text-align: center;
+      color: var(--white);
+      pointer-events: none;
+    }
+
+    .hero-caption .small {
+      display: block;
+      font-size: 22px;
+      line-height: 0.95;
+      opacity: 0.7;
+    }
+
+    .hero-caption .script {
+      display: block;
+      margin-top: -2px;
+      font-family: "SansitaSwashed", cursive;
+      font-size: 30px;
+      line-height: 0.9;
+      color: var(--white);
+      text-shadow: 0 2px 5px rgba(0, 30, 90, 0.12);
+    }
+
+    .hero-content {
       position: relative;
-      z-index: 1;
+      z-index: 7;
+      padding-left: 12px;
+      transform: translateY(-10px);
     }
 
     .hero-title {
-      font-size: clamp(3.3rem, 15vw, 7.4rem);
-      font-weight: 520;
-      line-height: .85;
-      letter-spacing: .02em;
-      max-width: 770px;
-      margin: 0 auto;
+      max-width: 650px;
+      color: var(--white);
+      font-size: clamp(68px, 8.55vw, 126px);
+      line-height: 0.85;
+      letter-spacing: -0.045em;
+      font-weight: 500;
     }
 
     .hero-title span {
       display: block;
-      color: rgba(255, 255, 255, .48);
-      font-weight: 520;
     }
 
-    .hero-description {
-      width: min(100%, 520px);
-      margin: 24px auto 0;
-      color: var(--muted);
-      font-size: clamp(1rem, 3.7vw, 1.22rem);
-      line-height: 1.35;
-      letter-spacing: .02em;
+    .hero-title .soft {
+      color: var(--blue-soft);
+      padding-left: 118px;
+    }
+
+    .hero-copy {
+      width: min(560px, 100%);
+      margin-top: 47px;
+      color: var(--white);
+      font-size: 24px;
+      line-height: 1.28;
+      letter-spacing: 0.01em;
     }
 
     .hero-actions {
-      margin-top: 26px;
-      display: grid;
-      gap: 12px;
-      justify-content: center;
-    }
-
-    .hero-watermark {
-      position: absolute;
-      left: 50%;
-      bottom: 12px;
-      transform: translateX(-50%);
-      color: rgba(255, 255, 255, .6);
-      font-size: .92rem;
-      text-align: center;
-      z-index: 1;
-      display: none;
-    }
-
-    .hero-watermark b {
-      display: block;
-      color: rgba(255, 255, 255, .75);
-      font-size: 1.35rem;
-      font-style: italic;
-      line-height: .9;
-    }
-
-    /* ---------- BENEFITS ---------- */
-    .benefits {
-      margin-top: -6px;
-      position: relative;
-      z-index: 5;
-    }
-
-    .benefits-card {
-      border-radius: 28px;
-      padding: 10px;
-      overflow-x: auto;
-      scrollbar-width: none;
-      display: grid;
-      grid-auto-flow: column;
-      grid-auto-columns: minmax(160px, 1fr);
-      gap: 0;
-      align-items: center;
-    }
-
-    .benefits-card::-webkit-scrollbar {
-      display: none;
-    }
-
-    .benefit-item {
-      min-height: 58px;
       display: flex;
       align-items: center;
-      gap: 9px;
-      padding: 10px 14px;
-      border-right: 2px solid rgba(0, 108, 235, .45);
-      color: var(--text-blue);
-      font-weight: 820;
-      line-height: .94;
-      transition: transform .2s ease, background .2s ease;
-      border-radius: 18px;
+      gap: 34px;
+      margin-top: 32px;
     }
 
-    .benefit-item:last-child {
-      border-right: 0;
-    }
-
-    .benefit-item:hover {
-      background: #f0f8ff;
-      transform: translateY(-2px);
-    }
-
-    .benefit-item small {
-      display: block;
-      font-weight: 700;
-    }
-
-    /* ---------- FAVORITES ---------- */
-    .favorites-wrap {
-      padding: 38px 34px 54px;
-      position: relative;
-    }
-
-    .favorites-scroller {
-      overflow: hidden;
-    }
-
-    .product-row {
-      display: flex;
-      gap: 16px;
-      overflow-x: auto;
-      scroll-snap-type: x mandatory;
-      padding: 4px 2px 8px;
-      scrollbar-width: none;
-    }
-
-    .product-row::-webkit-scrollbar {
-      display: none;
-    }
-
-    .product-card {
-      flex: 0 0 178px;
-      scroll-snap-align: start;
-      background: var(--white);
-      border: 1.8px solid var(--blue);
-      border-radius: 8px;
-      overflow: hidden;
-      color: var(--text-blue);
-      transition: transform .23s ease, box-shadow .23s ease;
-    }
-
-    .product-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 18px 35px rgba(0, 108, 235, .18);
-    }
-
-    .product-img {
-      width: 100%;
-      height: 120px;
-      object-fit: cover;
-      background: var(--blue);
-    }
-
-    .product-body {
-      padding: 8px 9px 9px;
-    }
-
-    .product-title {
-      font-size: .92rem;
-      line-height: 1;
-      font-weight: 900;
-      color: var(--text-blue);
-    }
-
-    .product-desc {
-      margin-top: 3px;
-      color: #4c90df;
-      font-size: .66rem;
-      line-height: .9;
-      font-weight: 700;
-    }
-
-    .product-price {
-      margin-top: 4px;
-      font-size: .84rem;
-      font-weight: 950;
-      color: var(--text-blue);
-    }
-
-    .carousel-btn {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      width: 52px;
-      height: 52px;
-      border: 0;
-      border-radius: 999px;
-      background: var(--white);
-      color: var(--text-blue);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      cursor: pointer;
-      box-shadow: 0 16px 30px rgba(0, 35, 90, .18);
-      transition: transform .2s ease, box-shadow .2s ease;
-      z-index: 5;
-    }
-
-    .carousel-btn:hover {
-      transform: translateY(-50%) scale(1.08);
-      box-shadow: 0 20px 40px rgba(0, 35, 90, .26);
-    }
-
-    .carousel-prev {
-      left: -21px;
-    }
-
-    .carousel-next {
-      right: -21px;
-    }
-
-    .menu-complete {
-      position: absolute;
-      left: 50%;
-      bottom: -20px;
-      transform: translateX(-50%);
-      min-height: 40px;
-      padding-inline: 22px;
-      font-size: .92rem;
-      border: 4px solid var(--white);
-    }
-
-    .menu-complete:hover {
-      transform: translateX(-50%) translateY(-3px);
-    }
-
-    /* ---------- PROMO + VIDEOS ---------- */
-    .promo-section {
-      margin-top: 80px;
-    }
-
-    .promo-card {
-      padding: 34px;
-      position: relative;
-    }
-
-    .promo-deco {
-      position: absolute;
-      left: 50%;
-      top: -26px;
-      transform: translateX(-50%);
-      width: 96px;
-      height: 44px;
-      border-radius: 999px 999px 0 0;
-      background: var(--white);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      color: var(--blue);
-      font-size: 1.4rem;
-      font-weight: 900;
-    }
-
-    .promo-strip {
-      min-height: 142px;
-      border-radius: 24px;
-      overflow: hidden;
-      display: grid;
-      background: var(--blue);
-      color: var(--white);
-    }
-
-    .promo-img-wrap {
-      min-height: 150px;
-      overflow: hidden;
-      background: #0a77f1;
-    }
-
-    .promo-img {
-      width: 100%;
-      height: 100%;
-      min-height: 150px;
-      object-fit: cover;
-    }
-
-    .promo-copy {
-      padding: 22px;
-      display: grid;
-      gap: 12px;
-      align-content: center;
-    }
-
-    .promo-copy small {
-      font-weight: 850;
-      color: #d5edff;
-    }
-
-    .promo-copy h2 {
-      font-size: clamp(1.6rem, 8vw, 2.15rem);
-      line-height: .92;
-      font-weight: 920;
-      margin-top: -8px;
-    }
-
-    .promo-copy p {
-      color: #d5edff;
-      font-size: 1rem;
-      line-height: 1.25;
-    }
-
-    .promo-price {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .price-big {
-      font-size: clamp(2.2rem, 10vw, 3rem);
-      font-weight: 950;
-      line-height: 1;
-    }
-
-    .video-grid {
-      margin-top: 34px;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-    }
-
-    .video-card {
-      height: 430px;
-      border-radius: 18px;
-      overflow: hidden;
-      background: var(--blue);
-      position: relative;
-      isolation: isolate;
-      cursor: pointer;
-      transition: transform .24s ease, box-shadow .24s ease;
-    }
-
-    .video-card:hover {
-      transform: translateY(-7px);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .video-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0, 108, 235, .05), rgba(0, 37, 95, .45)), var(--bg, none) center/cover no-repeat;
-      z-index: -1;
-    }
-
-    .video-card::after {
-      content: '';
-      position: absolute;
-      inset: 0;
-      border: 1px solid rgba(255, 255, 255, .14);
-      border-radius: inherit;
-      pointer-events: none;
-    }
-
-    .play-btn {
-      position: absolute;
-      right: 24px;
-      bottom: 24px;
-      width: 42px;
-      height: 42px;
-      border-radius: 999px;
-      background: var(--white);
-      color: var(--text-blue);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      font-size: 1.05rem;
-      transition: transform .22s ease;
-    }
-
-    .video-card:hover .play-btn {
-      transform: scale(1.12);
-    }
-
-    .video-label {
-      position: absolute;
-      left: 20px;
-      top: 20px;
-      max-width: 75%;
-      font-weight: 900;
-      line-height: 1.05;
-      color: var(--white);
-      opacity: 0;
-      transform: translateY(8px);
-      transition: opacity .2s ease, transform .2s ease;
-    }
-
-    .video-card:hover .video-label {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    /* ---------- INFO CARDS ---------- */
-    .info-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .stack-card {
-      display: grid;
-      gap: 18px;
-    }
-
-    .info-card {
-      background: var(--white);
-      border-radius: 22px;
-      color: var(--text-blue);
-      padding: 24px;
-      min-height: 180px;
-      box-shadow: var(--shadow);
-      transition: transform .22s ease, box-shadow .22s ease;
-    }
-
-    .info-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-hover);
-    }
-
-    .info-title {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      text-transform: uppercase;
-      letter-spacing: .03em;
-      font-weight: 950;
-      font-size: 1.08rem;
-      line-height: 1;
-    }
-
-    .info-text {
-      margin-top: 20px;
-      color: #4e91df;
-      font-size: .86rem;
-      line-height: 1.25;
-      font-weight: 700;
-    }
-
-    .info-card .btn {
-      width: 100%;
-      margin-top: 22px;
-      min-height: 48px;
-    }
-
-    .mini-list {
-      display: grid;
-      gap: 16px;
-      margin-top: 2px;
-    }
-
-    .mini-list-item {
-      display: grid;
-      grid-template-columns: 34px 1fr;
-      gap: 10px;
-      align-items: start;
-    }
-
-    .mini-list-item b {
-      display: block;
-      font-size: .92rem;
-      color: var(--text-blue);
-      line-height: 1;
-    }
-
-    .mini-list-item span {
-      display: block;
-      color: #4e91df;
-      font-size: .68rem;
-      font-weight: 700;
-      line-height: .95;
-      margin-top: 3px;
-    }
-
-    .map-box {
-      margin-top: 18px;
-      height: 146px;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #e7f3ff;
-    }
-
-    .map-box img,
-    .local-photo img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .hours-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      color: #4e91df;
-      font-size: .75rem;
-      font-weight: 850;
-      line-height: 1.6;
-      margin-top: 12px;
-    }
-
-    .delivery-pill {
-      width: fit-content;
-      margin: 12px auto 0;
-      min-height: 42px;
-      padding: 5px 22px;
-      border: 2px solid var(--blue);
-      border-radius: 999px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 8px;
-      text-align: center;
-      font-weight: 950;
-      line-height: 1;
-    }
-
-    .delivery-pill small {
-      display: block;
-      font-size: .57rem;
-      color: #4e91df;
-    }
-
-    .local-photo {
-      margin-top: 18px;
-      height: 152px;
-      border-radius: 14px;
-      overflow: hidden;
-      background: #e7f3ff;
-    }
-
-    /* ---------- TESTIMONIAL ---------- */
-    .testimonial {
-      padding: 22px 0 36px;
-    }
-
-    .testimonial-line {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 18px;
-      align-items: center;
-      color: var(--white);
-    }
-
-    .client {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-    }
-
-    .avatar {
-      width: 68px;
-      height: 68px;
-      border-radius: 999px;
-      overflow: hidden;
-      background: #d9edff;
-      flex: 0 0 auto;
-    }
-
-    .avatar img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .client-name {
-      font-size: 1.45rem;
-      font-weight: 860;
-      line-height: 1;
-    }
-
-    .stars {
-      margin-top: 8px;
-      letter-spacing: 5px;
-      font-size: .9rem;
-      color: var(--white);
-    }
-
-    .quote {
-      font-size: clamp(1rem, 4vw, 1.25rem);
-      line-height: 1.18;
-      font-weight: 760;
-      color: var(--white);
-    }
-
-    .happy-clients {
-      display: flex;
-      align-items: center;
-      gap: 18px;
-      justify-content: flex-start;
-    }
-
-    .avatar-stack {
-      display: flex;
-      align-items: center;
-    }
-
-    .avatar-mini {
-      width: 54px;
-      height: 54px;
-      border-radius: 999px;
-      border: 3px solid var(--white);
-      overflow: hidden;
-      background: #d9edff;
-      margin-left: -14px;
-    }
-
-    .avatar-mini:first-child {
-      margin-left: 0;
-    }
-
-    .avatar-mini img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .happy-text {
-      font-size: 1.1rem;
-      font-weight: 900;
-      line-height: 1.05;
-    }
-
-    /* ---------- FOOTER ---------- */
-    .footer {
-      background: var(--blue-footer);
-      position: relative;
-      overflow: hidden;
-      padding: 36px 0 18px;
-      color: var(--white);
-    }
-
-    .footer::after {
-      content: '';
-      position: absolute;
-      right: -70px;
-      bottom: -40px;
-      width: 360px;
-      height: 220px;
-      opacity: .18;
-      background: url('assets/img/fish-footer.png') center/contain no-repeat;
-      pointer-events: none;
-    }
-
-    .footer-grid {
-      position: relative;
-      z-index: 1;
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 28px;
-    }
-
-    .footer-logo {
-      max-width: 190px;
-      margin-bottom: 14px;
-      transition: transform .22s ease;
-    }
-
-    .footer-logo:hover {
-      transform: scale(1.03);
-    }
-
-    .footer p {
-      color: #d9edff;
-      font-size: .82rem;
-      line-height: 1.28;
-      font-weight: 700;
-      max-width: 245px;
-    }
-
-    .socials {
-      display: flex;
-      gap: 22px;
-      margin-top: 22px;
-      align-items: center;
-    }
-
-    .social-link {
-      width: 28px;
-      height: 28px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      opacity: .95;
-      transition: transform .22s ease, opacity .22s ease;
-    }
-
-    .social-link:hover {
-      transform: translateY(-3px) scale(1.08);
-      opacity: 1;
-    }
-
-    .footer-col h3 {
-      text-transform: uppercase;
-      font-size: .84rem;
-      letter-spacing: .04em;
-      margin-bottom: 16px;
-      font-weight: 950;
-    }
-
-    .footer-col ul {
-      list-style: none;
-      display: grid;
-      gap: 8px;
-    }
-
-    .footer-col a,
-    .footer-col li {
-      color: #d9edff;
-      font-size: .82rem;
-      font-weight: 750;
-      line-height: 1.1;
-      transition: color .2s ease, transform .2s ease;
-    }
-
-    .footer-col a:hover {
-      color: var(--white);
-      transform: translateX(3px);
-    }
-
-    .contact-item {
-      display: flex;
-      align-items: flex-start;
-      gap: 9px;
-    }
-
-    .copyright {
-      position: relative;
-      z-index: 1;
-      border-top: 1px solid rgba(255, 255, 255, .12);
-      margin-top: 28px;
-      padding-top: 16px;
-      text-align: center;
-      font-size: .78rem;
-      color: #d9edff;
-      font-weight: 650;
-    }
-
-    /* ---------- FLOATING WHATSAPP ---------- */
-    .wa-floating {
-      position: fixed;
-      right: 18px;
-      bottom: 18px;
-      z-index: 60;
-      width: 60px;
+    .btn {
       height: 60px;
-      border-radius: 999px;
-      background: var(--white);
-      color: var(--text-blue);
-      display: flex;
+      min-width: 173px;
+      padding: 0 30px;
+      border-radius: var(--radius-pill);
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 18px 40px rgba(0, 20, 70, .28);
-      transition: transform .22s ease;
-      animation: pulseWA 2s ease-in-out infinite;
+      gap: 10px;
+      font-size: 18px;
+      line-height: 1;
+      transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.25s ease, color 0.25s ease, border-color 0.25s ease;
     }
 
-    .wa-floating:hover {
-      transform: translateY(-5px) scale(1.06);
-      animation-play-state: paused;
+    .btn img {
+      width: 21px;
+      height: 21px;
+      object-fit: contain;
+      display: block;
     }
 
-    @keyframes pulseWA {
-      0%, 100% { box-shadow: 0 18px 40px rgba(0, 20, 70, .28), 0 0 0 0 rgba(255, 255, 255, .45); }
-      50% { box-shadow: 0 18px 40px rgba(0, 20, 70, .28), 0 0 0 12px rgba(255, 255, 255, 0); }
+    .btn-primary-white {
+      background: var(--white);
+      color: var(--blue);
     }
 
-    /* ---------- REVEAL ANIMATION ---------- */
-    .reveal {
-      opacity: 0;
-      transform: translateY(22px);
-      transition: opacity .55s ease, transform .55s ease;
+    .btn-primary-white:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 26px rgba(0, 45, 120, 0.2);
     }
 
-    .reveal.show {
-      opacity: 1;
-      transform: translateY(0);
+    .btn-outline-white {
+      background: transparent;
+      color: var(--white);
+      border: 2px solid var(--white);
+      min-width: 218px;
     }
 
-    /* ---------- TABLET ---------- */
-    @media (min-width: 700px) {
-      .container {
-        width: min(calc(100% - 64px), var(--container));
-      }
-
-      .hero-actions {
-        display: flex;
-        align-items: center;
-      }
-
-      .promo-strip {
-        grid-template-columns: 42% 1fr;
-      }
-
-      .promo-copy {
-        grid-template-columns: 1fr auto;
-        align-items: center;
-      }
-
-      .promo-text-block {
-        min-width: 0;
-      }
-
-      .video-grid {
-        grid-template-columns: repeat(3, 1fr);
-      }
-
-      .video-card {
-        height: 390px;
-      }
-
-      .info-grid {
-        grid-template-columns: 1fr 1fr;
-      }
-
-      .info-card.hours-card {
-        grid-column: span 2;
-      }
-
-      .testimonial-line {
-        grid-template-columns: 250px 1fr 260px;
-      }
-
-      .happy-clients {
-        justify-content: flex-end;
-      }
-
-      .footer-grid {
-        grid-template-columns: 1.25fr .8fr 1fr 1fr;
-      }
+    .btn-outline-white:hover {
+      background: var(--white);
+      color: var(--blue);
+      transform: translateY(-2px);
+      box-shadow: 0 12px 26px rgba(0, 45, 120, 0.18);
     }
 
-    /* ---------- DESKTOP ---------- */
-    @media (min-width: 980px) {
+    /* =========================
+       MOBILE
+    ========================== */
+
+    @media (max-width: 900px) {
+      :root {
+        --nav-height: 70px;
+      }
+
       .site-header {
-        top: 24px;
-        padding-top: 24px;
+        padding-top: 18px;
       }
 
-      .nav-shell {
-        min-height: 86px;
-        grid-template-columns: 1fr auto 1fr;
-        padding: 0 34px;
-      }
-
-      .menu-toggle,
-      .nav-whatsapp-mobile {
-        display: none;
-      }
-
-      .nav-links {
-        position: static;
-        display: contents;
-        padding: 0;
-        background: transparent;
-        box-shadow: none;
-      }
-
-      .nav-left,
-      .nav-right {
+      .navbar {
         display: flex;
-        align-items: center;
-        gap: 52px;
+        justify-content: space-between;
+        padding: 0 15px 0 21px;
       }
 
-      .nav-left {
-        justify-self: start;
+      .brand {
+        width: 148px;
       }
 
-      .nav-right {
-        justify-self: end;
+      .menu-toggle {
+        display: flex;
+      }
+
+      .nav-group {
+        position: absolute;
+        left: 50%;
+        top: calc(100% + 14px);
+        width: min(360px, calc(100vw - 32px));
+        transform: translateX(-50%) translateY(-8px);
+        padding: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        background: var(--white);
+        border-radius: 28px;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        box-shadow: 0 16px 35px rgba(0, 30, 90, 0.18);
+        transition: 0.25s ease;
+      }
+
+      .nav-group.left,
+      .nav-group.right {
+        justify-content: flex-start;
+        padding-left: 20px;
+      }
+
+      .nav-group.left {
+        top: calc(100% + 14px);
+      }
+
+      .nav-group.right {
+        top: calc(100% + 176px);
+      }
+
+      .navbar.is-open .nav-group {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateX(-50%) translateY(0);
       }
 
       .nav-link {
-        padding: 8px 0;
+        width: 100%;
+        justify-content: flex-start;
+        font-size: 17px;
       }
 
-      .nav-link:hover {
-        background: transparent;
-        transform: translateY(-2px);
-      }
-
-      .nav-reserve {
-        display: inline-flex;
-        min-height: 52px;
-        padding-inline: 28px;
-        background: var(--blue);
-        color: var(--white);
-      }
-
-      .logo-img {
-        max-height: 64px;
+      .reserve-top {
+        width: 100%;
+        height: 52px;
       }
 
       .hero {
-        min-height: 728px;
-        padding: 42px 0 0;
+        width: min(430px, calc(100vw - 28px));
+        min-height: auto;
+        display: flex;
+        flex-direction: column;
+        padding-top: 44px;
       }
 
-      .hero-grid {
-        grid-template-columns: 48% 52%;
-        gap: 0;
-      }
-
-      .hero-media {
+      .hero-content {
         order: 1;
-        min-height: 610px;
-        justify-content: flex-start;
-      }
-
-      .hero-copy {
-        order: 2;
-        text-align: left;
+        width: 100%;
+        padding-left: 0;
+        transform: none;
+        text-align: center;
       }
 
       .hero-title {
-        margin: 0;
-        max-width: 710px;
+        max-width: 100%;
+        font-size: clamp(54px, 17vw, 76px);
+        line-height: 0.88;
       }
 
-      .hero-description {
-        margin-left: 0;
-        width: min(100%, 510px);
+      .hero-title .soft {
+        padding-left: 0;
+      }
+
+      .hero-copy {
+        width: 100%;
+        margin-top: 26px;
+        font-size: 18px;
+        line-height: 1.38;
       }
 
       .hero-actions {
-        justify-content: flex-start;
+        width: 100%;
+        margin-top: 26px;
+        gap: 14px;
+        justify-content: center;
+        flex-direction: column;
+      }
+
+      .btn {
+        width: min(310px, 100%);
+        height: 56px;
+        font-size: 17px;
+      }
+
+      .hero-visual {
+        order: 2;
+        width: 100%;
+        min-height: 460px;
+        margin-top: 20px;
       }
 
       .hero-person {
-        width: 560px;
-        max-width: none;
-        margin-left: 80px;
-        align-self: flex-end;
+        left: 50%;
+        transform: translateX(-50%);
+        bottom: 0;
+        width: min(360px, 92vw);
       }
 
       .fresh-badge {
         left: 8px;
-        bottom: 210px;
-        width: 132px;
-        height: 132px;
-        font-size: .88rem;
+        top: 135px;
+        width: 92px;
+        height: 92px;
+        font-size: 12px;
       }
 
-      .hero-watermark {
-        display: block;
-        left: 260px;
-        bottom: 140px;
+      .fresh-badge .waves {
+        width: 48px;
+        height: 18px;
+        background-size: 24px 9px;
       }
 
-      .benefits {
-        margin-top: -32px;
+      .hero-caption {
+        left: 50%;
+        bottom: 56px;
+        transform: translateX(-50%);
       }
 
-      .benefits-card {
-        height: 82px;
-        padding: 0 26px;
-        grid-auto-columns: 1fr;
-        grid-template-columns: repeat(5, 1fr);
+      .hero-caption .small {
+        font-size: 18px;
       }
 
-      .benefit-item {
-        border-radius: 0;
-        justify-content: center;
-      }
-
-      .favorites-wrap {
-        padding: 48px 62px 56px;
-      }
-
-      .product-card {
-        flex-basis: 184px;
-      }
-
-      .product-img {
-        height: 125px;
-      }
-
-      .promo-section {
-        margin-top: 94px;
-      }
-
-      .promo-card {
-        padding: 42px;
-      }
-
-      .promo-strip {
-        min-height: 150px;
-        grid-template-columns: 42% 1fr;
-      }
-
-      .promo-img-wrap {
-        min-height: 150px;
-      }
-
-      .video-grid {
-        gap: 45px;
-      }
-
-      .video-card {
-        height: 505px;
-        border-radius: 18px;
-      }
-
-      .info-grid {
-        grid-template-columns: 1fr 1fr 1.16fr;
-      }
-
-      .info-card.hours-card {
-        grid-column: auto;
-      }
-
-      .section {
-        margin-top: 34px;
-      }
-
-      .footer {
-        padding-top: 42px;
+      .hero-caption .script {
+        font-size: 26px;
       }
     }
 
-    @media (min-width: 1180px) {
-      .nav-shell,
-      .container {
-        width: min(calc(100% - 160px), var(--container));
+    @media (max-width: 480px) {
+      .brand {
+        width: 132px;
+      }
+
+      .hero-visual {
+        min-height: 410px;
       }
 
       .hero-person {
-        margin-left: 120px;
+        width: min(330px, 96vw);
+      }
+
+      .fresh-badge {
+        left: 0;
+        top: 130px;
       }
     }
   </style>
 </head>
+
 <body>
-  <div class="page">
+  <main class="page-hero">
+
     <header class="site-header">
-      <nav class="nav-shell container" id="navShell" aria-label="Navegación principal">
-        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
-          <span></span><span></span><span></span>
-        </button>
-
-        <div class="nav-links nav-left" id="navLinksLeft">
-          <a href="#carta" class="nav-link">
-            <img class="icon-img small" src="assets/icons/icon-carta.svg" alt="" onerror="this.style.display='none'" />
-            Carta
-          </a>
-          <a href="#historia" class="nav-link">
-            <img class="icon-img small" src="assets/icons/icon-historia.svg" alt="" onerror="this.style.display='none'" />
-            Historia
-          </a>
+      <nav class="navbar" id="navbar" aria-label="Menú principal">
+        <div class="nav-group left">
+          <a href="#carta" class="nav-link has-hover-fish">Carta</a>
+          <a href="#historia" class="nav-link">Historia</a>
         </div>
 
-        <a href="#inicio" class="nav-logo" aria-label="La Barra de Jackili">
-          <img class="logo-img" src="assets/img/logo.png" alt="La Barra de Jackili" />
+        <a href="#" class="brand" aria-label="La Barra de Jackili">
+          <img src="assets/img/Logo.png" alt="La Barra de Jackili Cevichería">
         </a>
 
-        <div class="nav-links nav-right" id="navLinksRight">
+        <div class="nav-group right">
           <a href="#ubicacion" class="nav-link">Ubicación</a>
-          <a href="javascript:void(0)" class="btn nav-reserve js-whatsapp" data-msg="Hola, quiero reservar una mesa en La Barra de Jackili.">
-            <img class="icon-img small" src="assets/icons/icon-whatsapp.svg" alt="" onerror="this.style.display='none'" />
-            Reservar
+
+          <a
+            href="https://wa.me/51972667751?text=Hola%20La%20Barra%20de%20Jackili%2C%20quiero%20reservar%20una%20mesa."
+            class="reserve-top"
+            target="_blank"
+            rel="noopener"
+          >
+            <img src="assets/icons/whatsapp.png" alt="">
+            <span>Reservar</span>
           </a>
         </div>
 
-        <a href="javascript:void(0)" class="nav-whatsapp-mobile js-whatsapp" aria-label="Reservar por WhatsApp" data-msg="Hola, quiero reservar una mesa en La Barra de Jackili.">
-          <img class="icon-img" src="assets/icons/icon-whatsapp.svg" alt="" onerror="this.outerHTML='WA'" />
-        </a>
+        <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
       </nav>
     </header>
 
-    <main id="inicio">
-      <section class="hero" id="historia">
-        <div class="container hero-grid">
-          <div class="hero-media reveal">
-            <img class="hero-person" src="assets/img/hero.png" alt="Plato marino de La Barra de Jackili" />
-            <div class="fresh-badge">Fresco<br />del mar</div>
-            <div class="hero-watermark">Más rico de <b>todo el Perú</b></div>
-          </div>
+    <section class="hero" id="inicio">
+      <div class="hero-visual">
+        <img
+          src="assets/img/imgen_hero.png"
+          alt="Persona sosteniendo un plato marino de La Barra de Jackili"
+          class="hero-person"
+        >
 
-          <div class="hero-copy reveal">
-            <h1 class="hero-title">El mar<br />en un solo <span>bocado</span></h1>
-            <p class="hero-description">Pescados y mariscos con sabor criollo, frescura del mar y platos abundantes que te conquistan desde el primer bocado.</p>
-            <div class="hero-actions">
-              <a href="#carta" class="btn btn-primary">
-                <img class="icon-img small" src="assets/icons/icon-carta.svg" alt="" onerror="this.style.display='none'" />
-                Ver carta
-              </a>
-              <a href="javascript:void(0)" class="btn btn-outline js-whatsapp" data-msg="Hola, quiero reservar una mesa en La Barra de Jackili.">
-                <img class="icon-img small" src="assets/icons/icon-whatsapp.svg" alt="" onerror="this.style.display='none'" />
-                Reservar
-              </a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="benefits container reveal" aria-label="Beneficios">
-        <div class="benefits-card card-white">
-          <div class="benefit-item">
-            <img class="icon-img" src="assets/icons/icon-pescado.svg" alt="" onerror="this.style.display='none'" />
-            <span>Pescados <small>100% frescos</small></span>
-          </div>
-          <div class="benefit-item">
-            <img class="icon-img" src="assets/icons/icon-receta.svg" alt="" onerror="this.style.display='none'" />
-            <span>Recetas <small>tradicionales</small></span>
-          </div>
-          <div class="benefit-item">
-            <img class="icon-img" src="assets/icons/icon-olas.svg" alt="" onerror="this.style.display='none'" />
-            <span>Sabor auténtico <small>del puerto</small></span>
-          </div>
-          <div class="benefit-item">
-            <img class="icon-img" src="assets/icons/icon-reloj.svg" alt="" onerror="this.style.display='none'" />
-            <span>Atención <small>rápida</small></span>
-          </div>
-          <div class="benefit-item">
-            <img class="icon-img" src="assets/icons/icon-clientes.svg" alt="" onerror="this.style.display='none'" />
-            <span>+500 clientes <small>satisfechos</small></span>
-          </div>
-        </div>
-      </section>
-
-      <section class="section container reveal" id="carta">
-        <div class="section-title-pill">
-          <img class="title-icon" src="assets/icons/icon-corazon.svg" alt="" onerror="this.style.display='none'" />
-          Los favoritos de nuestro clientes
-          <img class="title-icon" src="assets/icons/icon-sol.svg" alt="" onerror="this.style.display='none'" />
+        <div class="fresh-badge" aria-hidden="true">
+          <span>Fresco</span>
+          <span>del mar</span>
+          <i class="waves"></i>
         </div>
 
-        <div class="card-white favorites-wrap">
-          <button class="carousel-btn carousel-prev" type="button" data-carousel="prev" aria-label="Ver platos anteriores">
-            <img class="icon-img" src="assets/icons/arrow-left.svg" alt="" onerror="this.outerHTML='‹'" />
-          </button>
-          <button class="carousel-btn carousel-next" type="button" data-carousel="next" aria-label="Ver siguientes platos">
-            <img class="icon-img" src="assets/icons/arrow-right.svg" alt="" onerror="this.outerHTML='›'" />
-          </button>
-
-          <div class="favorites-scroller">
-            <div class="product-row" id="productCarousel">
-              <article class="product-card">
-                <img class="product-img" src="assets/img/plato-1.jpg" alt="Ceviche Clásico" />
-                <div class="product-body">
-                  <h3 class="product-title">Ceviche Clásico</h3>
-                  <p class="product-desc">Pescado y mariscos con ají, limón y tradición.</p>
-                  <p class="product-price">S/36</p>
-                </div>
-              </article>
-              <article class="product-card">
-                <img class="product-img" src="assets/img/plato-2.jpg" alt="Ceviche Mixto" />
-                <div class="product-body">
-                  <h3 class="product-title">Ceviche Mixto</h3>
-                  <p class="product-desc">Fresco, abundante y lleno de sabor marino.</p>
-                  <p class="product-price">S/38</p>
-                </div>
-              </article>
-              <article class="product-card">
-                <img class="product-img" src="assets/img/plato-3.jpg" alt="Jalea Mixta" />
-                <div class="product-body">
-                  <h3 class="product-title">Jalea Mixta</h3>
-                  <p class="product-desc">Crujiente, dorada y perfecta para compartir.</p>
-                  <p class="product-price">S/42</p>
-                </div>
-              </article>
-              <article class="product-card">
-                <img class="product-img" src="assets/img/plato-4.jpg" alt="Arroz con Mariscos" />
-                <div class="product-body">
-                  <h3 class="product-title">Arroz con Mariscos</h3>
-                  <p class="product-desc">Sabor criollo con mariscos del día.</p>
-                  <p class="product-price">S/39</p>
-                </div>
-              </article>
-              <article class="product-card">
-                <img class="product-img" src="assets/img/plato-5.jpg" alt="Leche de Tigre" />
-                <div class="product-body">
-                  <h3 class="product-title">Leche de Tigre</h3>
-                  <p class="product-desc">Potente, fresca y con puro sabor Jackili.</p>
-                  <p class="product-price">S/24</p>
-                </div>
-              </article>
-              <article class="product-card">
-                <img class="product-img" src="assets/img/plato-1.jpg" alt="Parihuela" />
-                <div class="product-body">
-                  <h3 class="product-title">Parihuela</h3>
-                  <p class="product-desc">Caldo marino contundente y tradicional.</p>
-                  <p class="product-price">S/45</p>
-                </div>
-              </article>
-            </div>
-          </div>
-
-          <a href="javascript:void(0)" class="btn btn-blue menu-complete js-whatsapp" data-msg="Hola, quiero ver la carta completa de La Barra de Jackili.">
-            <img class="icon-img small" src="assets/icons/icon-carta.svg" alt="" onerror="this.style.display='none'" />
-            Ver carta completa
-          </a>
-        </div>
-      </section>
-
-      <section class="section promo-section container reveal" id="promociones">
-        <div class="card-white promo-card">
-          <div class="promo-deco">
-            <img class="title-icon" src="assets/icons/icon-corazon.svg" alt="" onerror="this.style.display='none'" />
-            <img class="title-icon" src="assets/icons/icon-sol.svg" alt="" onerror="this.style.display='none'" />
-          </div>
-
-          <div class="promo-strip">
-            <div class="promo-img-wrap">
-              <img class="promo-img" src="assets/img/promo.jpg" alt="Promo marina del día" />
-            </div>
-            <div class="promo-copy">
-              <div class="promo-text-block">
-                <small>Promo del día</small>
-                <h2>Combo para 2</h2>
-                <p>Ceviche mixto + Jalea mixta<br />+ 2 bebidas + 2 causas</p>
-              </div>
-              <div class="promo-price">
-                <strong class="price-big">S/99</strong>
-                <a href="javascript:void(0)" class="btn btn-primary js-whatsapp" data-msg="Hola, quiero pedir la promo Combo para 2 de S/99.">
-                  <img class="icon-img small" src="assets/icons/icon-whatsapp.svg" alt="" onerror="this.style.display='none'" />
-                  Lo quiero
-                </a>
-              </div>
-            </div>
-          </div>
-
-          <div class="video-grid" aria-label="Videos destacados">
-            <article class="video-card" style="--bg: url('assets/img/video-1.jpg')">
-              <span class="video-label">Preparación fresca del día</span>
-              <span class="play-btn">
-                <img class="icon-img small" src="assets/icons/icon-play.svg" alt="" onerror="this.outerHTML='▶'" />
-              </span>
-            </article>
-            <article class="video-card" style="--bg: url('assets/img/video-2.jpg')">
-              <span class="video-label">Platos abundantes para compartir</span>
-              <span class="play-btn">
-                <img class="icon-img small" src="assets/icons/icon-play.svg" alt="" onerror="this.outerHTML='▶'" />
-              </span>
-            </article>
-            <article class="video-card" style="--bg: url('assets/img/video-3.jpg')">
-              <span class="video-label">Sabor marino estilo Jackili</span>
-              <span class="play-btn">
-                <img class="icon-img small" src="assets/icons/icon-play.svg" alt="" onerror="this.outerHTML='▶'" />
-              </span>
-            </article>
-          </div>
-        </div>
-      </section>
-
-      <section class="section container reveal" id="ubicacion">
-        <div class="info-grid">
-          <div class="stack-card">
-            <article class="info-card">
-              <h2 class="info-title">
-                <img class="icon-img" src="assets/icons/icon-whatsapp.svg" alt="" onerror="this.style.display='none'" />
-                ¿Prefieres escribirnos?
-              </h2>
-              <p class="info-text">Te respondemos al instante y te ayudamos con tu reserva.</p>
-              <a href="javascript:void(0)" class="btn btn-blue js-whatsapp" data-msg="Hola, quiero información para reservar en La Barra de Jackili.">
-                <img class="icon-img small" src="assets/icons/icon-whatsapp.svg" alt="" onerror="this.style.display='none'" />
-                Reservar
-              </a>
-            </article>
-
-            <article class="info-card">
-              <div class="mini-list">
-                <div class="mini-list-item">
-                  <img class="icon-img" src="assets/icons/icon-whatsapp.svg" alt="" onerror="this.style.display='none'" />
-                  <div>
-                    <b>Confirmación rápida</b>
-                    <span>Te confirmamos al instante</span>
-                  </div>
-                </div>
-                <div class="mini-list-item">
-                  <img class="icon-img" src="assets/icons/icon-reloj.svg" alt="" onerror="this.style.display='none'" />
-                  <div>
-                    <b>Cambios sin complicaciones</b>
-                    <span>Reprograma tu reserva fácilmente</span>
-                  </div>
-                </div>
-                <div class="mini-list-item">
-                  <img class="icon-img" src="assets/icons/icon-olas.svg" alt="" onerror="this.style.display='none'" />
-                  <div>
-                    <b>Ambiente acogedor</b>
-                    <span>Ideal para compartir con familia y amigos</span>
-                  </div>
-                </div>
-              </div>
-            </article>
-          </div>
-
-          <article class="info-card">
-            <h2 class="info-title">
-              <img class="icon-img" src="assets/icons/icon-location.svg" alt="" onerror="this.style.display='none'" />
-              Nuestra ubicación
-            </h2>
-            <p class="info-text"><b>Av. 28 de Julio 1275, Miraflores, Lima</b></p>
-            <div class="map-box">
-              <img src="assets/img/mapa.jpg" alt="Mapa de ubicación de La Barra de Jackili" />
-            </div>
-            <a class="btn btn-blue" href="https://www.google.com/maps/search/?api=1&query=La%20Barra%20de%20Jackili%20Av.%2028%20de%20Julio%201275%20Miraflores" target="_blank" rel="noopener">
-              <img class="icon-img small" src="assets/icons/icon-location.svg" alt="" onerror="this.style.display='none'" />
-              Ver en mapa
-            </a>
-            <p class="info-text">También nos encuentras en Lima y San Martín de Porres.</p>
-          </article>
-
-          <article class="info-card hours-card">
-            <h2 class="info-title">
-              <img class="icon-img" src="assets/icons/icon-reloj.svg" alt="" onerror="this.style.display='none'" />
-              Horarios de atención
-            </h2>
-            <div class="hours-row">
-              <div>
-                <p>Lunes a Viernes</p>
-                <p>Sábados</p>
-                <p>Domingos y feriados</p>
-              </div>
-              <div>
-                <p>12:00 pm - 11:00 pm</p>
-                <p>12:00 pm - 11:00 pm</p>
-                <p>12:00 pm - 11:00 pm</p>
-              </div>
-            </div>
-            <div class="delivery-pill">
-              <span>🛵</span>
-              <span><small>Pedido domicilio</small>933 123 456</span>
-            </div>
-            <div class="local-photo">
-              <img src="assets/img/local.jpg" alt="Local de La Barra de Jackili" />
-            </div>
-          </article>
-        </div>
-      </section>
-
-      <section class="testimonial container reveal" aria-label="Reseñas de clientes">
-        <div class="testimonial-line">
-          <div class="client">
-            <div class="avatar"><img src="assets/img/avatar-1.jpg" alt="Maria P." /></div>
-            <div>
-              <div class="client-name">Maria P.</div>
-              <div class="stars">★★★★★</div>
-            </div>
-          </div>
-          <p class="quote">El ceviche más fresco y delicioso que he probado en Lima. ¡Recomendado al 100%!</p>
-          <div class="happy-clients">
-            <div class="avatar-stack">
-              <div class="avatar-mini"><img src="assets/img/avatar-1.jpg" alt="Cliente feliz" /></div>
-              <div class="avatar-mini"><img src="assets/img/avatar-2.jpg" alt="Cliente feliz" /></div>
-              <div class="avatar-mini"><img src="assets/img/avatar-3.jpg" alt="Cliente feliz" /></div>
-            </div>
-            <div class="happy-text">+500<br />Clientes felices</div>
-          </div>
-        </div>
-      </section>
-    </main>
-
-    <footer class="footer">
-      <div class="container footer-grid">
-        <div class="footer-brand">
-          <img class="footer-logo" src="assets/img/logo.png" alt="La Barra de Jackili" />
-          <p>Ceviches y platos marinos con sabor auténtico, frescura, tradición y pasión por el mar.</p>
-          <div class="socials">
-            <a class="social-link" href="https://www.instagram.com/" target="_blank" rel="noopener" aria-label="Instagram">
-              <img class="icon-img" src="assets/icons/icon-instagram.svg" alt="" onerror="this.outerHTML='IG'" />
-            </a>
-            <a class="social-link" href="https://www.facebook.com/labarradejackilioficial/" target="_blank" rel="noopener" aria-label="Facebook">
-              <img class="icon-img" src="assets/icons/icon-facebook.svg" alt="" onerror="this.outerHTML='FB'" />
-            </a>
-            <a class="social-link" href="https://www.tiktok.com/" target="_blank" rel="noopener" aria-label="TikTok">
-              <img class="icon-img" src="assets/icons/icon-tiktok.svg" alt="" onerror="this.outerHTML='TK'" />
-            </a>
-            <a class="social-link js-whatsapp" href="javascript:void(0)" data-msg="Hola, quiero información de La Barra de Jackili." aria-label="WhatsApp">
-              <img class="icon-img" src="assets/icons/icon-whatsapp.svg" alt="" onerror="this.outerHTML='WA'" />
-            </a>
-          </div>
-        </div>
-
-        <div class="footer-col">
-          <h3>Enlaces rápidos</h3>
-          <ul>
-            <li><a href="#inicio">Inicio</a></li>
-            <li><a href="#carta">Carta</a></li>
-            <li><a href="#historia">Historia</a></li>
-            <li><a href="#ubicacion">Ubicación</a></li>
-            <li><a href="#promociones">Promociones</a></li>
-            <li><a href="javascript:void(0)" class="js-whatsapp" data-msg="Hola, quiero reservar en La Barra de Jackili.">Reservas</a></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h3>Contacto</h3>
-          <ul>
-            <li class="contact-item">☎ <a href="tel:+51933123456">933 123 456</a></li>
-            <li class="contact-item">✉ <a href="mailto:hola@jackilicevicheria.pe">hola@jackilicevicheria.pe</a></li>
-            <li class="contact-item">⌖ <span>Av. 28 de Julio 1275, Miraflores, Lima, Perú</span></li>
-          </ul>
-        </div>
-
-        <div class="footer-col">
-          <h3>Información</h3>
-          <ul>
-            <li><a href="#">Términos y condiciones</a></li>
-            <li><a href="#">Política de privacidad</a></li>
-            <li><a href="#">Libro de reclamaciones</a></li>
-          </ul>
+        <div class="hero-caption">
+          <span class="small">Más rico de</span>
+          <span class="script">todo el Perú</span>
         </div>
       </div>
-      <div class="container copyright">© 2025 La Barra de Jackili Cevichería Peruana. Todos los derechos reservados.</div>
-    </footer>
-  </div>
 
-  <a href="javascript:void(0)" class="wa-floating js-whatsapp" aria-label="Contactar por WhatsApp" data-msg="Hola, quiero hacer una reserva o pedido en La Barra de Jackili.">
-    <img class="icon-img" src="assets/icons/icon-whatsapp.svg" alt="" onerror="this.outerHTML='WA'" />
-  </a>
+      <div class="hero-content">
+        <h1 class="hero-title">
+          <span>El mar</span>
+          <span>en un solo</span>
+          <span class="soft">bocado</span>
+        </h1>
+
+        <p class="hero-copy">
+          Pescados y mariscos con sabor criollo, frescura del mar y platos abundantes que te conquistan desde el primer bocado.
+        </p>
+
+        <div class="hero-actions">
+          <a href="#carta" class="btn btn-primary-white">
+            <img src="assets/icons/carta.png" alt="">
+            <span>Ver carta</span>
+          </a>
+
+          <a
+            href="https://wa.me/51972667751?text=Hola%20La%20Barra%20de%20Jackili%2C%20quiero%20reservar%20una%20mesa."
+            class="btn btn-outline-white"
+            target="_blank"
+            rel="noopener"
+          >
+            <img src="assets/icons/whatsapp.png" alt="">
+            <span>Reservar</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+  </main>
 
   <script>
-    const JACKILI_PHONE = '51933123456';
+    const navbar = document.getElementById("navbar");
+    const menuToggle = document.getElementById("menuToggle");
 
-    const navShell = document.getElementById('navShell');
-    const menuToggle = document.getElementById('menuToggle');
-    const productCarousel = document.getElementById('productCarousel');
-
-    function openWhatsapp(message) {
-      const encoded = encodeURIComponent(message || 'Hola, quiero información de La Barra de Jackili.');
-      const url = `https://wa.me/${JACKILI_PHONE}?text=${encoded}`;
-      window.open(url, '_blank', 'noopener,noreferrer');
-    }
-
-    document.querySelectorAll('.js-whatsapp').forEach((el) => {
-      el.addEventListener('click', (event) => {
-        event.preventDefault();
-        openWhatsapp(el.dataset.msg);
-      });
+    menuToggle.addEventListener("click", () => {
+      const isOpen = navbar.classList.toggle("is-open");
+      menuToggle.classList.toggle("is-active", isOpen);
+      menuToggle.setAttribute("aria-expanded", isOpen ? "true" : "false");
     });
 
-    if (menuToggle && navShell) {
-      menuToggle.addEventListener('click', () => {
-        const isOpen = navShell.classList.toggle('open');
-        menuToggle.setAttribute('aria-expanded', String(isOpen));
-      });
-
-      navShell.querySelectorAll('a[href^="#"]').forEach((link) => {
-        link.addEventListener('click', () => {
-          navShell.classList.remove('open');
-          menuToggle.setAttribute('aria-expanded', 'false');
-        });
-      });
-    }
-
-    document.querySelectorAll('[data-carousel]').forEach((button) => {
-      button.addEventListener('click', () => {
-        if (!productCarousel) return;
-        const direction = button.dataset.carousel === 'next' ? 1 : -1;
-        const card = productCarousel.querySelector('.product-card');
-        const scrollBy = card ? card.offsetWidth + 16 : 210;
-        productCarousel.scrollBy({ left: direction * scrollBy * 2, behavior: 'smooth' });
-      });
-    });
-
-    const revealItems = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.add('show');
-          observer.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.12 });
-
-    revealItems.forEach((item) => observer.observe(item));
-
-    document.querySelectorAll('.video-card').forEach((card, index) => {
-      card.addEventListener('click', () => {
-        openWhatsapp(`Hola, vi el video ${index + 1} de La Barra de Jackili y quiero más información.`);
+    document.querySelectorAll(".nav-link, .reserve-top").forEach((item) => {
+      item.addEventListener("click", () => {
+        navbar.classList.remove("is-open");
+        menuToggle.classList.remove("is-active");
+        menuToggle.setAttribute("aria-expanded", "false");
       });
     });
   </script>
