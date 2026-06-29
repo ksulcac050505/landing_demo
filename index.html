@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+  <title>Mi Landing Rápida</title>
+  <meta name="description" content="Landing page simple, rápida y optimizada para pruebas de dominio." />
+
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card: #111827;
+      --text: #f8fafc;
+      --muted: #cbd5e1;
+      --accent: #38bdf8;
+      --accent-dark: #0284c7;
+      --border: rgba(255, 255, 255, 0.12);
+      --max: 1120px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .container {
+      width: min(100% - 32px, var(--max));
+      margin: 0 auto;
+    }
+
+    header {
+      padding: 24px 0;
+      border-bottom: 1px solid var(--border);
+    }
+
+    nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+    }
+
+    .logo {
+      font-weight: 800;
+      letter-spacing: -0.04em;
+      font-size: 1.25rem;
+    }
+
+    .nav-link {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .hero {
+      padding: 96px 0 72px;
+      text-align: center;
+    }
+
+    .badge {
+      display: inline-block;
+      margin-bottom: 20px;
+      padding: 6px 12px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.4rem, 7vw, 5rem);
+      line-height: 1;
+      letter-spacing: -0.08em;
+    }
+
+    .hero p {
+      max-width: 680px;
+      margin: 24px auto 0;
+      color: var(--muted);
+      font-size: 1.1rem;
+    }
+
+    .actions {
+      margin-top: 36px;
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 48px;
+      padding: 0 22px;
+      border-radius: 12px;
+      font-weight: 700;
+      transition: transform 0.15s ease, background 0.15s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #082f49;
+    }
+
+    .btn-primary:hover {
+      background: var(--accent-dark);
+      color: white;
+    }
+
+    .btn-secondary {
+      border: 1px solid var(--border);
+      color: var(--text);
+    }
+
+    .features {
+      padding: 32px 0 80px;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+    }
+
+    .card {
+      padding: 24px;
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+    }
+
+    .card h2 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+
+    .card p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.96rem;
+    }
+
+    .cta {
+      padding: 64px 0;
+      border-top: 1px solid var(--border);
+      text-align: center;
+    }
+
+    .cta h2 {
+      margin: 0;
+      font-size: clamp(1.8rem, 4vw, 3rem);
+      letter-spacing: -0.05em;
+    }
+
+    .cta p {
+      max-width: 600px;
+      margin: 16px auto 0;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 28px 0;
+      color: var(--muted);
+      font-size: 0.9rem;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        padding: 72px 0 48px;
+      }
+
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        align-items: flex-start;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="container">
+      <nav aria-label="Navegación principal">
+        <a href="#" class="logo">TuMarca</a>
+        <a href="#contacto" class="nav-link">Contacto</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="container">
+        <span class="badge">Landing rápida para probar tu dominio</span>
+
+        <h1>Tu sitio online en minutos.</h1>
+
+        <p>
+          Una página simple, ligera y responsive para validar tu dominio,
+          probar HTTPS y comenzar a construir tu presencia online.
+        </p>
+
+        <div class="actions">
+          <a href="#contacto" class="btn btn-primary">Empezar ahora</a>
+          <a href="#beneficios" class="btn btn-secondary">Ver beneficios</a>
+        </div>
+      </div>
+    </section>
+
+    <section id="beneficios" class="features">
+      <div class="container">
+        <div class="grid">
+          <article class="card">
+            <h2>Carga rápida</h2>
+            <p>Sin librerías externas, sin imágenes pesadas y sin JavaScript innecesario.</p>
+          </article>
+
+          <article class="card">
+            <h2>Lista para HTTPS</h2>
+            <p>Ideal para probar tu dominio con Cloudflare Pages, GitHub Pages o Netlify.</p>
+          </article>
+
+          <article class="card">
+            <h2>Fácil de editar</h2>
+            <p>Cambia textos, colores y enlaces directamente dentro de este archivo.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section id="contacto" class="cta">
+      <div class="container">
+        <h2>¿Listo para lanzar?</h2>
+        <p>
+          Edita esta sección con tu propuesta, WhatsApp, formulario o enlace principal.
+        </p>
+
+        <div class="actions">
+          <a href="mailto:contacto@tudominio.com" class="btn btn-primary">
+            contacto@tudominio.com
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      © 2026 TuMarca. Todos los derechos reservados.
+    </div>
+  </footer>
+</body>
+</html>
