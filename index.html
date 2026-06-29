@@ -322,17 +322,13 @@
 
     /* =========================
        HERO MOBILE FIRST
-       Orden mobile:
-       1. Imagen
-       2. Título + texto
-       3. Botones
     ========================= */
 
     .hero {
       position: relative;
       z-index: 5;
       width: 100%;
-      padding: 16px 18px 8px;
+      padding: 14px 18px 6px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -341,8 +337,8 @@
     .hero-visual {
       position: relative;
       order: 1;
-      width: min(370px, 100%);
-      height: 355px;
+      width: min(360px, 100%);
+      height: 285px;
       margin-top: 0;
       display: flex;
       align-items: flex-end;
@@ -354,7 +350,7 @@
       left: 50%;
       bottom: 0;
       z-index: 2;
-      width: min(286px, 77vw);
+      width: min(232px, 64vw);
       height: auto;
       transform: translateX(-50%);
       user-select: none;
@@ -363,11 +359,11 @@
 
     .fresh-seal {
       position: absolute;
-      left: 22px;
+      left: 66px;
       top: 150px;
       z-index: 6;
-      width: 70px;
-      height: 70px;
+      width: 58px;
+      height: 58px;
       object-fit: contain;
       user-select: none;
       pointer-events: none;
@@ -376,9 +372,9 @@
     .hero-caption {
       position: absolute;
       left: 50%;
-      top: 166px;
+      top: 164px;
       z-index: 7;
-      width: 170px;
+      width: 150px;
       transform: translateX(-50%);
       color: var(--white);
       text-align: center;
@@ -388,7 +384,7 @@
     .hero-caption .small {
       display: block;
       font-family: "RocGrotesk", Arial, sans-serif;
-      font-size: 15px;
+      font-size: 13px;
       font-weight: 300;
       line-height: 0.95;
       letter-spacing: 0.01em;
@@ -399,7 +395,7 @@
       display: block;
       margin-top: -1px;
       font-family: "SansitaSwashed", cursive;
-      font-size: 22px;
+      font-size: 19px;
       font-weight: 500;
       line-height: 0.92;
       color: var(--white);
@@ -534,35 +530,36 @@
       .hero {
         padding-left: 14px;
         padding-right: 14px;
-        padding-top: 14px;
-        padding-bottom: 6px;
+        padding-top: 12px;
+        padding-bottom: 4px;
       }
 
       .hero-visual {
-        height: 330px;
+        height: 270px;
       }
 
       .hero-person {
-        width: min(270px, 76vw);
+        width: min(218px, 62vw);
       }
 
       .fresh-seal {
-        width: 64px;
-        height: 64px;
+        width: 54px;
+        height: 54px;
         top: 143px;
-        left: 18px;
+        left: 58px;
       }
 
       .hero-caption {
         top: 154px;
+        width: 145px;
       }
 
       .hero-caption .small {
-        font-size: 14px;
+        font-size: 12.5px;
       }
 
       .hero-caption .script {
-        font-size: 20px;
+        font-size: 18px;
       }
 
       .hero-content {
@@ -684,7 +681,6 @@
 
     /* =========================
        DESKTOP
-       No tocar composición desktop
     ========================= */
 
     @media (min-width: 1024px) {
