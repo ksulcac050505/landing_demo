@@ -125,14 +125,14 @@
       position: relative;
       z-index: 50;
       width: 100%;
-      padding: 14px 14px 0;
+      padding: 8px 8px 0;
     }
 
     .navbar {
       position: relative;
       width: 100%;
       min-height: 64px;
-      padding: 0 12px 0 20px;
+      padding: 0 12px 0 24px;
       display: flex;
       align-items: center;
       justify-content: space-between;
@@ -328,7 +328,7 @@
       position: relative;
       z-index: 5;
       width: 100%;
-      padding: 14px 18px 6px;
+      padding: 18px 18px 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -337,20 +337,21 @@
     .hero-visual {
       position: relative;
       order: 1;
-      width: min(360px, 100%);
-      height: 285px;
+      width: min(370px, 100%);
+      height: 352px;
       margin-top: 0;
       display: flex;
       align-items: flex-end;
       justify-content: center;
+      overflow: visible;
     }
 
     .hero-person {
       position: absolute;
       left: 50%;
-      bottom: 0;
+      top: 34px;
       z-index: 2;
-      width: min(232px, 64vw);
+      width: min(268px, 72vw);
       height: auto;
       transform: translateX(-50%);
       user-select: none;
@@ -359,11 +360,11 @@
 
     .fresh-seal {
       position: absolute;
-      left: 66px;
-      top: 150px;
+      left: 70px;
+      top: 174px;
       z-index: 6;
-      width: 58px;
-      height: 58px;
+      width: 62px;
+      height: 62px;
       object-fit: contain;
       user-select: none;
       pointer-events: none;
@@ -372,9 +373,9 @@
     .hero-caption {
       position: absolute;
       left: 50%;
-      top: 164px;
+      top: 184px;
       z-index: 7;
-      width: 150px;
+      width: 158px;
       transform: translateX(-50%);
       color: var(--white);
       text-align: center;
@@ -384,7 +385,7 @@
     .hero-caption .small {
       display: block;
       font-family: "RocGrotesk", Arial, sans-serif;
-      font-size: 13px;
+      font-size: 13.5px;
       font-weight: 300;
       line-height: 0.95;
       letter-spacing: 0.01em;
@@ -395,7 +396,7 @@
       display: block;
       margin-top: -1px;
       font-family: "SansitaSwashed", cursive;
-      font-size: 19px;
+      font-size: 20px;
       font-weight: 500;
       line-height: 0.92;
       color: var(--white);
@@ -407,14 +408,14 @@
       z-index: 8;
       order: 2;
       width: min(430px, 100%);
-      margin-top: 4px;
+      margin-top: -6px;
       text-align: center;
     }
 
     .hero-title {
       color: var(--white);
       font-family: "RocGrotesk", Arial, sans-serif;
-      font-size: clamp(40px, 11.4vw, 52px);
+      font-size: clamp(40px, 11.8vw, 54px);
       font-weight: 500;
       line-height: 0.84;
       letter-spacing: -0.045em;
@@ -442,7 +443,7 @@
     .hero-actions {
       order: 3;
       width: min(360px, 100%);
-      margin-top: 14px;
+      margin-top: 16px;
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
@@ -507,14 +508,14 @@
 
     @media (max-width: 390px) {
       .site-header {
-        padding-left: 10px;
-        padding-right: 10px;
-        padding-top: 12px;
+        padding-left: 8px;
+        padding-right: 8px;
+        padding-top: 8px;
       }
 
       .navbar {
         min-height: 62px;
-        padding-left: 18px;
+        padding-left: 22px;
         padding-right: 11px;
       }
 
@@ -530,28 +531,29 @@
       .hero {
         padding-left: 14px;
         padding-right: 14px;
-        padding-top: 12px;
-        padding-bottom: 4px;
+        padding-top: 16px;
+        padding-bottom: 8px;
       }
 
       .hero-visual {
-        height: 270px;
+        height: 338px;
       }
 
       .hero-person {
-        width: min(218px, 62vw);
+        top: 30px;
+        width: min(252px, 70vw);
       }
 
       .fresh-seal {
-        width: 54px;
-        height: 54px;
-        top: 143px;
+        width: 58px;
+        height: 58px;
+        top: 168px;
         left: 58px;
       }
 
       .hero-caption {
-        top: 154px;
-        width: 145px;
+        top: 178px;
+        width: 150px;
       }
 
       .hero-caption .small {
@@ -559,15 +561,15 @@
       }
 
       .hero-caption .script {
-        font-size: 18px;
+        font-size: 18.5px;
       }
 
       .hero-content {
-        margin-top: 2px;
+        margin-top: -8px;
       }
 
       .hero-title {
-        font-size: clamp(38px, 10.8vw, 48px);
+        font-size: clamp(38px, 11vw, 50px);
       }
 
       .hero-copy {
@@ -577,7 +579,7 @@
       }
 
       .hero-actions {
-        margin-top: 12px;
+        margin-top: 14px;
         gap: 8px;
       }
 
@@ -626,6 +628,8 @@
       }
 
       .hero-person {
+        top: auto;
+        bottom: 0;
         width: min(420px, 70vw);
       }
 
@@ -840,6 +844,7 @@
 
       .hero-person {
         left: -33px;
+        top: auto;
         bottom: -1px;
         width: min(457.35px, 42vw);
         transform: none;
