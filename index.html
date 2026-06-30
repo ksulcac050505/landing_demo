@@ -492,6 +492,80 @@
     }
 
     /* =========================
+       BARRA DE BENEFICIOS
+    ========================= */
+
+    .benefits-bar {
+      width: 100%;
+      margin-top: 26px;
+      padding: 0 0 30px;
+      background: var(--blue);
+      overflow: hidden;
+    }
+
+    .benefits-window {
+      width: min(100%, 1200px);
+      margin: 0 auto;
+      overflow: hidden;
+      background: var(--white);
+    }
+
+    .benefits-track {
+      display: flex;
+      width: max-content;
+      animation: benefitsScroll 22s linear infinite;
+    }
+
+    .benefits-group {
+      display: flex;
+      align-items: center;
+      flex: 0 0 auto;
+    }
+
+    .benefit-item {
+      min-width: 210px;
+      height: 72px;
+      padding: 0 34px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 14px;
+      color: var(--blue);
+      font-family: Arial, sans-serif;
+      font-weight: 400;
+      font-size: 15px;
+      line-height: 0.95;
+      letter-spacing: 0.01em;
+      border-right: 3px solid var(--blue);
+      white-space: nowrap;
+    }
+
+    .benefit-item img {
+      width: 31px;
+      height: 31px;
+      object-fit: contain;
+      flex: 0 0 auto;
+    }
+
+    .benefit-item span {
+      display: block;
+    }
+
+    .benefits-window:hover .benefits-track {
+      animation-play-state: paused;
+    }
+
+    @keyframes benefitsScroll {
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+    }
+
+    /* =========================
        MOBILE MUY PEQUEÑO
     ========================= */
 
@@ -575,6 +649,25 @@
         width: 16px;
         height: 16px;
       }
+
+      .benefits-bar {
+        margin-top: 22px;
+        padding-bottom: 26px;
+      }
+
+      .benefit-item {
+        min-width: 190px;
+        height: 64px;
+        padding: 0 24px;
+        gap: 11px;
+        font-size: 13.5px;
+        border-right-width: 2px;
+      }
+
+      .benefit-item img {
+        width: 28px;
+        height: 28px;
+      }
     }
 
     /* =========================
@@ -655,6 +748,15 @@
         min-width: 180px;
         min-height: 56px;
         font-size: 16px;
+      }
+
+      .benefits-bar {
+        margin-top: 30px;
+      }
+
+      .benefits-window {
+        width: min(1040px, calc(100vw - 48px));
+        border-radius: 0;
       }
     }
 
@@ -844,6 +946,22 @@
       .btn-outline {
         min-width: 210px;
       }
+
+      .benefits-bar {
+        margin-top: 0;
+        padding: 0 0 38px;
+      }
+
+      .benefits-window {
+        width: 100vw;
+        max-width: none;
+      }
+
+      .benefit-item {
+        min-width: 230px;
+        height: 76px;
+        padding: 0 38px;
+      }
     }
   </style>
 </head>
@@ -946,6 +1064,68 @@
         </a>
       </div>
 
+    </section>
+
+    <section class="benefits-bar" aria-label="Beneficios de La Barra de Jackili">
+      <div class="benefits-window">
+        <div class="benefits-track">
+
+          <div class="benefits-group">
+            <div class="benefit-item">
+              <img src="assets/icons/pez.svg" alt="">
+              <span>Pescados<br>100% frescos</span>
+            </div>
+
+            <div class="benefit-item">
+              <img src="assets/icons/chef.svg" alt="">
+              <span>Recetas<br>Tradicionales</span>
+            </div>
+
+            <div class="benefit-item">
+              <img src="assets/icons/ola.svg" alt="">
+              <span>Sabor auténtico<br>del puerto</span>
+            </div>
+
+            <div class="benefit-item">
+              <img src="assets/icons/reloj.svg" alt="">
+              <span>Atención<br>rápida</span>
+            </div>
+
+            <div class="benefit-item">
+              <img src="assets/icons/cliente.svg" alt="">
+              <span>+500 clientes<br>satisfechos</span>
+            </div>
+          </div>
+
+          <div class="benefits-group" aria-hidden="true">
+            <div class="benefit-item">
+              <img src="assets/icons/pez.svg" alt="">
+              <span>Pescados<br>100% frescos</span>
+            </div>
+
+            <div class="benefit-item">
+              <img src="assets/icons/chef.svg" alt="">
+              <span>Recetas<br>Tradicionales</span>
+            </div>
+
+            <div class="benefit-item">
+              <img src="assets/icons/carta.svg" alt="">
+              <span>Sabor auténtico<br>del puerto</span>
+            </div>
+
+            <div class="benefit-item">
+              <img src="assets/icons/reloj.svg" alt="">
+              <span>Atención<br>rápida</span>
+            </div>
+
+            <div class="benefit-item">
+              <img src="assets/icons/cliente.svg" alt="">
+              <span>+500 clientes<br>satisfechos</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
     </section>
 
   </main>
