@@ -2808,7 +2808,14 @@
     }
 
     function nextSpecialtySlide() {
-      if (specialtyUserInteracting || specialtySoundCard || !specialtyInView) return;
+      /*
+        Bucle automático:
+        - Cambia al siguiente video si la sección está visible.
+        - Se detiene solo cuando hay un video con sonido activo.
+        - Ya no depende de specialtyUserInteracting, para evitar que el carrusel
+          quede congelado si el usuario hizo hover/tap y esa bandera quedó activa.
+      */
+      if (specialtySoundCard || !specialtyInView) return;
 
       activeSpecialty = normalizeSpecialtyIndex(activeSpecialty + 1);
       renderSpecialtyCarousel();
