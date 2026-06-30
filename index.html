@@ -2155,6 +2155,122 @@
       }
     }
 
+
+
+    /* =========================
+       VIDEO CONTROLS: PLAY/STOP + VOLUMEN/MUTE
+    ========================= */
+
+    .specialty-card .video-controls {
+      position: absolute;
+      right: 18px;
+      bottom: 18px;
+      z-index: 7;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+    }
+
+    .specialty-card .video-control-btn {
+      position: static;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      color: var(--blue);
+      background: var(--white);
+      border-radius: 50%;
+      box-shadow: 0 10px 28px rgba(0, 35, 100, 0.25);
+      transition:
+        transform 0.25s ease,
+        opacity 0.25s ease,
+        background 0.25s ease,
+        color 0.25s ease;
+    }
+
+    .specialty-card .video-control-btn:hover {
+      transform: scale(1.08);
+    }
+
+    .specialty-card .video-control-icon,
+    .specialty-card .video-control-icon svg {
+      width: 21px;
+      height: 21px;
+      display: block;
+      pointer-events: none;
+    }
+
+    .specialty-card .video-play-btn .video-control-icon {
+      transform: translateX(1px);
+    }
+
+    .specialty-card.is-user-playing .video-play-btn .video-control-icon {
+      transform: translateX(0);
+    }
+
+    .specialty-card .video-sound-btn .video-control-icon,
+    .specialty-card .video-sound-btn .video-control-icon svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .specialty-card.is-user-playing .video-play-btn,
+    .specialty-card.is-sound-on .video-sound-btn {
+      color: var(--white);
+      background: var(--blue);
+    }
+
+    .specialty-card .video-info {
+      right: 138px;
+    }
+
+    @media (max-width: 767px) {
+      .specialty-card .video-controls {
+        right: 16px;
+        bottom: 16px;
+        gap: 8px;
+      }
+
+      .specialty-card .video-control-btn {
+        width: 44px;
+        height: 44px;
+      }
+
+      .specialty-card .video-control-icon,
+      .specialty-card .video-control-icon svg {
+        width: 19px;
+        height: 19px;
+      }
+
+      .specialty-card .video-sound-btn .video-control-icon,
+      .specialty-card .video-sound-btn .video-control-icon svg {
+        width: 20px;
+        height: 20px;
+      }
+
+      .specialty-card .video-info {
+        right: 124px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .specialty-card .video-controls {
+        right: 14px;
+        bottom: 14px;
+        gap: 7px;
+      }
+
+      .specialty-card .video-control-btn {
+        width: 41px;
+        height: 41px;
+      }
+
+      .specialty-card .video-info {
+        right: 116px;
+      }
+    }
+
   </style>
 </head>
 
@@ -2441,8 +2557,10 @@
               loop
               preload="metadata"
               poster="assets/img/arrozconmariscos.png"
+              data-desktop-src="assets/video/arroz-mariscos.mp4"
+              data-mobile-src="assets/video/arroz-mariscoss.mp4"
             >
-              <source src="assets/video/arroz-mariscoss.mp4" type="video/mp4">
+              <source type="video/mp4">
             </video>
 
             <div class="video-info">
@@ -2450,9 +2568,15 @@
               <p class="video-desc">Toma especial del plato</p>
             </div>
 
-            <button class="video-play-btn" type="button" aria-label="Reproducir video">
-              <img src="assets/icons/play.svg" alt="">
-            </button>
+            <div class="video-controls" aria-label="Controles de video">
+              <button class="video-sound-btn video-control-btn" type="button" aria-label="Activar sonido">
+                <span class="video-control-icon" aria-hidden="true"></span>
+              </button>
+
+              <button class="video-play-btn video-control-btn" type="button" aria-label="Reproducir video">
+                <span class="video-control-icon" aria-hidden="true"></span>
+              </button>
+            </div>
           </article>
 
           <article class="specialty-card" data-video-index="1">
@@ -2463,8 +2587,10 @@
               loop
               preload="metadata"
               poster="assets/img/cevichemixto.png"
+              data-desktop-src="assets/video/ceviche-mixto.mp4"
+              data-mobile-src="assets/video/ceviche-mixtoo.mp4"
             >
-              <source src="assets/video/ceviche-mixto.mp4" type="video/mp4">
+              <source type="video/mp4">
             </video>
 
             <div class="video-info">
@@ -2472,9 +2598,15 @@
               <p class="video-desc">Fresco, cítrico y marino</p>
             </div>
 
-            <button class="video-play-btn" type="button" aria-label="Reproducir video">
-              <img src="assets/icons/play.svg" alt="">
-            </button>
+            <div class="video-controls" aria-label="Controles de video">
+              <button class="video-sound-btn video-control-btn" type="button" aria-label="Activar sonido">
+                <span class="video-control-icon" aria-hidden="true"></span>
+              </button>
+
+              <button class="video-play-btn video-control-btn" type="button" aria-label="Reproducir video">
+                <span class="video-control-icon" aria-hidden="true"></span>
+              </button>
+            </div>
           </article>
 
           <article class="specialty-card" data-video-index="2">
@@ -2485,8 +2617,10 @@
               loop
               preload="metadata"
               poster="assets/img/parihuela.png"
+              data-desktop-src="assets/video/cocteles.mp4"
+              data-mobile-src="assets/video/cocteless.mp4"
             >
-              <source src="assets/video/cocteles.mp4" type="video/mp4">
+              <source type="video/mp4">
             </video>
 
             <div class="video-info">
@@ -2494,9 +2628,15 @@
               <p class="video-desc">Bebidas para acompañar</p>
             </div>
 
-            <button class="video-play-btn" type="button" aria-label="Reproducir video">
-              <img src="assets/icons/play.svg" alt="">
-            </button>
+            <div class="video-controls" aria-label="Controles de video">
+              <button class="video-sound-btn video-control-btn" type="button" aria-label="Activar sonido">
+                <span class="video-control-icon" aria-hidden="true"></span>
+              </button>
+
+              <button class="video-play-btn video-control-btn" type="button" aria-label="Reproducir video">
+                <span class="video-control-icon" aria-hidden="true"></span>
+              </button>
+            </div>
           </article>
 
         </div>
@@ -2646,13 +2786,41 @@
 
     const specialtyCards = Array.from(document.querySelectorAll(".specialty-card"));
     const videosCarousel = document.getElementById("videosCarousel");
+    const mobileSpecialtyQuery = window.matchMedia("(max-width: 767px)");
     const canHoverSpecialties = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
+    const desktopAutoplaySpecialties = canHoverSpecialties;
 
-    let activeSpecialty = 1;
+    let activeSpecialty = 0;
     let specialtyTimer = null;
     let specialtyInView = false;
     let specialtyUserInteracting = false;
-    let specialtySoundCard = null;
+    let specialtyManualCard = null;
+
+    const videoControlIcons = {
+      play: `
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M8 5v14l11-7z"></path>
+        </svg>
+      `,
+      stop: `
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M7 7h10v10H7z"></path>
+        </svg>
+      `,
+      volume: `
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"></path>
+          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M16 8.5c1 1 1.5 2.2 1.5 3.5S17 14.5 16 15.5"></path>
+          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M18.5 6c1.7 1.7 2.5 3.7 2.5 6s-.8 4.3-2.5 6"></path>
+        </svg>
+      `,
+      muted: `
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"></path>
+          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M17 9l4 4m0-4l-4 4"></path>
+        </svg>
+      `
+    };
 
     function normalizeSpecialtyIndex(index) {
       return (index + specialtyCards.length) % specialtyCards.length;
@@ -2680,17 +2848,38 @@
       });
     }
 
-    function setSpecialtyIcon(card, state) {
+    function setSpecialtyPlayIcon(card, state) {
       const button = card.querySelector(".video-play-btn");
-      const icon = button.querySelector("img");
+      const icon = button.querySelector(".video-control-icon");
 
       if (state === "stop") {
-        icon.src = "assets/icons/stop.svg";
+        icon.innerHTML = videoControlIcons.stop;
         button.setAttribute("aria-label", "Detener video");
       } else {
-        icon.src = "assets/icons/play.svg";
+        icon.innerHTML = videoControlIcons.play;
         button.setAttribute("aria-label", "Reproducir video con sonido");
       }
+    }
+
+    function setSpecialtySoundIcon(card, state) {
+      const button = card.querySelector(".video-sound-btn");
+      const icon = button.querySelector(".video-control-icon");
+
+      if (state === "volume") {
+        icon.innerHTML = videoControlIcons.volume;
+        button.setAttribute("aria-label", "Silenciar video");
+      } else {
+        icon.innerHTML = videoControlIcons.muted;
+        button.setAttribute("aria-label", "Activar sonido");
+      }
+    }
+
+    function setSpecialtyControls(card, options = {}) {
+      const playState = options.playState || "play";
+      const soundState = options.soundState || "muted";
+
+      setSpecialtyPlayIcon(card, playState);
+      setSpecialtySoundIcon(card, soundState);
     }
 
     function setVideoSound(video, withSound) {
@@ -2706,10 +2895,64 @@
       }
     }
 
+
+    function getSpecialtyVideoSource(video) {
+      return mobileSpecialtyQuery.matches ? video.dataset.mobileSrc : video.dataset.desktopSrc;
+    }
+
+    function applySpecialtyVideoSource(card, force = false) {
+      const video = card.querySelector("video");
+      const source = video.querySelector("source");
+      const nextSource = getSpecialtyVideoSource(video);
+
+      if (!source || !nextSource) return;
+
+      const currentSource = source.getAttribute("src");
+
+      if (!force && currentSource === nextSource) return;
+
+      video.pause();
+      card.classList.remove("is-playing", "is-sound-on", "is-user-playing");
+      setVideoSound(video, false);
+      setSpecialtyControls(card, {
+        playState: "play",
+        soundState: "muted"
+      });
+
+      source.setAttribute("src", nextSource);
+      video.load();
+    }
+
+    function applyAllSpecialtyVideoSources(force = false) {
+      specialtyCards.forEach((card) => {
+        applySpecialtyVideoSource(card, force);
+      });
+    }
+
+    function handleSpecialtyVideoSourceChange() {
+      pauseSpecialtyAutoplay();
+      specialtyUserInteracting = false;
+      specialtyManualCard = null;
+
+      applyAllSpecialtyVideoSources(true);
+      renderSpecialtyCarousel();
+
+      if (specialtyInView) {
+        playActiveSpecialtyMuted();
+        startSpecialtyAutoplay();
+      }
+    }
+
+    function clearSpecialtyManualCard(card) {
+      if (!card || specialtyManualCard === card) {
+        specialtyManualCard = null;
+      }
+    }
+
     function stopSpecialtyCard(card, reset = false) {
       const video = card.querySelector("video");
 
-      card.classList.remove("is-playing", "is-sound-on");
+      card.classList.remove("is-playing", "is-sound-on", "is-user-playing");
       video.pause();
 
       if (reset) {
@@ -2721,11 +2964,12 @@
       }
 
       setVideoSound(video, false);
-      setSpecialtyIcon(card, "play");
+      setSpecialtyControls(card, {
+        playState: "play",
+        soundState: "muted"
+      });
 
-      if (specialtySoundCard === card) {
-        specialtySoundCard = null;
-      }
+      clearSpecialtyManualCard(card);
     }
 
     function stopOtherSpecialties(activeCard) {
@@ -2741,6 +2985,7 @@
       const withSound = options.withSound === true;
       const resetOthers = options.resetOthers !== false;
       const changeSlide = options.changeSlide !== false;
+      const manual = options.manual === true;
 
       if (changeSlide) {
         activeSpecialty = normalizeSpecialtyIndex(index);
@@ -2753,16 +2998,23 @@
 
       const video = card.querySelector("video");
 
-      card.classList.add("is-playing");
-      card.classList.toggle("is-sound-on", withSound);
-      setSpecialtyIcon(card, "stop");
-      setVideoSound(video, withSound);
-
-      if (withSound) {
-        specialtySoundCard = card;
+      if (manual) {
+        specialtyManualCard = card;
         specialtyUserInteracting = true;
         pauseSpecialtyAutoplay();
+      }
 
+      card.classList.add("is-playing");
+      card.classList.toggle("is-user-playing", manual);
+      card.classList.toggle("is-sound-on", withSound);
+      setVideoSound(video, withSound);
+
+      setSpecialtyControls(card, {
+        playState: manual ? "stop" : "play",
+        soundState: withSound ? "volume" : "muted"
+      });
+
+      if (withSound) {
         /*
           iOS/Safari solo permite audio después de una acción directa del usuario.
           Por eso el sonido se activa únicamente desde click/tap, no desde autoplay.
@@ -2782,40 +3034,51 @@
         setVideoSound(video, false);
         card.classList.remove("is-sound-on");
 
-        if (specialtySoundCard === card) {
-          specialtySoundCard = null;
-        }
+        setSpecialtyControls(card, {
+          playState: manual ? "stop" : "play",
+          soundState: "muted"
+        });
 
         try {
           await video.play();
         } catch (mutedError) {
-          card.classList.remove("is-playing");
-          setSpecialtyIcon(card, "play");
+          card.classList.remove("is-playing", "is-sound-on", "is-user-playing");
+          setSpecialtyControls(card, {
+            playState: "play",
+            soundState: "muted"
+          });
+          clearSpecialtyManualCard(card);
         }
       }
     }
 
     function playActiveSpecialtyMuted() {
-      if (!specialtyInView || specialtySoundCard) return;
+      /*
+        Autoplay de video solo en desktop.
+        En móvil el carrusel puede seguir cambiando visualmente, pero el MP4 no se reproduce solo
+        para evitar bloqueos de iOS/Safari y consumo innecesario de datos.
+      */
+      if (!desktopAutoplaySpecialties || !specialtyInView || specialtyManualCard) return;
 
       const activeCard = specialtyCards[activeSpecialty];
 
       playSpecialtyCard(activeCard, {
         withSound: false,
         resetOthers: true,
-        changeSlide: false
+        changeSlide: false,
+        manual: false
       });
     }
 
     function nextSpecialtySlide() {
       /*
         Bucle automático:
-        - Cambia al siguiente video si la sección está visible.
-        - Se detiene solo cuando hay un video con sonido activo.
-        - Ya no depende de specialtyUserInteracting, para evitar que el carrusel
-          quede congelado si el usuario hizo hover/tap y esa bandera quedó activa.
+        - Cambia al siguiente card si la sección está visible.
+        - En desktop reproduce el video activo automáticamente en silencio.
+        - En móvil solo avanza el carrusel; el video se reproduce con tap/click.
+        - Se detiene cuando el usuario activa un video manualmente.
       */
-      if (specialtySoundCard || !specialtyInView) return;
+      if (specialtyManualCard || !specialtyInView) return;
 
       activeSpecialty = normalizeSpecialtyIndex(activeSpecialty + 1);
       renderSpecialtyCarousel();
@@ -2825,7 +3088,7 @@
     function startSpecialtyAutoplay() {
       clearInterval(specialtyTimer);
 
-      if (specialtySoundCard) return;
+      if (specialtyManualCard) return;
 
       specialtyTimer = setInterval(nextSpecialtySlide, 3600);
     }
@@ -2837,13 +3100,14 @@
     function restartSpecialtyAutoplay() {
       pauseSpecialtyAutoplay();
 
-      if (!specialtySoundCard) {
+      if (!specialtyManualCard) {
         startSpecialtyAutoplay();
       }
     }
 
     function resumeMutedCarousel() {
       specialtyUserInteracting = false;
+      specialtyManualCard = null;
 
       if (!specialtyInView) return;
 
@@ -2851,15 +3115,13 @@
       restartSpecialtyAutoplay();
     }
 
-    function handleSpecialtyTap(card) {
-      const video = card.querySelector("video");
-      const isSameSoundCard = specialtySoundCard === card;
-      const isPlayingWithSound = isSameSoundCard && card.classList.contains("is-playing") && !video.paused && !video.muted;
+    function handleSpecialtyPlayToggle(card) {
+      const isSameManualCard = specialtyManualCard === card && card.classList.contains("is-user-playing");
 
       specialtyUserInteracting = true;
       pauseSpecialtyAutoplay();
 
-      if (isPlayingWithSound) {
+      if (isSameManualCard) {
         stopSpecialtyCard(card, false);
         resumeMutedCarousel();
         return;
@@ -2868,8 +3130,54 @@
       playSpecialtyCard(card, {
         withSound: true,
         resetOthers: true,
-        changeSlide: true
+        changeSlide: true,
+        manual: true
       });
+    }
+
+    function handleSpecialtySoundToggle(card) {
+      const video = card.querySelector("video");
+      const isSameManualCard = specialtyManualCard === card && card.classList.contains("is-user-playing");
+
+      specialtyUserInteracting = true;
+      pauseSpecialtyAutoplay();
+
+      if (!isSameManualCard) {
+        playSpecialtyCard(card, {
+          withSound: true,
+          resetOthers: true,
+          changeSlide: true,
+          manual: true
+        });
+        return;
+      }
+
+      if (video.muted) {
+        setVideoSound(video, true);
+        card.classList.add("is-sound-on");
+        setSpecialtyControls(card, {
+          playState: "stop",
+          soundState: "volume"
+        });
+
+        if (video.paused) {
+          video.play().catch(() => {
+            setVideoSound(video, false);
+            card.classList.remove("is-sound-on");
+            setSpecialtyControls(card, {
+              playState: "stop",
+              soundState: "muted"
+            });
+          });
+        }
+      } else {
+        setVideoSound(video, false);
+        card.classList.remove("is-sound-on");
+        setSpecialtyControls(card, {
+          playState: "stop",
+          soundState: "muted"
+        });
+      }
     }
 
     const specialtyObserver = new IntersectionObserver((entries) => {
@@ -2885,7 +3193,7 @@
         pauseSpecialtyAutoplay();
         specialtyCards.forEach((card) => stopSpecialtyCard(card, false));
         specialtyUserInteracting = false;
-        specialtySoundCard = null;
+        specialtyManualCard = null;
       }
     }, {
       threshold: [0, 0.15, 0.35, 0.55, 0.75, 1]
@@ -2893,16 +3201,22 @@
 
     specialtyCards.forEach((card) => {
       const video = card.querySelector("video");
-      const button = card.querySelector(".video-play-btn");
+      const playButton = card.querySelector(".video-play-btn");
+      const soundButton = card.querySelector(".video-sound-btn");
 
+      applySpecialtyVideoSource(card, true);
       setVideoSound(video, false);
+      setSpecialtyControls(card, {
+        playState: "play",
+        soundState: "muted"
+      });
       video.setAttribute("playsinline", "");
       video.setAttribute("webkit-playsinline", "");
       video.setAttribute("preload", "metadata");
 
       if (canHoverSpecialties) {
         card.addEventListener("mouseenter", () => {
-          if (specialtySoundCard) return;
+          if (specialtyManualCard) return;
 
           specialtyUserInteracting = true;
           pauseSpecialtyAutoplay();
@@ -2910,12 +3224,13 @@
           playSpecialtyCard(card, {
             withSound: false,
             resetOthers: false,
-            changeSlide: false
+            changeSlide: false,
+            manual: false
           });
         });
 
         card.addEventListener("mouseleave", () => {
-          if (specialtySoundCard) return;
+          if (specialtyManualCard) return;
 
           stopSpecialtyCard(card, false);
           resumeMutedCarousel();
@@ -2923,14 +3238,25 @@
       }
 
       card.addEventListener("click", () => {
-        handleSpecialtyTap(card);
+        handleSpecialtyPlayToggle(card);
       });
 
-      button.addEventListener("click", (event) => {
+      playButton.addEventListener("click", (event) => {
         event.stopPropagation();
-        handleSpecialtyTap(card);
+        handleSpecialtyPlayToggle(card);
+      });
+
+      soundButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        handleSpecialtySoundToggle(card);
       });
     });
+
+    if (typeof mobileSpecialtyQuery.addEventListener === "function") {
+      mobileSpecialtyQuery.addEventListener("change", handleSpecialtyVideoSourceChange);
+    } else if (typeof mobileSpecialtyQuery.addListener === "function") {
+      mobileSpecialtyQuery.addListener(handleSpecialtyVideoSourceChange);
+    }
 
     renderSpecialtyCarousel();
 
