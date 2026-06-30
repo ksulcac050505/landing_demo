@@ -564,27 +564,199 @@
         transform: translateX(-50%);
       }
     }
-@media (max-width: 767px) {
-  .benefits-bar {
-    margin-top: 16px;
-    padding-bottom: 18px;
-  }
 
-  .benefit-item {
-    min-width: 165px;
-    height: 48px;
-    padding: 0 18px;
-    gap: 8px;
-    font-size: 11.5px;
-    line-height: 0.95;
-    border-right-width: 2px;
-  }
+    @media (max-width: 767px) {
+      .benefits-bar {
+        margin-top: 10px;
+        padding-bottom: 12px;
+      }
 
-  .benefit-item img {
-    width: 22px;
-    height: 22px;
-  }
-}
+      .benefit-item {
+        min-width: 145px;
+        height: 38px;
+        padding: 0 14px;
+        gap: 6px;
+        font-size: 10px;
+        line-height: 0.9;
+        border-right-width: 2px;
+      }
+
+      .benefit-item img {
+        width: 18px;
+        height: 18px;
+      }
+    }
+
+    /* =========================
+       PLATOS DESTACADOS
+    ========================= */
+
+    .featured-dishes {
+      position: relative;
+      width: 100%;
+      padding: 48px 18px 56px;
+      background: var(--blue);
+      overflow: hidden;
+    }
+
+    .dishes-slider {
+      position: relative;
+      width: min(980px, 100%);
+      min-height: 360px;
+      margin: 0 auto;
+      display: grid;
+      place-items: center;
+    }
+
+    .dish-visuals {
+      position: relative;
+      width: min(720px, 100%);
+      height: 210px;
+      margin: 0 auto;
+    }
+
+    .dish-img {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      max-width: none;
+      object-fit: contain;
+      user-select: none;
+      pointer-events: none;
+      transition:
+        transform 0.45s ease,
+        opacity 0.45s ease,
+        filter 0.45s ease;
+    }
+
+    .dish-img.is-center {
+      z-index: 4;
+      width: 310px;
+      transform: translate(-50%, -50%) scale(1);
+      opacity: 1;
+      filter: blur(0);
+    }
+
+    .dish-img.is-left {
+      z-index: 2;
+      width: 270px;
+      transform: translate(-118%, -52%) scale(0.9);
+      opacity: 0.42;
+      filter: blur(6px);
+    }
+
+    .dish-img.is-right {
+      z-index: 2;
+      width: 270px;
+      transform: translate(18%, -52%) scale(0.9);
+      opacity: 0.42;
+      filter: blur(6px);
+    }
+
+    .dish-content {
+      position: relative;
+      z-index: 8;
+      width: min(520px, 100%);
+      margin: -8px auto 0;
+      text-align: center;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
+
+    .dish-title {
+      color: var(--white);
+      font-family: "RocGrotesk", Arial, sans-serif;
+      font-weight: 700;
+      font-size: clamp(29px, 6.7vw, 43px);
+      line-height: 0.82;
+      letter-spacing: -0.035em;
+    }
+
+    .dish-desc {
+      width: min(370px, 100%);
+      margin: 8px auto 0;
+      color: var(--white);
+      font-family: "RocGrotesk", Arial, sans-serif;
+      font-weight: 400;
+      font-size: clamp(16px, 4.2vw, 24px);
+      line-height: 0.98;
+      letter-spacing: 0.01em;
+    }
+
+    .dish-cta {
+      width: fit-content;
+      min-height: 48px;
+      margin: 34px auto 0;
+      padding: 0 24px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      color: var(--blue);
+      background: var(--white);
+      border-radius: var(--pill);
+      font-family: "RocGrotesk", Arial, sans-serif;
+      font-weight: 500;
+      font-size: 15px;
+      transition: transform 0.25s ease, box-shadow 0.25s ease;
+    }
+
+    .dish-cta:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px rgba(0, 40, 120, 0.25);
+    }
+
+    .dish-arrow {
+      position: absolute;
+      top: 36%;
+      z-index: 12;
+      width: 48px;
+      height: 48px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      opacity: 0.95;
+      transition: transform 0.25s ease, opacity 0.25s ease;
+    }
+
+    .dish-arrow:hover {
+      transform: scale(1.08);
+      opacity: 1;
+    }
+
+    .dish-arrow.prev {
+      left: 0;
+    }
+
+    .dish-arrow.next {
+      right: 0;
+    }
+
+    .dish-arrow::before {
+      content: "";
+      width: 25px;
+      height: 25px;
+      border-top: 3px solid currentColor;
+      border-left: 3px solid currentColor;
+    }
+
+    .dish-arrow.prev::before {
+      transform: rotate(-45deg);
+    }
+
+    .dish-arrow.next::before {
+      transform: rotate(135deg);
+    }
+
+    .dishes-slider.is-changing .dish-content {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+
+    .dishes-slider.is-changing .dish-img.is-center {
+      opacity: 0.65;
+      filter: blur(2px);
+      transform: translate(-50%, -50%) scale(0.94);
+    }
 
     /* =========================
        MOBILE MUY PEQUEÑO
@@ -672,23 +844,90 @@
       }
 
       .benefits-bar {
-        margin-top: 16px;
-        padding-bottom: 18px;
+        margin-top: 10px;
+        padding-bottom: 12px;
       }
 
       .benefit-item {
-        min-width: 165px;
-        height: 48px;
-        padding: 0 18px;
-        gap: 8px;
-        font-size: 11.5px;
-        line-height: 0.95;
+        min-width: 140px;
+        height: 36px;
+        padding: 0 12px;
+        gap: 6px;
+        font-size: 9.5px;
+        line-height: 0.9;
         border-right-width: 2px;
       }
 
       .benefit-item img {
-        width: 22px;
-        height: 22px;
+        width: 17px;
+        height: 17px;
+      }
+
+      .featured-dishes {
+        padding: 42px 14px 48px;
+      }
+
+      .dishes-slider {
+        min-height: 315px;
+      }
+
+      .dish-visuals {
+        height: 168px;
+      }
+
+      .dish-img.is-center {
+        width: 245px;
+      }
+
+      .dish-img.is-left,
+      .dish-img.is-right {
+        width: 210px;
+        filter: blur(5px);
+        opacity: 0.36;
+      }
+
+      .dish-img.is-left {
+        transform: translate(-111%, -52%) scale(0.86);
+      }
+
+      .dish-img.is-right {
+        transform: translate(10%, -52%) scale(0.86);
+      }
+
+      .dish-title {
+        font-size: 28px;
+      }
+
+      .dish-desc {
+        width: min(300px, 100%);
+        font-size: 16px;
+      }
+
+      .dish-cta {
+        min-height: 44px;
+        margin-top: 28px;
+        padding: 0 22px;
+        font-size: 14px;
+      }
+
+      .dish-arrow {
+        top: 34%;
+        width: 38px;
+        height: 38px;
+      }
+
+      .dish-arrow.prev {
+        left: 2px;
+      }
+
+      .dish-arrow.next {
+        right: 2px;
+      }
+
+      .dish-arrow::before {
+        width: 20px;
+        height: 20px;
+        border-width: 2px;
       }
     }
 
@@ -779,6 +1018,35 @@
       .benefits-window {
         width: min(1040px, calc(100vw - 48px));
         border-radius: 0;
+      }
+
+      .featured-dishes {
+        padding-top: 72px;
+      }
+
+      .dishes-slider {
+        min-height: 420px;
+      }
+
+      .dish-visuals {
+        height: 250px;
+      }
+
+      .dish-img.is-center {
+        width: 380px;
+      }
+
+      .dish-img.is-left,
+      .dish-img.is-right {
+        width: 320px;
+      }
+
+      .dish-title {
+        font-size: 45px;
+      }
+
+      .dish-desc {
+        font-size: 24px;
       }
     }
 
@@ -984,6 +1252,37 @@
         height: 76px;
         padding: 0 38px;
       }
+
+      .featured-dishes {
+        padding: 72px 18px 70px;
+      }
+
+      .dishes-slider {
+        width: min(1040px, 100%);
+        min-height: 400px;
+      }
+
+      .dish-visuals {
+        width: 820px;
+        height: 230px;
+      }
+
+      .dish-img.is-center {
+        width: 340px;
+      }
+
+      .dish-img.is-left,
+      .dish-img.is-right {
+        width: 320px;
+      }
+
+      .dish-arrow.prev {
+        left: 48px;
+      }
+
+      .dish-arrow.next {
+        right: 48px;
+      }
     }
   </style>
 </head>
@@ -1144,9 +1443,8 @@
               <img src="assets/icons/cliente.svg" alt="">
               <span>+500 clientes<br>satisfechos</span>
             </div>
-
-            
           </div>
+
           <div class="benefits-group" aria-hidden="true">
             <div class="benefit-item">
               <img src="assets/icons/pez.svg" alt="">
@@ -1172,7 +1470,7 @@
               <img src="assets/icons/cliente.svg" alt="">
               <span>+500 clientes<br>satisfechos</span>
             </div>
-            
+
             <div class="benefit-item">
               <img src="assets/icons/pez.svg" alt="">
               <span>Pescados<br>100% frescos</span>
@@ -1187,11 +1485,35 @@
               <img src="assets/icons/ola.svg" alt="">
               <span>Sabor auténtico<br>del puerto</span>
             </div>
-
-            
           </div>
 
         </div>
+      </div>
+    </section>
+
+    <section class="featured-dishes" id="carta" aria-label="Platos destacados">
+      <div class="dishes-slider" id="dishesSlider">
+
+        <button class="dish-arrow prev" id="dishPrev" type="button" aria-label="Plato anterior"></button>
+
+        <div class="dish-visuals" aria-hidden="true">
+          <img class="dish-img is-left" id="dishLeft" src="assets/img/parihuela.png" alt="">
+          <img class="dish-img is-center" id="dishCenter" src="assets/img/arrozconmariscos.png" alt="">
+          <img class="dish-img is-right" id="dishRight" src="assets/img/cevichemixto.png" alt="">
+        </div>
+
+        <div class="dish-content">
+          <h2 class="dish-title" id="dishTitle">Arroz con mariscos</h2>
+          <p class="dish-desc" id="dishDesc">Arroz cremoso con mariscos y sazón criolla.</p>
+
+          <a href="#carta-completa" class="dish-cta">
+            <span class="svg-icon icon-carta"></span>
+            <span>Ver carta completa</span>
+          </a>
+        </div>
+
+        <button class="dish-arrow next" id="dishNext" type="button" aria-label="Siguiente plato"></button>
+
       </div>
     </section>
 
@@ -1251,6 +1573,90 @@
         closeMobileMenu();
       }
     });
+
+    const dishes = [
+      {
+        title: "Ceviche Mixto",
+        desc: "Fresco, cítrico y lleno de sabor marino.",
+        image: "assets/img/cevichemixto.png"
+      },
+      {
+        title: "Parihuela",
+        desc: "Caldo potente con cangrejo y esencia del mar.",
+        image: "assets/img/parihuela.png"
+      },
+      {
+        title: "Arroz con mariscos",
+        desc: "Arroz cremoso con mariscos y sazón criolla.",
+        image: "assets/img/arrozconmariscos.png"
+      }
+    ];
+
+    const dishesSlider = document.getElementById("dishesSlider");
+    const dishLeft = document.getElementById("dishLeft");
+    const dishCenter = document.getElementById("dishCenter");
+    const dishRight = document.getElementById("dishRight");
+    const dishTitle = document.getElementById("dishTitle");
+    const dishDesc = document.getElementById("dishDesc");
+    const dishPrev = document.getElementById("dishPrev");
+    const dishNext = document.getElementById("dishNext");
+
+    let currentDish = 2;
+    let dishTimer;
+
+    function getDishIndex(index) {
+      return (index + dishes.length) % dishes.length;
+    }
+
+    function renderDish() {
+      const previous = dishes[getDishIndex(currentDish - 1)];
+      const current = dishes[getDishIndex(currentDish)];
+      const next = dishes[getDishIndex(currentDish + 1)];
+
+      dishLeft.src = previous.image;
+      dishCenter.src = current.image;
+      dishRight.src = next.image;
+
+      dishTitle.textContent = current.title;
+      dishDesc.textContent = current.desc;
+    }
+
+    function changeDish(direction) {
+      dishesSlider.classList.add("is-changing");
+
+      setTimeout(() => {
+        currentDish = getDishIndex(currentDish + direction);
+        renderDish();
+      }, 180);
+
+      setTimeout(() => {
+        dishesSlider.classList.remove("is-changing");
+      }, 420);
+    }
+
+    function startDishAutoplay() {
+      dishTimer = setInterval(() => {
+        changeDish(1);
+      }, 4500);
+    }
+
+    function restartDishAutoplay() {
+      clearInterval(dishTimer);
+      startDishAutoplay();
+    }
+
+    dishPrev.addEventListener("click", () => {
+      changeDish(-1);
+      restartDishAutoplay();
+    });
+
+    dishNext.addEventListener("click", () => {
+      changeDish(1);
+      restartDishAutoplay();
+    });
+
+    renderDish();
+    startDishAutoplay();
   </script>
 </body>
 </html>
