@@ -6,6 +6,10 @@
 
   <title>La Barra de Jackili</title>
   <link rel="icon" href="assets/icons/barradejackili.ico" type="image/x-icon">
+  <link rel="preload" href="assets/fonts/Roc Grotesk Regular.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="assets/fonts/Roc Grotesk Medium.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="assets/img/Logo.svg" as="image" fetchpriority="high">
+  <link rel="preload" href="assets/img/hero.svg" as="image" fetchpriority="high">
 
   <style>
     @font-face {
@@ -2271,6 +2275,25 @@
       }
     }
 
+    /* =========================
+       OPTIMIZACIÓN DE CARGA
+    ========================= */
+
+    .featured-dishes,
+    .combo-section,
+    .videos-section {
+      content-visibility: auto;
+      contain-intrinsic-size: 700px;
+    }
+
+    @media (max-width: 767px) {
+      .featured-dishes,
+      .combo-section,
+      .videos-section {
+        contain-intrinsic-size: 620px;
+      }
+    }
+
   </style>
 </head>
 
@@ -2286,7 +2309,7 @@
         </div>
 
         <a href="#inicio" class="brand" aria-label="La Barra de Jackili">
-          <img src="assets/img/Logo.svg" alt="La Barra de Jackili Cevichería">
+          <img src="assets/img/Logo.svg" alt="La Barra de Jackili Cevichería" decoding="async" fetchpriority="high">
         </a>
 
         <div class="nav-desktop nav-right">
@@ -2335,6 +2358,8 @@
           src="assets/img/hero.svg"
           alt="La Barra de Jackili"
           class="hero-person"
+          decoding="async"
+          fetchpriority="high"
         >
 
         <div class="hero-caption">
@@ -2380,96 +2405,96 @@
 
           <div class="benefits-group">
             <div class="benefit-item">
-              <img src="assets/icons/pez.svg" alt="">
+              <img src="assets/icons/pez.svg" alt="" loading="lazy" decoding="async">
               <span>Pescados<br>100% frescos</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/chef.svg" alt="">
+              <img src="assets/icons/chef.svg" alt="" loading="lazy" decoding="async">
               <span>Recetas<br>Tradicionales</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/ola.svg" alt="">
+              <img src="assets/icons/ola.svg" alt="" loading="lazy" decoding="async">
               <span>Sabor auténtico<br>del puerto</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/reloj.svg" alt="">
+              <img src="assets/icons/reloj.svg" alt="" loading="lazy" decoding="async">
               <span>Atención<br>rápida</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/cliente.svg" alt="">
+              <img src="assets/icons/cliente.svg" alt="" loading="lazy" decoding="async">
               <span>+500 clientes<br>satisfechos</span>
             </div>
           </div>
 
           <div class="benefits-group" aria-hidden="true">
             <div class="benefit-item">
-              <img src="assets/icons/pez.svg" alt="">
+              <img src="assets/icons/pez.svg" alt="" loading="lazy" decoding="async">
               <span>Pescados<br>100% frescos</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/chef.svg" alt="">
+              <img src="assets/icons/chef.svg" alt="" loading="lazy" decoding="async">
               <span>Recetas<br>Tradicionales</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/ola.svg" alt="">
+              <img src="assets/icons/ola.svg" alt="" loading="lazy" decoding="async">
               <span>Sabor auténtico<br>del puerto</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/reloj.svg" alt="">
+              <img src="assets/icons/reloj.svg" alt="" loading="lazy" decoding="async">
               <span>Atención<br>rápida</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/cliente.svg" alt="">
+              <img src="assets/icons/cliente.svg" alt="" loading="lazy" decoding="async">
               <span>+500 clientes<br>satisfechos</span>
             </div>
           </div>
 
           <div class="benefits-group" aria-hidden="true">
             <div class="benefit-item">
-              <img src="assets/icons/pez.svg" alt="">
+              <img src="assets/icons/pez.svg" alt="" loading="lazy" decoding="async">
               <span>Pescados<br>100% frescos</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/chef.svg" alt="">
+              <img src="assets/icons/chef.svg" alt="" loading="lazy" decoding="async">
               <span>Recetas<br>Tradicionales</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/ola.svg" alt="">
+              <img src="assets/icons/ola.svg" alt="" loading="lazy" decoding="async">
               <span>Sabor auténtico<br>del puerto</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/reloj.svg" alt="">
+              <img src="assets/icons/reloj.svg" alt="" loading="lazy" decoding="async">
               <span>Atención<br>rápida</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/cliente.svg" alt="">
+              <img src="assets/icons/cliente.svg" alt="" loading="lazy" decoding="async">
               <span>+500 clientes<br>satisfechos</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/pez.svg" alt="">
+              <img src="assets/icons/pez.svg" alt="" loading="lazy" decoding="async">
               <span>Pescados<br>100% frescos</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/chef.svg" alt="">
+              <img src="assets/icons/chef.svg" alt="" loading="lazy" decoding="async">
               <span>Recetas<br>Tradicionales</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/ola.svg" alt="">
+              <img src="assets/icons/ola.svg" alt="" loading="lazy" decoding="async">
               <span>Sabor auténtico<br>del puerto</span>
             </div>
           </div>
@@ -2484,9 +2509,9 @@
         <button class="dish-arrow prev" id="dishPrev" type="button" aria-label="Plato anterior"></button>
 
         <div class="dish-visuals" aria-hidden="true">
-          <img class="dish-img is-left" id="dishLeft" src="assets/img/parihuela.png" alt="">
-          <img class="dish-img is-center" id="dishCenter" src="assets/img/arrozconmariscos.png" alt="">
-          <img class="dish-img is-right" id="dishRight" src="assets/img/cevichemixto.png" alt="">
+          <img class="dish-img is-left" id="dishLeft" src="assets/img/parihuela.webp" alt="" loading="lazy" decoding="async">
+          <img class="dish-img is-center" id="dishCenter" src="assets/img/arrozconmariscos.webp" alt="" loading="lazy" decoding="async">
+          <img class="dish-img is-right" id="dishRight" src="assets/img/cevichemixto.webp" alt="" loading="lazy" decoding="async">
         </div>
 
         <div class="dish-content">
@@ -2513,7 +2538,7 @@
         </div>
 
         <div class="combo-card">
-          <img src="assets/img/combo.svg" alt="Combo para dos" class="combo-img">
+          <img src="assets/img/combo.svg" alt="Combo para dos" class="combo-img" loading="lazy" decoding="async">
 
           <div class="combo-text">
             <span class="combo-label">Promo del día</span>
@@ -2555,8 +2580,8 @@
               playsinline
               webkit-playsinline
               loop
-              preload="metadata"
-              poster="assets/img/arrozconmariscos.png"
+              preload="none"
+              poster="assets/img/arrozconmariscos.webp"
               data-desktop-src="assets/video/arroz-mariscos.mp4"
               data-mobile-src="assets/video/arroz-mariscoss.mp4"
             >
@@ -2585,8 +2610,8 @@
               playsinline
               webkit-playsinline
               loop
-              preload="metadata"
-              poster="assets/img/cevichemixto.png"
+              preload="none"
+              poster="assets/img/cevichemixto.webp"
               data-desktop-src="assets/video/ceviche-mixto.mp4"
               data-mobile-src="assets/video/ceviche-mixtoo.mp4"
             >
@@ -2615,8 +2640,8 @@
               playsinline
               webkit-playsinline
               loop
-              preload="metadata"
-              poster="assets/img/parihuela.png"
+              preload="none"
+              poster="assets/img/parihuela.webp"
               data-desktop-src="assets/video/cocteles.mp4"
               data-mobile-src="assets/video/cocteless.mp4"
             >
@@ -2704,17 +2729,17 @@
       {
         title: "Ceviche Mixto",
         desc: "Fresco, cítrico y lleno de sabor marino.",
-        image: "assets/img/cevichemixto.png"
+        image: "assets/img/cevichemixto.webp"
       },
       {
         title: "Parihuela",
         desc: "Caldo potente con cangrejo y esencia del mar.",
-        image: "assets/img/parihuela.png"
+        image: "assets/img/parihuela.webp"
       },
       {
         title: "Arroz con mariscos",
         desc: "Arroz cremoso con mariscos y sazón criolla.",
-        image: "assets/img/arrozconmariscos.png"
+        image: "assets/img/arrozconmariscos.webp"
       }
     ];
 
@@ -2846,6 +2871,8 @@
         card.classList.add(`is-${position}`);
         card.dataset.position = position;
       });
+
+      updateSpecialtyVideoLoading();
     }
 
     function setSpecialtyPlayIcon(card, state) {
@@ -2900,16 +2927,31 @@
       return mobileSpecialtyQuery.matches ? video.dataset.mobileSrc : video.dataset.desktopSrc;
     }
 
-    function applySpecialtyVideoSource(card, force = false) {
+    function hasSpecialtySource(card) {
+      const source = card.querySelector("source");
+      return Boolean(source && source.getAttribute("src"));
+    }
+
+    function applySpecialtyVideoSource(card, force = false, loadNow = false) {
       const video = card.querySelector("video");
       const source = video.querySelector("source");
       const nextSource = getSpecialtyVideoSource(video);
 
       if (!source || !nextSource) return;
 
-      const currentSource = source.getAttribute("src");
+      const currentSource = source.getAttribute("src") || "";
+      const preloadMode = loadNow
+        ? (desktopAutoplaySpecialties ? "metadata" : "none")
+        : "none";
 
-      if (!force && currentSource === nextSource) return;
+      video.setAttribute("preload", preloadMode);
+
+      if (!force && currentSource === nextSource) {
+        if (loadNow && video.readyState === 0) {
+          video.load();
+        }
+        return;
+      }
 
       video.pause();
       card.classList.remove("is-playing", "is-sound-on", "is-user-playing");
@@ -2920,12 +2962,45 @@
       });
 
       source.setAttribute("src", nextSource);
+
+      if (loadNow) {
+        video.load();
+      }
+    }
+
+    function unloadSpecialtyVideo(card) {
+      if (specialtyManualCard === card) return;
+
+      const video = card.querySelector("video");
+      const source = video.querySelector("source");
+
+      if (!source || !source.getAttribute("src")) return;
+
+      video.pause();
+      video.setAttribute("preload", "none");
+      source.removeAttribute("src");
       video.load();
+    }
+
+    function updateSpecialtyVideoLoading() {
+      if (!specialtyInView) return;
+
+      specialtyCards.forEach((card) => {
+        const position = card.dataset.position;
+        const shouldPrepare = position === "center" || (desktopAutoplaySpecialties && (position === "left" || position === "right"));
+
+        if (shouldPrepare) {
+          applySpecialtyVideoSource(card, false, true);
+        } else {
+          unloadSpecialtyVideo(card);
+        }
+      });
     }
 
     function applyAllSpecialtyVideoSources(force = false) {
       specialtyCards.forEach((card) => {
-        applySpecialtyVideoSource(card, force);
+        const shouldLoad = specialtyInView && (card.dataset.position === "center" || specialtyManualCard === card);
+        applySpecialtyVideoSource(card, force, shouldLoad);
       });
     }
 
@@ -2934,10 +3009,15 @@
       specialtyUserInteracting = false;
       specialtyManualCard = null;
 
-      applyAllSpecialtyVideoSources(true);
+      specialtyCards.forEach((card) => {
+        stopSpecialtyCard(card, false);
+        unloadSpecialtyVideo(card);
+      });
+
       renderSpecialtyCarousel();
 
       if (specialtyInView) {
+        applyAllSpecialtyVideoSources(true);
         playActiveSpecialtyMuted();
         startSpecialtyAutoplay();
       }
@@ -2997,6 +3077,7 @@
       }
 
       const video = card.querySelector("video");
+      applySpecialtyVideoSource(card, false, true);
 
       if (manual) {
         specialtyManualCard = card;
@@ -3191,7 +3272,10 @@
         startSpecialtyAutoplay();
       } else {
         pauseSpecialtyAutoplay();
-        specialtyCards.forEach((card) => stopSpecialtyCard(card, false));
+        specialtyCards.forEach((card) => {
+          stopSpecialtyCard(card, false);
+          unloadSpecialtyVideo(card);
+        });
         specialtyUserInteracting = false;
         specialtyManualCard = null;
       }
@@ -3204,7 +3288,6 @@
       const playButton = card.querySelector(".video-play-btn");
       const soundButton = card.querySelector(".video-sound-btn");
 
-      applySpecialtyVideoSource(card, true);
       setVideoSound(video, false);
       setSpecialtyControls(card, {
         playState: "play",
@@ -3212,7 +3295,7 @@
       });
       video.setAttribute("playsinline", "");
       video.setAttribute("webkit-playsinline", "");
-      video.setAttribute("preload", "metadata");
+      video.setAttribute("preload", "none");
 
       if (canHoverSpecialties) {
         card.addEventListener("mouseenter", () => {
