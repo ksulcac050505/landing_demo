@@ -2089,12 +2089,16 @@
 
           <article class="video-card">
             <video
-              src="assets/video/arroz-mariscos.mp4"
               muted
+              autoplay
               playsinline
+              webkit-playsinline
               loop
-              preload="metadata"
-            ></video>
+              preload="auto"
+              poster="assets/img/arrozconmariscos.png"
+            >
+              <source src="assets/video/arroz-mariscos.mp4" type="video/mp4">
+            </video>
 
             <div class="video-info">
               <h3 class="video-title">Arroz con mariscos</h3>
@@ -2108,12 +2112,16 @@
 
           <article class="video-card">
             <video
-              src="assets/video/ceviche-mixto.mp4"
               muted
+              autoplay
               playsinline
+              webkit-playsinline
               loop
-              preload="metadata"
-            ></video>
+              preload="auto"
+              poster="assets/img/cevichemixto.png"
+            >
+              <source src="assets/video/ceviche-mixto.mp4" type="video/mp4">
+            </video>
 
             <div class="video-info">
               <h3 class="video-title">Ceviche mixto</h3>
@@ -2127,12 +2135,16 @@
 
           <article class="video-card">
             <video
-              src="assets/video/cocteles.mp4"
               muted
+              autoplay
               playsinline
+              webkit-playsinline
               loop
-              preload="metadata"
-            ></video>
+              preload="auto"
+              poster="assets/img/parihuela.png"
+            >
+              <source src="assets/video/cocteles.mp4" type="video/mp4">
+            </video>
 
             <div class="video-info">
               <h3 class="video-title">Cocteles</h3>
@@ -2290,77 +2302,162 @@
     startDishAutoplay();
 
     const videoCards = document.querySelectorAll(".video-card");
+    const canHover = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
 
-    function stopVideoCard(card) {
-      const video = card.querySelector("video");
+    function setVideoIcon(card, state) {
       const button = card.querySelector(".video-play-btn");
       const icon = button.querySelector("img");
+
+      if (state === "stop") {
+        icon.src = "assets/icons/stop.svg";
+        button.setAttribute("aria-label", "Detener video");
+      } else {
+        icon.src = "assets/icons/play.svg";
+        button.setAttribute("aria-label", "Reproducir video");
+      }
+    }
+
+    function stopVideoCard(card, reset = true) {
+      const video = card.querySelector("video");
 
       card.classList.remove("is-playing");
       video.pause();
-      video.currentTime = 0;
-      video.muted = true;
 
-      icon.src = "assets/icons/play.svg";
-      button.setAttribute("aria-label", "Reproducir video");
+      if (reset) {
+        video.currentTime = 0;
+      }
+
+      video.muted = true;
+      video.defaultMuted = true;
+      setVideoIcon(card, "play");
     }
 
-    async function playVideoCard(card) {
+    async function playVideoCard(card, options = {}) {
       const video = card.querySelector("video");
-      const button = card.querySelector(".video-play-btn");
-      const icon = button.querySelector("img");
+      const withSound = options.withSound || false;
+      const resetOthers = options.resetOthers !== false;
 
-      videoCards.forEach((otherCard) => {
-        if (otherCard !== card) {
-          stopVideoCard(otherCard);
-        }
-      });
+      if (resetOthers) {
+        videoCards.forEach((otherCard) => {
+          if (otherCard !== card) {
+            stopVideoCard(otherCard);
+          }
+        });
+      }
 
       card.classList.add("is-playing");
-      icon.src = "assets/icons/stop.svg";
-      button.setAttribute("aria-label", "Detener video");
+      setVideoIcon(card, "stop");
+
+      video.defaultMuted = !withSound;
+      video.muted = !withSound;
 
       try {
-        video.muted = false;
         await video.play();
       } catch (error) {
         video.muted = true;
-        video.play().catch(() => {});
+        video.defaultMuted = true;
+        video.play().catch(() => {
+          card.classList.remove("is-playing");
+          setVideoIcon(card, "play");
+        });
       }
     }
+
+    function playVisibleVideo() {
+      let mostVisibleCard = null;
+      let maxRatio = 0;
+
+      videoCards.forEach((card) => {
+        const ratio = Number(card.dataset.visibleRatio || 0);
+
+        if (ratio > maxRatio) {
+          maxRatio = ratio;
+          mostVisibleCard = card;
+        }
+      });
+
+      videoCards.forEach((card) => {
+        const userPaused = card.dataset.userPaused === "true";
+
+        if (card === mostVisibleCard && maxRatio >= 0.65 && !userPaused) {
+          playVideoCard(card, { withSound: false });
+        } else if (!canHover || card.dataset.hovering !== "true") {
+          stopVideoCard(card);
+        }
+      });
+    }
+
+    const videoObserver = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        const card = entry.target;
+        card.dataset.visibleRatio = entry.intersectionRatio.toString();
+
+        if (entry.intersectionRatio < 0.15) {
+          card.dataset.userPaused = "false";
+        }
+      });
+
+      playVisibleVideo();
+    }, {
+      threshold: [0, 0.15, 0.35, 0.5, 0.65, 0.8, 1]
+    });
 
     videoCards.forEach((card) => {
       const video = card.querySelector("video");
       const button = card.querySelector(".video-play-btn");
 
-      card.addEventListener("mouseenter", () => {
-        playVideoCard(card);
-      });
+      video.muted = true;
+      video.defaultMuted = true;
+      video.setAttribute("muted", "");
+      video.setAttribute("playsinline", "");
+      video.setAttribute("webkit-playsinline", "");
 
-      card.addEventListener("mouseleave", () => {
-        stopVideoCard(card);
-      });
+      videoObserver.observe(card);
+
+      if (canHover) {
+        card.addEventListener("mouseenter", () => {
+          card.dataset.hovering = "true";
+          card.dataset.userPaused = "false";
+          playVideoCard(card, { withSound: true });
+        });
+
+        card.addEventListener("mouseleave", () => {
+          card.dataset.hovering = "false";
+
+          if (Number(card.dataset.visibleRatio || 0) >= 0.65 && card.dataset.userPaused !== "true") {
+            playVideoCard(card, { withSound: false, resetOthers: false });
+          } else {
+            stopVideoCard(card);
+          }
+        });
+      }
 
       button.addEventListener("click", (event) => {
         event.stopPropagation();
 
-        const isPlaying = card.classList.contains("is-playing");
+        const isPlaying = card.classList.contains("is-playing") && !video.paused;
 
         if (isPlaying) {
+          card.dataset.userPaused = "true";
           stopVideoCard(card);
-        } else {
-          playVideoCard(card);
+          return;
         }
+
+        card.dataset.userPaused = "false";
+        playVideoCard(card, { withSound: true });
       });
 
       video.addEventListener("click", () => {
-        const isPlaying = card.classList.contains("is-playing");
+        const isPlaying = card.classList.contains("is-playing") && !video.paused;
 
         if (isPlaying) {
+          card.dataset.userPaused = "true";
           stopVideoCard(card);
-        } else {
-          playVideoCard(card);
+          return;
         }
+
+        card.dataset.userPaused = "false";
+        playVideoCard(card, { withSound: true });
       });
     });
   </script>
