@@ -1628,6 +1628,366 @@
       }
 }
 
+
+    /* =========================
+       MI HISTORIA SECTION
+    ========================= */
+
+    .history-section {
+      position: relative;
+      width: 100%;
+      padding: 70px 18px 78px;
+      background: var(--blue);
+      overflow: hidden;
+    }
+
+    .history-wrap {
+      width: min(1080px, 100%);
+      margin: 0 auto;
+      display: grid;
+      justify-items: center;
+    }
+
+    .history-heading {
+      position: relative;
+      z-index: 5;
+      display: grid;
+      justify-items: center;
+      text-align: center;
+      color: var(--white);
+    }
+
+    .history-title {
+      font-family: "RocGrotesk", Arial, sans-serif;
+      font-size: clamp(42px, 5vw, 64px);
+      font-weight: 700;
+      line-height: 0.88;
+      letter-spacing: -0.035em;
+      text-transform: uppercase;
+    }
+
+    .history-title-line {
+      width: min(84px, 22vw);
+      height: auto;
+      margin-top: 8px;
+      opacity: 0.95;
+    }
+
+    .history-layout {
+      position: relative;
+      width: 100%;
+      margin-top: 24px;
+      display: grid;
+      grid-template-columns: 1fr minmax(250px, 285px) 1fr;
+      align-items: center;
+      gap: clamp(34px, 7vw, 92px);
+    }
+
+    .history-feature {
+      display: grid;
+      justify-items: center;
+      color: var(--white);
+      text-align: center;
+    }
+
+    .history-feature-icon {
+      width: 34px;
+      height: 34px;
+      object-fit: contain;
+      margin-bottom: 6px;
+    }
+
+    .history-feature-icon.svg-icon {
+      width: 34px;
+      height: 34px;
+      margin-bottom: 6px;
+    }
+
+    .history-feature-line {
+      width: 54px;
+      height: auto;
+      margin-bottom: 12px;
+      opacity: 0.95;
+    }
+
+    .history-feature-title {
+      font-family: "RocGrotesk", Arial, sans-serif;
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }
+
+    .history-feature-text {
+      width: min(190px, 100%);
+      margin-top: 7px;
+      font-family: "RocGrotesk", Arial, sans-serif;
+      font-size: 12px;
+      font-weight: 400;
+      line-height: 1.14;
+      letter-spacing: 0.01em;
+    }
+
+    .history-video-card {
+      position: relative;
+      width: min(285px, 78vw);
+      aspect-ratio: 9 / 16;
+      border-radius: 30px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.1);
+      box-shadow: 0 24px 55px rgba(0, 37, 105, 0.14);
+      isolation: isolate;
+    }
+
+    .history-video-card video {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      background: rgba(0, 0, 0, 0.16);
+    }
+
+    .history-video-card::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: 2;
+      background: linear-gradient(
+        to top,
+        rgba(0, 20, 70, 0.64) 0%,
+        rgba(0, 20, 70, 0.18) 28%,
+        rgba(0, 20, 70, 0.08) 62%,
+        rgba(0, 20, 70, 0.34) 100%
+      );
+      pointer-events: none;
+    }
+
+    .history-video-meta {
+      position: absolute;
+      left: 18px;
+      right: 76px;
+      bottom: 21px;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: var(--white);
+      pointer-events: none;
+    }
+
+    .history-video-meta img {
+      width: 18px;
+      height: 18px;
+      object-fit: contain;
+      flex: 0 0 auto;
+      filter: brightness(0) invert(1);
+    }
+
+    .history-video-meta strong {
+      display: block;
+      font-family: "RocGrotesk", Arial, sans-serif;
+      font-size: 12.5px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0.01em;
+    }
+
+    .history-video-meta span {
+      display: block;
+      margin-top: 3px;
+      font-family: "RocGrotesk", Arial, sans-serif;
+      font-size: 11px;
+      font-weight: 400;
+      line-height: 1;
+      opacity: 0.82;
+    }
+
+    .history-video-controls {
+      position: absolute;
+      right: 14px;
+      bottom: 16px;
+      z-index: 6;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .history-control-btn {
+      width: 39px;
+      height: 39px;
+      display: grid;
+      place-items: center;
+      color: var(--blue);
+      background: var(--white);
+      border-radius: 50%;
+      box-shadow: 0 10px 24px rgba(0, 35, 100, 0.24);
+      transition:
+        transform 0.25s ease,
+        color 0.25s ease,
+        background 0.25s ease,
+        opacity 0.25s ease;
+    }
+
+    .history-control-btn:hover {
+      transform: scale(1.08);
+    }
+
+    .history-control-icon,
+    .history-control-icon svg {
+      width: 18px;
+      height: 18px;
+      display: block;
+      pointer-events: none;
+    }
+
+    .history-play-btn .history-control-icon {
+      transform: translateX(1px);
+    }
+
+    .history-video-card.is-playing .history-play-btn .history-control-icon {
+      transform: translateX(0);
+    }
+
+    .history-video-card.is-playing .history-play-btn,
+    .history-video-card.is-sound-on .history-sound-btn {
+      color: var(--white);
+      background: var(--blue);
+    }
+
+    @media (max-width: 767px) {
+      .history-section {
+        padding: 54px 14px 58px;
+      }
+
+      .history-title {
+        font-size: clamp(38px, 13vw, 56px);
+      }
+
+      .history-title-line {
+        width: 72px;
+        margin-top: 7px;
+      }
+
+      .history-layout {
+        margin-top: 26px;
+        grid-template-columns: 1fr;
+        justify-items: center;
+        align-items: center;
+        gap: 28px;
+      }
+
+      .history-video-card {
+        order: 1;
+        width: min(285px, 74vw);
+        margin: 0 auto;
+        justify-self: center;
+        border-radius: 28px;
+      }
+
+      .history-video-card video {
+        object-position: center center;
+      }
+
+      .history-feature {
+        width: min(270px, 100%);
+        margin: 0 auto;
+      }
+
+      .history-feature:first-child {
+        order: 2;
+      }
+
+      .history-feature:last-child {
+        order: 3;
+      }
+
+      .history-feature-title {
+        font-size: 13px;
+      }
+
+      .history-feature-text {
+        width: min(235px, 100%);
+        font-size: 11.5px;
+      }
+
+      .history-video-meta {
+        left: 16px;
+        right: 72px;
+        bottom: 18px;
+      }
+
+      .history-video-controls {
+        right: 12px;
+        bottom: 13px;
+        gap: 7px;
+      }
+
+      .history-control-btn {
+        width: 37px;
+        height: 37px;
+      }
+
+      .history-control-icon,
+      .history-control-icon svg {
+        width: 17px;
+        height: 17px;
+      }
+    }
+
+    @media (max-width: 390px) {
+      .history-section {
+        padding: 48px 10px 52px;
+      }
+
+      .history-video-card {
+        width: min(286px, 78vw);
+        margin: 0 auto;
+        justify-self: center;
+        border-radius: 24px;
+      }
+
+      .history-video-card video {
+        object-position: center center;
+      }
+
+      .history-video-meta strong {
+        font-size: 12px;
+      }
+
+      .history-video-meta span {
+        font-size: 10.5px;
+      }
+
+      .history-control-btn {
+        width: 35px;
+        height: 35px;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .history-section {
+        padding: 76px 18px 82px;
+      }
+
+      .history-layout {
+        grid-template-columns: 1fr 285px 1fr;
+        gap: 100px;
+      }
+
+      .history-feature:first-child {
+        justify-self: end;
+      }
+
+      .history-feature:last-child {
+        justify-self: start;
+      }
+
+      .history-video-card {
+        width: 285px;
+      }
+    }
+
     /* =========================
        VIDEO CAROUSEL ESPECIALIDADES
     ========================= */
@@ -2096,6 +2456,7 @@
 
     .featured-dishes,
     .combo-section,
+    .history-section,
     .videos-section {
       content-visibility: auto;
       contain-intrinsic-size: 700px;
@@ -2104,6 +2465,7 @@
     @media (max-width: 767px) {
       .featured-dishes,
       .combo-section,
+      .history-section,
       .videos-section {
         contain-intrinsic-size: 620px;
       }
@@ -2377,6 +2739,109 @@
 
       </div>
     </section>
+
+
+    <section class="history-section" id="historia" aria-label="Mi historia">
+      <div class="history-wrap">
+
+        <div class="history-heading">
+          <h2 class="history-title">Mi historia</h2>
+          <img
+            src="assets/icons/line1.svg"
+            alt=""
+            class="history-title-line"
+            loading="lazy"
+            decoding="async"
+            width="84"
+            height="12"
+          >
+        </div>
+
+        <div class="history-layout">
+
+          <article class="history-feature">
+            <img
+              src="assets/icons/pez-w.svg"
+              alt=""
+              class="history-feature-icon"
+              loading="lazy"
+              decoding="async"
+              width="34"
+              height="34"
+            >
+            <img
+              src="assets/icons/line2.svg"
+              alt=""
+              class="history-feature-line"
+              loading="lazy"
+              decoding="async"
+              width="54"
+              height="8"
+            >
+            <h3 class="history-feature-title">Pasión por lo auténtico</h3>
+            <p class="history-feature-text">
+              Cocina honesta, con ingredientes frescos y sabores que conectan con nuestras raíces.
+            </p>
+          </article>
+
+          <article class="history-video-card" id="historyVideoCard">
+            <video
+              id="historyVideo"
+              muted
+              playsinline
+              webkit-playsinline
+              preload="auto"
+            >
+              <source src="assets/video/mihistoria.mp4" type="video/mp4">
+            </video>
+
+            <div class="history-video-meta">
+              <img
+                src="assets/icons/chef.svg"
+                alt=""
+                loading="lazy"
+                decoding="async"
+                width="18"
+                height="18"
+              >
+              <div>
+                <strong>Conoce mi historia</strong>
+                <span>1:39min</span>
+              </div>
+            </div>
+
+            <div class="history-video-controls" aria-label="Controles del video de historia">
+              <button class="history-sound-btn history-control-btn" type="button" aria-label="Activar sonido">
+                <span class="history-control-icon" aria-hidden="true"></span>
+              </button>
+
+              <button class="history-play-btn history-control-btn" type="button" aria-label="Reproducir video">
+                <span class="history-control-icon" aria-hidden="true"></span>
+              </button>
+            </div>
+          </article>
+
+          <article class="history-feature">
+            <span class="svg-icon icon-heart history-feature-icon" aria-hidden="true"></span>
+            <img
+              src="assets/icons/line2.svg"
+              alt=""
+              class="history-feature-line"
+              loading="lazy"
+              decoding="async"
+              width="54"
+              height="8"
+            >
+            <h3 class="history-feature-title">Hecho con amor,<br>desde el inicio</h3>
+            <p class="history-feature-text">
+              Cada receta, cada detalle y cada cliente son parte de esta historia que seguimos escribiendo.
+            </p>
+          </article>
+
+        </div>
+      </div>
+    </section>
+
 
     <section class="videos-section" id="videos" aria-label="Nuestras especialidades">
       <div class="videos-wrap">
@@ -3232,6 +3697,139 @@
     if (videosCarousel) {
       specialtyObserver.observe(videosCarousel);
     }
+
+    const historyVideoCard = document.getElementById("historyVideoCard");
+    const historyVideo = document.getElementById("historyVideo");
+    const historyPlayButton = document.querySelector(".history-play-btn");
+    const historySoundButton = document.querySelector(".history-sound-btn");
+
+    function setHistoryPlayIcon(state) {
+      if (!historyPlayButton) return;
+
+      const icon = historyPlayButton.querySelector(".history-control-icon");
+
+      if (state === "stop") {
+        icon.innerHTML = videoControlIcons.stop;
+        historyPlayButton.setAttribute("aria-label", "Pausar video");
+      } else {
+        icon.innerHTML = videoControlIcons.play;
+        historyPlayButton.setAttribute("aria-label", "Reproducir video");
+      }
+    }
+
+    function setHistorySoundIcon(state) {
+      if (!historySoundButton) return;
+
+      const icon = historySoundButton.querySelector(".history-control-icon");
+
+      if (state === "volume") {
+        icon.innerHTML = videoControlIcons.volume;
+        historySoundButton.setAttribute("aria-label", "Silenciar video");
+      } else {
+        icon.innerHTML = videoControlIcons.muted;
+        historySoundButton.setAttribute("aria-label", "Activar sonido");
+      }
+    }
+
+    function setHistorySound(withSound) {
+      if (!historyVideo || !historyVideoCard) return;
+
+      if (withSound) {
+        historyVideo.removeAttribute("muted");
+        historyVideo.defaultMuted = false;
+        historyVideo.muted = false;
+        historyVideo.volume = 1;
+        historyVideoCard.classList.add("is-sound-on");
+        setHistorySoundIcon("volume");
+      } else {
+        historyVideo.setAttribute("muted", "");
+        historyVideo.defaultMuted = true;
+        historyVideo.muted = true;
+        historyVideoCard.classList.remove("is-sound-on");
+        setHistorySoundIcon("muted");
+      }
+    }
+
+    async function playHistoryVideo(withSound = true) {
+      if (!historyVideo || !historyVideoCard) return;
+
+      setHistorySound(withSound);
+
+      try {
+        await historyVideo.play();
+        historyVideoCard.classList.add("is-playing");
+        setHistoryPlayIcon("stop");
+      } catch (error) {
+        setHistorySound(false);
+
+        try {
+          await historyVideo.play();
+          historyVideoCard.classList.add("is-playing");
+          setHistoryPlayIcon("stop");
+        } catch (mutedError) {
+          historyVideoCard.classList.remove("is-playing");
+          setHistoryPlayIcon("play");
+        }
+      }
+    }
+
+    function pauseHistoryVideo() {
+      if (!historyVideo || !historyVideoCard) return;
+
+      historyVideo.pause();
+      historyVideoCard.classList.remove("is-playing");
+      setHistoryPlayIcon("play");
+    }
+
+    function toggleHistoryVideo() {
+      if (!historyVideo) return;
+
+      if (historyVideo.paused) {
+        playHistoryVideo(true);
+      } else {
+        pauseHistoryVideo();
+      }
+    }
+
+    if (historyVideo && historyVideoCard && historyPlayButton && historySoundButton) {
+      historyVideo.setAttribute("playsinline", "");
+      historyVideo.setAttribute("webkit-playsinline", "");
+      historyVideo.setAttribute("preload", "auto");
+      setHistorySound(false);
+      setHistoryPlayIcon("play");
+      setHistorySoundIcon("muted");
+
+      historyPlayButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        toggleHistoryVideo();
+      });
+
+      historySoundButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+
+        if (historyVideo.muted) {
+          if (historyVideo.paused) {
+            playHistoryVideo(true);
+          } else {
+            setHistorySound(true);
+          }
+        } else {
+          setHistorySound(false);
+        }
+      });
+
+      historyVideoCard.addEventListener("click", (event) => {
+        if (event.target.closest(".history-control-btn")) return;
+        toggleHistoryVideo();
+      });
+
+      historyVideo.addEventListener("ended", () => {
+        historyVideoCard.classList.remove("is-playing");
+        setHistoryPlayIcon("play");
+      });
+    }
+
+
   </script>
 </body>
 </html>
