@@ -2392,11 +2392,11 @@
           <article class="specialty-card" data-video-index="0">
             <video
               muted
+              autoplay
               playsinline
               webkit-playsinline
               loop
-              preload="metadata"
-              poster="assets/img/arrozconmariscos.webp"
+              preload="auto"
               data-desktop-src="assets/video/arroz-mariscos.mp4"
               data-mobile-src="assets/video/arroz-mariscoss.mp4"
             >
@@ -2422,11 +2422,11 @@
           <article class="specialty-card" data-video-index="1">
             <video
               muted
+              autoplay
               playsinline
               webkit-playsinline
               loop
-              preload="metadata"
-              poster="assets/img/cevichemixto.webp"
+              preload="auto"
               data-desktop-src="assets/video/ceviche-mixto.mp4"
               data-mobile-src="assets/video/ceviche-mixtoo.mp4"
             >
@@ -2452,11 +2452,11 @@
           <article class="specialty-card" data-video-index="2">
             <video
               muted
+              autoplay
               playsinline
               webkit-playsinline
               loop
-              preload="metadata"
-              poster="assets/img/parihuela.webp"
+              preload="auto"
               data-desktop-src="assets/video/cocteles.mp4"
               data-mobile-src="assets/video/cocteless.mp4"
             >
@@ -2755,7 +2755,7 @@
       if (!source || !nextSource) return;
 
       const currentSource = source.getAttribute("src") || "";
-      video.setAttribute("preload", "metadata");
+      video.setAttribute("preload", "auto");
 
       if (!force && currentSource === nextSource) return;
 
@@ -2776,9 +2776,9 @@
 
     function prepareAllSpecialtyVideos(force = false) {
       /*
-        Se cargan las fuentes con preload=metadata en los 3 videos.
+        Se cargan las fuentes con preload=auto en los 3 videos.
         Esto evita el efecto blanco en mobile: el navegador ya conoce el MP4 correcto
-        y puede mostrar poster/primer frame sin esperar al tap.
+        y puede reproducir/mostrar el primer frame sin depender de una imagen poster.
       */
       specialtyCards.forEach((card) => {
         applySpecialtyVideoSource(card, force);
@@ -2911,9 +2911,8 @@
 
     function playActiveSpecialtyMutedFromSwipe() {
       /*
-        En mobile no hay autoplay inicial.
-        Pero si el usuario arrastra, ese gesto permite intentar reproducir el video activo en silencio.
-        Si iOS lo bloquea, queda visible el poster/primer frame y no aparece pantalla blanca.
+        En mobile se intenta reproducir el video activo en silencio cuando el carrusel entra en pantalla.
+        Si iOS lo bloquea, quedará visible el primer frame del MP4 sin usar imagen poster.
       */
       if (!isMobileSpecialty() || !specialtyInView || specialtyManualCard) return;
 
@@ -3122,6 +3121,7 @@
 
         if (isMobileSpecialty()) {
           pauseSpecialtyAutoplay();
+          playActiveSpecialtyMutedFromSwipe();
         } else {
           playActiveSpecialtyMuted();
           startSpecialtyAutoplay();
@@ -3148,9 +3148,11 @@
         playState: "play",
         soundState: "muted"
       });
+      video.autoplay = true;
+      video.setAttribute("autoplay", "");
       video.setAttribute("playsinline", "");
       video.setAttribute("webkit-playsinline", "");
-      video.setAttribute("preload", "metadata");
+      video.setAttribute("preload", "auto");
 
       if (canHoverSpecialties()) {
         card.addEventListener("mouseenter", () => {
