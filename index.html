@@ -6,15 +6,15 @@
 
   <title>La Barra de Jackili</title>
   <link rel="icon" href="assets/icons/barradejackili.ico" type="image/x-icon">
-  <link rel="preload" href="assets/fonts/Roc Grotesk Regular.otf" as="font" type="font/otf" crossorigin>
-  <link rel="preload" href="assets/fonts/Roc Grotesk Medium.otf" as="font" type="font/otf" crossorigin>
+  <link rel="preload" href="assets/fonts/Roc Grotesk Regular.woff2" as="font" type="font/woff2" crossorigin>
+  <link rel="preload" href="assets/fonts/Roc Grotesk Medium.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/img/Logo.svg" as="image" fetchpriority="high">
   <link rel="preload" href="assets/img/hero.svg" as="image" fetchpriority="high">
 
   <style>
     @font-face {
       font-family: "RocGrotesk";
-      src: url("assets/fonts/Roc Grotesk Light.otf") format("opentype");
+      src: url("assets/fonts/Roc Grotesk Light.woff2") format("woff2");
       font-weight: 300;
       font-style: normal;
       font-display: swap;
@@ -22,7 +22,7 @@
 
     @font-face {
       font-family: "RocGrotesk";
-      src: url("assets/fonts/Roc Grotesk Regular.otf") format("opentype");
+      src: url("assets/fonts/Roc Grotesk Regular.woff2") format("woff2");
       font-weight: 400;
       font-style: normal;
       font-display: swap;
@@ -30,7 +30,7 @@
 
     @font-face {
       font-family: "RocGrotesk";
-      src: url("assets/fonts/Roc Grotesk Medium.otf") format("opentype");
+      src: url("assets/fonts/Roc Grotesk Medium.woff2") format("woff2");
       font-weight: 500;
       font-style: normal;
       font-display: swap;
@@ -38,7 +38,7 @@
 
     @font-face {
       font-family: "RocGrotesk";
-      src: url("assets/fonts/Roc Grotesk Bold.otf") format("opentype");
+      src: url("assets/fonts/Roc Grotesk Bold.woff2") format("woff2");
       font-weight: 700;
       font-style: normal;
       font-display: swap;
@@ -46,7 +46,7 @@
 
     @font-face {
       font-family: "SansitaSwashed";
-      src: url("assets/fonts/SansitaSwashed-Medium.ttf") format("truetype");
+      src: url("assets/fonts/SansitaSwashed-Medium.woff2") format("woff2");
       font-weight: 500;
       font-style: normal;
       font-display: swap;
@@ -129,12 +129,7 @@
     .icon-sun {
       --icon: url("assets/icons/sol.svg");
     }
-
-    .icon-play {
-      --icon: url("assets/icons/play.svg");
-    }
-
-    /* =========================
+/* =========================
        HEADER MOBILE FIRST
     ========================= */
 
@@ -904,141 +899,6 @@
     }
 
     /* =========================
-       VIDEOS SECTION
-    ========================= */
-
-    .videos-section {
-      width: 100%;
-      padding: 18px 18px 82px;
-      background: var(--blue);
-      overflow: hidden;
-    }
-
-    .videos-wrap {
-      width: min(1020px, 100%);
-      margin: 0 auto;
-    }
-
-    .videos-grid {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 22px;
-    }
-
-    .video-card {
-      position: relative;
-      width: 100%;
-      aspect-ratio: 9 / 16;
-      overflow: hidden;
-      border: none;
-      border-radius: 22px;
-      background: rgba(255, 255, 255, 0.08);
-      cursor: pointer;
-      isolation: isolate;
-    }
-
-    .video-card video {
-      width: 100%;
-      height: 100%;
-      display: block;
-      object-fit: cover;
-      transform: scale(1);
-      transition: transform 0.45s ease, filter 0.45s ease;
-    }
-
-    .video-card:hover video,
-    .video-card.is-playing video {
-      transform: scale(1.075);
-    }
-
-    .video-card::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: 2;
-      background: linear-gradient(
-        to top,
-        rgba(0, 30, 90, 0.36),
-        rgba(0, 110, 237, 0.05) 55%,
-        transparent
-      );
-      opacity: 0;
-      transition: opacity 0.35s ease;
-      pointer-events: none;
-    }
-
-    .video-card:hover::after,
-    .video-card.is-playing::after {
-      opacity: 1;
-    }
-
-    .video-play-btn {
-      position: absolute;
-      right: 18px;
-      bottom: 18px;
-      z-index: 5;
-      width: 44px;
-      height: 44px;
-      display: grid;
-      place-items: center;
-      color: var(--blue);
-      background: var(--white);
-      border-radius: 50%;
-      transition: transform 0.25s ease, opacity 0.25s ease, background 0.25s ease;
-    }
-
-    .video-play-btn img {
-      width: 18px;
-      height: 18px;
-      object-fit: contain;
-      transform: translateX(1px);
-      pointer-events: none;
-    }
-
-    .video-card.is-playing .video-play-btn img {
-      transform: translateX(0);
-    }
-
-    .video-card:hover .video-play-btn,
-    .video-card.is-playing .video-play-btn {
-      transform: scale(1.08);
-    }
-
-    .video-info {
-      position: absolute;
-      left: 18px;
-      right: 70px;
-      bottom: 20px;
-      z-index: 4;
-      color: var(--white);
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity 0.3s ease, transform 0.3s ease;
-    }
-
-    .video-card:hover .video-info,
-    .video-card.is-playing .video-info {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .video-title {
-      font-family: "RocGrotesk", Arial, sans-serif;
-      font-size: 18px;
-      font-weight: 700;
-      line-height: 1;
-    }
-
-    .video-desc {
-      margin-top: 5px;
-      font-family: "RocGrotesk", Arial, sans-serif;
-      font-size: 13px;
-      font-weight: 400;
-      line-height: 1.15;
-    }
-
-
-    /* =========================
        MOBILE RESPONSIVE FIX
     ========================= */
 
@@ -1137,19 +997,7 @@
         width: 14px;
         height: 14px;
       }
-
-      .videos-section {
-        padding: 14px 12px 52px;
-      }
-
-      .videos-grid {
-        gap: 16px;
-      }
-
-      .video-card {
-        border-radius: 18px;
-      }
-    }
+}
 
     /* =========================
        MOBILE MUY PEQUEÑO
@@ -1407,19 +1255,7 @@
         width: 13px;
         height: 13px;
       }
-
-      .videos-section {
-        padding: 10px 12px 48px;
-      }
-
-      .videos-grid {
-        gap: 16px;
-      }
-
-      .video-card {
-        border-radius: 17px;
-      }
-    }
+}
 
     /* =========================
        TABLET
@@ -1547,20 +1383,7 @@
       .combo-img {
         width: 230px;
       }
-
-      .videos-section {
-        padding-top: 14px;
-      }
-
-      .videos-grid {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 34px;
-      }
-
-      .video-card {
-        border-radius: 24px;
-      }
-    }
+}
 
     /* =========================
        DESKTOP
@@ -1803,23 +1626,7 @@
       .combo-wrap {
         width: min(1030px, calc(100vw - 48px));
       }
-
-      .videos-section {
-        padding: 10px 18px 90px;
-      }
-
-      .videos-wrap {
-        width: min(1030px, calc(100vw - 48px));
-      }
-
-      .videos-grid {
-        gap: 70px;
-      }
-
-      .video-card {
-        min-height: 390px;
-      }
-    }
+}
 
     /* =========================
        VIDEO CAROUSEL ESPECIALIDADES
@@ -2317,7 +2124,7 @@
         </div>
 
         <a href="#inicio" class="brand" aria-label="La Barra de Jackili">
-          <img src="assets/img/Logo.svg" alt="La Barra de Jackili Cevichería" decoding="async" fetchpriority="high">
+          <img src="assets/img/Logo.svg" alt="La Barra de Jackili Cevichería" decoding="async" fetchpriority="high" width="180" height="70">
         </a>
 
         <div class="nav-desktop nav-right">
@@ -2368,7 +2175,7 @@
           class="hero-person"
           decoding="async"
           fetchpriority="high"
-        >
+         width="520" height="520">
 
         <div class="hero-caption">
           <span class="small">Más rico de</span>
@@ -2413,96 +2220,96 @@
 
           <div class="benefits-group">
             <div class="benefit-item">
-              <img src="assets/icons/pez.svg" alt="" loading="lazy" decoding="async">
+              <img src="assets/icons/pez.svg" alt="" loading="lazy" decoding="async" width="31" height="31">
               <span>Pescados<br>100% frescos</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/chef.svg" alt="" loading="lazy" decoding="async">
+              <img src="assets/icons/chef.svg" alt="" loading="lazy" decoding="async" width="31" height="31">
               <span>Recetas<br>Tradicionales</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/ola.svg" alt="" loading="lazy" decoding="async">
+              <img src="assets/icons/ola.svg" alt="" loading="lazy" decoding="async" width="31" height="31">
               <span>Sabor auténtico<br>del puerto</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/reloj.svg" alt="" loading="lazy" decoding="async">
+              <img src="assets/icons/reloj.svg" alt="" loading="lazy" decoding="async" width="31" height="31">
               <span>Atención<br>rápida</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/cliente.svg" alt="" loading="lazy" decoding="async">
+              <img src="assets/icons/cliente.svg" alt="" loading="lazy" decoding="async" width="31" height="31">
               <span>+500 clientes<br>satisfechos</span>
             </div>
           </div>
 
           <div class="benefits-group" aria-hidden="true">
             <div class="benefit-item">
-              <img src="assets/icons/pez.svg" alt="" loading="lazy" decoding="async">
+              <img src="assets/icons/pez.svg" alt="" loading="lazy" decoding="async" width="31" height="31">
               <span>Pescados<br>100% frescos</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/chef.svg" alt="" loading="lazy" decoding="async">
+              <img src="assets/icons/chef.svg" alt="" loading="lazy" decoding="async" width="31" height="31">
               <span>Recetas<br>Tradicionales</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/ola.svg" alt="" loading="lazy" decoding="async">
+              <img src="assets/icons/ola.svg" alt="" loading="lazy" decoding="async" width="31" height="31">
               <span>Sabor auténtico<br>del puerto</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/reloj.svg" alt="" loading="lazy" decoding="async">
+              <img src="assets/icons/reloj.svg" alt="" loading="lazy" decoding="async" width="31" height="31">
               <span>Atención<br>rápida</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/cliente.svg" alt="" loading="lazy" decoding="async">
+              <img src="assets/icons/cliente.svg" alt="" loading="lazy" decoding="async" width="31" height="31">
               <span>+500 clientes<br>satisfechos</span>
             </div>
           </div>
 
           <div class="benefits-group" aria-hidden="true">
             <div class="benefit-item">
-              <img src="assets/icons/pez.svg" alt="" loading="lazy" decoding="async">
+              <img src="assets/icons/pez.svg" alt="" loading="lazy" decoding="async" width="31" height="31">
               <span>Pescados<br>100% frescos</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/chef.svg" alt="" loading="lazy" decoding="async">
+              <img src="assets/icons/chef.svg" alt="" loading="lazy" decoding="async" width="31" height="31">
               <span>Recetas<br>Tradicionales</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/ola.svg" alt="" loading="lazy" decoding="async">
+              <img src="assets/icons/ola.svg" alt="" loading="lazy" decoding="async" width="31" height="31">
               <span>Sabor auténtico<br>del puerto</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/reloj.svg" alt="" loading="lazy" decoding="async">
+              <img src="assets/icons/reloj.svg" alt="" loading="lazy" decoding="async" width="31" height="31">
               <span>Atención<br>rápida</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/cliente.svg" alt="" loading="lazy" decoding="async">
+              <img src="assets/icons/cliente.svg" alt="" loading="lazy" decoding="async" width="31" height="31">
               <span>+500 clientes<br>satisfechos</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/pez.svg" alt="" loading="lazy" decoding="async">
+              <img src="assets/icons/pez.svg" alt="" loading="lazy" decoding="async" width="31" height="31">
               <span>Pescados<br>100% frescos</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/chef.svg" alt="" loading="lazy" decoding="async">
+              <img src="assets/icons/chef.svg" alt="" loading="lazy" decoding="async" width="31" height="31">
               <span>Recetas<br>Tradicionales</span>
             </div>
 
             <div class="benefit-item">
-              <img src="assets/icons/ola.svg" alt="" loading="lazy" decoding="async">
+              <img src="assets/icons/ola.svg" alt="" loading="lazy" decoding="async" width="31" height="31">
               <span>Sabor auténtico<br>del puerto</span>
             </div>
           </div>
@@ -2517,9 +2324,9 @@
         <button class="dish-arrow prev" id="dishPrev" type="button" aria-label="Plato anterior"></button>
 
         <div class="dish-visuals" aria-hidden="true">
-          <img class="dish-img is-left" id="dishLeft" src="assets/img/parihuela.webp" alt="" loading="lazy" decoding="async">
-          <img class="dish-img is-center" id="dishCenter" src="assets/img/arrozconmariscos.webp" alt="" loading="lazy" decoding="async">
-          <img class="dish-img is-right" id="dishRight" src="assets/img/cevichemixto.webp" alt="" loading="lazy" decoding="async">
+          <img class="dish-img is-left" id="dishLeft" src="assets/img/parihuela.webp" alt="" loading="lazy" decoding="async" width="600" height="430">
+          <img class="dish-img is-center" id="dishCenter" src="assets/img/arrozconmariscos.webp" alt="" loading="lazy" decoding="async" width="600" height="430">
+          <img class="dish-img is-right" id="dishRight" src="assets/img/cevichemixto.webp" alt="" loading="lazy" decoding="async" width="600" height="430">
         </div>
 
         <div class="dish-content">
@@ -2546,7 +2353,7 @@
         </div>
 
         <div class="combo-card">
-          <img src="assets/img/combo.svg" alt="Combo para dos" class="combo-img" loading="lazy" decoding="async">
+          <img src="assets/img/combo.svg" alt="Combo para dos" class="combo-img" loading="lazy" decoding="async" width="270" height="170">
 
           <div class="combo-text">
             <span class="combo-label">Promo del día</span>
