@@ -1874,6 +1874,7 @@
       justify-content: center;
       perspective: 1200px;
       isolation: isolate;
+      touch-action: pan-y;
     }
 
     .specialty-card {
@@ -1887,6 +1888,8 @@
       border-radius: 32px;
       background: rgba(255, 255, 255, 0.08);
       cursor: pointer;
+      user-select: none;
+      -webkit-user-select: none;
       transform-origin: center center;
       transition:
         transform 0.55s cubic-bezier(0.2, 0.8, 0.2, 1),
@@ -2080,6 +2083,11 @@
       .specialty-card {
         width: min(78vw, 315px);
         border-radius: 28px;
+        cursor: grab;
+      }
+
+      .specialty-card:active {
+        cursor: grabbing;
       }
 
       .specialty-card.is-left {
@@ -2580,7 +2588,7 @@
               playsinline
               webkit-playsinline
               loop
-              preload="none"
+              preload="metadata"
               poster="assets/img/arrozconmariscos.webp"
               data-desktop-src="assets/video/arroz-mariscos.mp4"
               data-mobile-src="assets/video/arroz-mariscoss.mp4"
@@ -2610,7 +2618,7 @@
               playsinline
               webkit-playsinline
               loop
-              preload="none"
+              preload="metadata"
               poster="assets/img/cevichemixto.webp"
               data-desktop-src="assets/video/ceviche-mixto.mp4"
               data-mobile-src="assets/video/ceviche-mixtoo.mp4"
@@ -2640,7 +2648,7 @@
               playsinline
               webkit-playsinline
               loop
-              preload="none"
+              preload="metadata"
               poster="assets/img/parihuela.webp"
               data-desktop-src="assets/video/cocteles.mp4"
               data-mobile-src="assets/video/cocteless.mp4"
@@ -2812,14 +2820,23 @@
     const specialtyCards = Array.from(document.querySelectorAll(".specialty-card"));
     const videosCarousel = document.getElementById("videosCarousel");
     const mobileSpecialtyQuery = window.matchMedia("(max-width: 767px)");
-    const canHoverSpecialties = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-    const desktopAutoplaySpecialties = canHoverSpecialties;
+    const hoverSpecialtyQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
 
     let activeSpecialty = 0;
     let specialtyTimer = null;
     let specialtyInView = false;
-    let specialtyUserInteracting = false;
     let specialtyManualCard = null;
+    let specialtySwipeBlockedClick = false;
+
+    const specialtySwipe = {
+      startX: 0,
+      startY: 0,
+      currentX: 0,
+      currentY: 0,
+      isTouching: false,
+      isDragging: false,
+      startedOnControl: false
+    };
 
     const videoControlIcons = {
       play: `
@@ -2847,6 +2864,18 @@
       `
     };
 
+    function isMobileSpecialty() {
+      return mobileSpecialtyQuery.matches;
+    }
+
+    function canHoverSpecialties() {
+      return hoverSpecialtyQuery.matches;
+    }
+
+    function canDesktopAutoplaySpecialties() {
+      return canHoverSpecialties() && !isMobileSpecialty();
+    }
+
     function normalizeSpecialtyIndex(index) {
       return (index + specialtyCards.length) % specialtyCards.length;
     }
@@ -2861,18 +2890,6 @@
       if (index === next) return "right";
 
       return "hidden";
-    }
-
-    function renderSpecialtyCarousel() {
-      specialtyCards.forEach((card, index) => {
-        const position = specialtyPosition(index);
-
-        card.classList.remove("is-left", "is-center", "is-right", "is-hidden");
-        card.classList.add(`is-${position}`);
-        card.dataset.position = position;
-      });
-
-      updateSpecialtyVideoLoading();
     }
 
     function setSpecialtyPlayIcon(card, state) {
@@ -2902,11 +2919,8 @@
     }
 
     function setSpecialtyControls(card, options = {}) {
-      const playState = options.playState || "play";
-      const soundState = options.soundState || "muted";
-
-      setSpecialtyPlayIcon(card, playState);
-      setSpecialtySoundIcon(card, soundState);
+      setSpecialtyPlayIcon(card, options.playState || "play");
+      setSpecialtySoundIcon(card, options.soundState || "muted");
     }
 
     function setVideoSound(video, withSound) {
@@ -2922,17 +2936,11 @@
       }
     }
 
-
     function getSpecialtyVideoSource(video) {
-      return mobileSpecialtyQuery.matches ? video.dataset.mobileSrc : video.dataset.desktopSrc;
+      return isMobileSpecialty() ? video.dataset.mobileSrc : video.dataset.desktopSrc;
     }
 
-    function hasSpecialtySource(card) {
-      const source = card.querySelector("source");
-      return Boolean(source && source.getAttribute("src"));
-    }
-
-    function applySpecialtyVideoSource(card, force = false, loadNow = false) {
+    function applySpecialtyVideoSource(card, force = false) {
       const video = card.querySelector("video");
       const source = video.querySelector("source");
       const nextSource = getSpecialtyVideoSource(video);
@@ -2940,87 +2948,46 @@
       if (!source || !nextSource) return;
 
       const currentSource = source.getAttribute("src") || "";
-      const preloadMode = loadNow
-        ? (desktopAutoplaySpecialties ? "metadata" : "none")
-        : "none";
+      video.setAttribute("preload", "metadata");
 
-      video.setAttribute("preload", preloadMode);
+      if (!force && currentSource === nextSource) return;
 
-      if (!force && currentSource === nextSource) {
-        if (loadNow && video.readyState === 0) {
-          video.load();
-        }
-        return;
-      }
-
+      const wasPlaying = !video.paused;
       video.pause();
-      card.classList.remove("is-playing", "is-sound-on", "is-user-playing");
-      setVideoSound(video, false);
-      setSpecialtyControls(card, {
-        playState: "play",
-        soundState: "muted"
-      });
-
       source.setAttribute("src", nextSource);
-
-      if (loadNow) {
-        video.load();
-      }
-    }
-
-    function unloadSpecialtyVideo(card) {
-      if (specialtyManualCard === card) return;
-
-      const video = card.querySelector("video");
-      const source = video.querySelector("source");
-
-      if (!source || !source.getAttribute("src")) return;
-
-      video.pause();
-      video.setAttribute("preload", "none");
-      source.removeAttribute("src");
       video.load();
-    }
 
-    function updateSpecialtyVideoLoading() {
-      if (!specialtyInView) return;
-
-      specialtyCards.forEach((card) => {
-        const position = card.dataset.position;
-        const shouldPrepare = position === "center" || (desktopAutoplaySpecialties && (position === "left" || position === "right"));
-
-        if (shouldPrepare) {
-          applySpecialtyVideoSource(card, false, true);
-        } else {
-          unloadSpecialtyVideo(card);
-        }
-      });
-    }
-
-    function applyAllSpecialtyVideoSources(force = false) {
-      specialtyCards.forEach((card) => {
-        const shouldLoad = specialtyInView && (card.dataset.position === "center" || specialtyManualCard === card);
-        applySpecialtyVideoSource(card, force, shouldLoad);
-      });
-    }
-
-    function handleSpecialtyVideoSourceChange() {
-      pauseSpecialtyAutoplay();
-      specialtyUserInteracting = false;
-      specialtyManualCard = null;
-
-      specialtyCards.forEach((card) => {
-        stopSpecialtyCard(card, false);
-        unloadSpecialtyVideo(card);
-      });
-
-      renderSpecialtyCarousel();
-
-      if (specialtyInView) {
-        applyAllSpecialtyVideoSources(true);
-        playActiveSpecialtyMuted();
-        startSpecialtyAutoplay();
+      if (!wasPlaying) {
+        card.classList.remove("is-playing", "is-sound-on", "is-user-playing");
+        setVideoSound(video, false);
+        setSpecialtyControls(card, {
+          playState: "play",
+          soundState: "muted"
+        });
       }
+    }
+
+    function prepareAllSpecialtyVideos(force = false) {
+      /*
+        Se cargan las fuentes con preload=metadata en los 3 videos.
+        Esto evita el efecto blanco en mobile: el navegador ya conoce el MP4 correcto
+        y puede mostrar poster/primer frame sin esperar al tap.
+      */
+      specialtyCards.forEach((card) => {
+        applySpecialtyVideoSource(card, force);
+      });
+    }
+
+    function renderSpecialtyCarousel() {
+      specialtyCards.forEach((card, index) => {
+        const position = specialtyPosition(index);
+
+        card.classList.remove("is-left", "is-center", "is-right", "is-hidden");
+        card.classList.add(`is-${position}`);
+        card.dataset.position = position;
+      });
+
+      prepareAllSpecialtyVideos(false);
     }
 
     function clearSpecialtyManualCard(card) {
@@ -3077,11 +3044,10 @@
       }
 
       const video = card.querySelector("video");
-      applySpecialtyVideoSource(card, false, true);
+      applySpecialtyVideoSource(card, false);
 
       if (manual) {
         specialtyManualCard = card;
-        specialtyUserInteracting = true;
         pauseSpecialtyAutoplay();
       }
 
@@ -3095,23 +3061,13 @@
         soundState: withSound ? "volume" : "muted"
       });
 
-      if (withSound) {
-        /*
-          iOS/Safari solo permite audio después de una acción directa del usuario.
-          Por eso el sonido se activa únicamente desde click/tap, no desde autoplay.
-        */
-        if (!video.paused) {
-          video.pause();
-        }
+      if (withSound && !video.paused) {
+        video.pause();
       }
 
       try {
         await video.play();
       } catch (error) {
-        /*
-          Si el navegador no permite reproducir con sonido, se intenta reproducir
-          en silencio para que el carrusel no quede congelado.
-        */
         setVideoSound(video, false);
         card.classList.remove("is-sound-on");
 
@@ -3134,12 +3090,25 @@
     }
 
     function playActiveSpecialtyMuted() {
+      if (!canDesktopAutoplaySpecialties() || !specialtyInView || specialtyManualCard) return;
+
+      const activeCard = specialtyCards[activeSpecialty];
+
+      playSpecialtyCard(activeCard, {
+        withSound: false,
+        resetOthers: true,
+        changeSlide: false,
+        manual: false
+      });
+    }
+
+    function playActiveSpecialtyMutedFromSwipe() {
       /*
-        Autoplay de video solo en desktop.
-        En móvil el carrusel puede seguir cambiando visualmente, pero el MP4 no se reproduce solo
-        para evitar bloqueos de iOS/Safari y consumo innecesario de datos.
+        En mobile no hay autoplay inicial.
+        Pero si el usuario arrastra, ese gesto permite intentar reproducir el video activo en silencio.
+        Si iOS lo bloquea, queda visible el poster/primer frame y no aparece pantalla blanca.
       */
-      if (!desktopAutoplaySpecialties || !specialtyInView || specialtyManualCard) return;
+      if (!isMobileSpecialty() || !specialtyInView || specialtyManualCard) return;
 
       const activeCard = specialtyCards[activeSpecialty];
 
@@ -3152,14 +3121,7 @@
     }
 
     function nextSpecialtySlide() {
-      /*
-        Bucle automático:
-        - Cambia al siguiente card si la sección está visible.
-        - En desktop reproduce el video activo automáticamente en silencio.
-        - En móvil solo avanza el carrusel; el video se reproduce con tap/click.
-        - Se detiene cuando el usuario activa un video manualmente.
-      */
-      if (specialtyManualCard || !specialtyInView) return;
+      if (specialtyManualCard || !specialtyInView || isMobileSpecialty()) return;
 
       activeSpecialty = normalizeSpecialtyIndex(activeSpecialty + 1);
       renderSpecialtyCarousel();
@@ -3169,7 +3131,7 @@
     function startSpecialtyAutoplay() {
       clearInterval(specialtyTimer);
 
-      if (specialtyManualCard) return;
+      if (specialtyManualCard || isMobileSpecialty()) return;
 
       specialtyTimer = setInterval(nextSpecialtySlide, 3600);
     }
@@ -3181,16 +3143,20 @@
     function restartSpecialtyAutoplay() {
       pauseSpecialtyAutoplay();
 
-      if (!specialtyManualCard) {
+      if (!specialtyManualCard && !isMobileSpecialty()) {
         startSpecialtyAutoplay();
       }
     }
 
     function resumeMutedCarousel() {
-      specialtyUserInteracting = false;
       specialtyManualCard = null;
 
       if (!specialtyInView) return;
+
+      if (isMobileSpecialty()) {
+        prepareAllSpecialtyVideos(false);
+        return;
+      }
 
       playActiveSpecialtyMuted();
       restartSpecialtyAutoplay();
@@ -3199,7 +3165,6 @@
     function handleSpecialtyPlayToggle(card) {
       const isSameManualCard = specialtyManualCard === card && card.classList.contains("is-user-playing");
 
-      specialtyUserInteracting = true;
       pauseSpecialtyAutoplay();
 
       if (isSameManualCard) {
@@ -3220,7 +3185,6 @@
       const video = card.querySelector("video");
       const isSameManualCard = specialtyManualCard === card && card.classList.contains("is-user-playing");
 
-      specialtyUserInteracting = true;
       pauseSpecialtyAutoplay();
 
       if (!isSameManualCard) {
@@ -3261,26 +3225,110 @@
       }
     }
 
+    function moveSpecialtyBySwipe(direction) {
+      if (!isMobileSpecialty() || !specialtyInView) return;
+
+      pauseSpecialtyAutoplay();
+      specialtyManualCard = null;
+      activeSpecialty = normalizeSpecialtyIndex(activeSpecialty + direction);
+
+      specialtyCards.forEach((card) => {
+        stopSpecialtyCard(card, false);
+      });
+
+      renderSpecialtyCarousel();
+      playActiveSpecialtyMutedFromSwipe();
+    }
+
+    function handleSpecialtyTouchStart(event) {
+      if (!isMobileSpecialty()) return;
+
+      specialtySwipe.startedOnControl = Boolean(event.target.closest(".video-control-btn"));
+      if (specialtySwipe.startedOnControl) return;
+
+      const touch = event.touches[0];
+      specialtySwipe.startX = touch.clientX;
+      specialtySwipe.startY = touch.clientY;
+      specialtySwipe.currentX = touch.clientX;
+      specialtySwipe.currentY = touch.clientY;
+      specialtySwipe.isTouching = true;
+      specialtySwipe.isDragging = false;
+      specialtySwipeBlockedClick = false;
+    }
+
+    function handleSpecialtyTouchMove(event) {
+      if (!isMobileSpecialty() || !specialtySwipe.isTouching || specialtySwipe.startedOnControl) return;
+
+      const touch = event.touches[0];
+      specialtySwipe.currentX = touch.clientX;
+      specialtySwipe.currentY = touch.clientY;
+
+      const deltaX = specialtySwipe.currentX - specialtySwipe.startX;
+      const deltaY = specialtySwipe.currentY - specialtySwipe.startY;
+
+      if (Math.abs(deltaX) > 12 && Math.abs(deltaX) > Math.abs(deltaY)) {
+        specialtySwipe.isDragging = true;
+        specialtySwipeBlockedClick = true;
+        event.preventDefault();
+      }
+    }
+
+    function handleSpecialtyTouchEnd() {
+      if (!isMobileSpecialty() || !specialtySwipe.isTouching || specialtySwipe.startedOnControl) {
+        specialtySwipe.isTouching = false;
+        specialtySwipe.isDragging = false;
+        specialtySwipe.startedOnControl = false;
+        return;
+      }
+
+      const deltaX = specialtySwipe.currentX - specialtySwipe.startX;
+      const deltaY = specialtySwipe.currentY - specialtySwipe.startY;
+      const isHorizontalSwipe = Math.abs(deltaX) > 45 && Math.abs(deltaX) > Math.abs(deltaY) * 1.25;
+
+      if (isHorizontalSwipe) {
+        if (deltaX < 0) {
+          moveSpecialtyBySwipe(1);
+        } else {
+          moveSpecialtyBySwipe(-1);
+        }
+
+        window.setTimeout(() => {
+          specialtySwipeBlockedClick = false;
+        }, 280);
+      } else {
+        specialtySwipeBlockedClick = false;
+      }
+
+      specialtySwipe.isTouching = false;
+      specialtySwipe.isDragging = false;
+      specialtySwipe.startedOnControl = false;
+    }
+
     const specialtyObserver = new IntersectionObserver((entries) => {
       const entry = entries[0];
 
-      specialtyInView = entry.isIntersecting && entry.intersectionRatio >= 0.35;
+      specialtyInView = entry.isIntersecting && entry.intersectionRatio >= 0.28;
 
       if (specialtyInView) {
+        prepareAllSpecialtyVideos(false);
         renderSpecialtyCarousel();
-        playActiveSpecialtyMuted();
-        startSpecialtyAutoplay();
+
+        if (isMobileSpecialty()) {
+          pauseSpecialtyAutoplay();
+        } else {
+          playActiveSpecialtyMuted();
+          startSpecialtyAutoplay();
+        }
       } else {
         pauseSpecialtyAutoplay();
         specialtyCards.forEach((card) => {
           stopSpecialtyCard(card, false);
-          unloadSpecialtyVideo(card);
         });
-        specialtyUserInteracting = false;
         specialtyManualCard = null;
       }
     }, {
-      threshold: [0, 0.15, 0.35, 0.55, 0.75, 1]
+      rootMargin: "180px 0px 180px 0px",
+      threshold: [0, 0.15, 0.28, 0.45, 0.65, 1]
     });
 
     specialtyCards.forEach((card) => {
@@ -3295,13 +3343,12 @@
       });
       video.setAttribute("playsinline", "");
       video.setAttribute("webkit-playsinline", "");
-      video.setAttribute("preload", "none");
+      video.setAttribute("preload", "metadata");
 
-      if (canHoverSpecialties) {
+      if (canHoverSpecialties()) {
         card.addEventListener("mouseenter", () => {
-          if (specialtyManualCard) return;
+          if (specialtyManualCard || isMobileSpecialty()) return;
 
-          specialtyUserInteracting = true;
           pauseSpecialtyAutoplay();
 
           playSpecialtyCard(card, {
@@ -3313,14 +3360,19 @@
         });
 
         card.addEventListener("mouseleave", () => {
-          if (specialtyManualCard) return;
+          if (specialtyManualCard || isMobileSpecialty()) return;
 
           stopSpecialtyCard(card, false);
           resumeMutedCarousel();
         });
       }
 
-      card.addEventListener("click", () => {
+      card.addEventListener("click", (event) => {
+        if (specialtySwipeBlockedClick || isMobileSpecialty()) {
+          event.preventDefault();
+          return;
+        }
+
         handleSpecialtyPlayToggle(card);
       });
 
@@ -3335,6 +3387,30 @@
       });
     });
 
+    if (videosCarousel) {
+      videosCarousel.addEventListener("touchstart", handleSpecialtyTouchStart, { passive: true });
+      videosCarousel.addEventListener("touchmove", handleSpecialtyTouchMove, { passive: false });
+      videosCarousel.addEventListener("touchend", handleSpecialtyTouchEnd, { passive: true });
+      videosCarousel.addEventListener("touchcancel", handleSpecialtyTouchEnd, { passive: true });
+    }
+
+    function handleSpecialtyVideoSourceChange() {
+      pauseSpecialtyAutoplay();
+      specialtyManualCard = null;
+
+      specialtyCards.forEach((card) => {
+        stopSpecialtyCard(card, false);
+      });
+
+      prepareAllSpecialtyVideos(true);
+      renderSpecialtyCarousel();
+
+      if (specialtyInView && !isMobileSpecialty()) {
+        playActiveSpecialtyMuted();
+        startSpecialtyAutoplay();
+      }
+    }
+
     if (typeof mobileSpecialtyQuery.addEventListener === "function") {
       mobileSpecialtyQuery.addEventListener("change", handleSpecialtyVideoSourceChange);
     } else if (typeof mobileSpecialtyQuery.addListener === "function") {
@@ -3342,6 +3418,7 @@
     }
 
     renderSpecialtyCarousel();
+    prepareAllSpecialtyVideos(false);
 
     if (videosCarousel) {
       specialtyObserver.observe(videosCarousel);
