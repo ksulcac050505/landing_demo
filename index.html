@@ -4,12 +4,45 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>La Barra de Jackili</title>
+  <title>La Barra de Jackili | Cevichería peruana en Miraflores</title>
+  <meta name="description" content="Ceviche, arroz con mariscos, parihuela y promociones marinas en La Barra de Jackili. Reserva o pide por WhatsApp en Miraflores, Lima." />
+  <meta name="theme-color" content="#006eed" />
+  <meta property="og:type" content="restaurant" />
+  <meta property="og:title" content="La Barra de Jackili | Cevichería peruana" />
+  <meta property="og:description" content="Pescados frescos, mariscos con sazón criolla y reservas rápidas por WhatsApp." />
+  <meta property="og:image" content="assets/img/hero.svg" />
+  <meta name="twitter:card" content="summary_large_image" />
   <link rel="icon" href="assets/icons/barradejackili.ico" type="image/x-icon">
   <link rel="preload" href="assets/fonts/Roc Grotesk Regular.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/fonts/Roc Grotesk Medium.woff2" as="font" type="font/woff2" crossorigin>
   <link rel="preload" href="assets/img/Logo.svg" as="image" fetchpriority="high">
   <link rel="preload" href="assets/img/hero.svg" as="image" fetchpriority="high">
+
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Restaurant",
+      "name": "La Barra de Jackili",
+      "servesCuisine": ["Ceviche", "Comida marina peruana", "Mariscos"],
+      "telephone": "+51972667751",
+      "priceRange": "S/ - S/99",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Av. 28 de Julio 1275",
+        "addressLocality": "Miraflores",
+        "addressRegion": "Lima",
+        "addressCountry": "PE"
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "12:00",
+          "closes": "23:00"
+        }
+      ]
+    }
+  </script>
 
   <style>
     @font-face {
@@ -122,12 +155,24 @@
       --icon: url("assets/icons/carta.svg");
     }
 
+    .icon-calendar {
+      --icon: url("assets/icons/calendario.svg");
+    }
+
     .icon-heart {
       --icon: url("assets/icons/corazon.svg");
     }
 
     .icon-sun {
       --icon: url("assets/icons/sol.svg");
+    }
+
+    .icon-location {
+      --icon: url("assets/icons/ubicacion.svg");
+    }
+
+    .icon-pez {
+      --icon: url("assets/icons/pez.svg");
     }
 /* =========================
        HEADER MOBILE FIRST
@@ -339,11 +384,31 @@
     .hero {
       position: relative;
       z-index: 5;
+      isolation: isolate;
       width: 100%;
       padding: 18px 18px 10px;
       display: flex;
       flex-direction: column;
       align-items: center;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: -1;
+      width: 100vw;
+      aspect-ratio: 932 / 686;
+      background: url("assets/img/hero-b.svg") center center / min(932px, 92vw) auto no-repeat;
+      opacity: 0.96;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
+    .hero > * {
+      position: relative;
+      z-index: 1;
     }
 
     .hero-visual {
@@ -439,6 +504,31 @@
       font-weight: 400;
       line-height: 1.22;
       letter-spacing: 0.01em;
+    }
+
+    .hero-proof {
+      width: min(360px, 100%);
+      margin: 14px auto 0;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      list-style: none;
+    }
+
+    .hero-proof li {
+      min-height: 30px;
+      padding: 0 12px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      background: var(--white);
+      border-radius: var(--pill);
+      font-size: 12.5px;
+      font-weight: 700;
+      line-height: 1;
+      box-shadow: 0 10px 22px rgba(0, 42, 120, 0.12);
     }
 
     .hero-actions {
@@ -771,19 +861,225 @@
     }
 
     /* =========================
+       CARTA RAPIDA
+    ========================= */
+
+    .quick-menu {
+      position: relative;
+      isolation: isolate;
+      width: 100%;
+      padding: 30px 14px 34px;
+      background: var(--blue);
+      overflow: hidden;
+    }
+
+    .quick-menu-wrap {
+      position: relative;
+      z-index: 1;
+      width: min(1080px, 100%);
+      margin: 0 auto;
+      color: var(--blue);
+      background: var(--white);
+      border-radius: 24px;
+      padding: 24px 16px;
+      box-shadow: 0 18px 42px rgba(0, 42, 120, 0.14);
+      overflow: hidden;
+    }
+
+    .quick-menu-wrap > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .quick-menu-head {
+      display: grid;
+      gap: 8px;
+      text-align: center;
+    }
+
+    .quick-menu-kicker {
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1;
+      text-transform: uppercase;
+    }
+
+    .quick-menu h2 {
+      font-size: clamp(28px, 8vw, 46px);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: 0;
+    }
+
+    .quick-menu-head p {
+      width: min(520px, 100%);
+      margin: 0 auto;
+      font-size: 14px;
+      line-height: 1.25;
+    }
+
+    .quick-menu-grid {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+
+    .quick-menu-item {
+      min-height: 118px;
+      padding: 16px;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 12px;
+      align-items: center;
+      border: 2px solid rgba(0, 110, 237, 0.14);
+      border-radius: 18px;
+      background: #f5faff;
+    }
+
+    .quick-menu-item h3 {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .quick-menu-item p {
+      margin-top: 7px;
+      font-size: 13px;
+      line-height: 1.18;
+    }
+
+    .quick-menu-price {
+      display: block;
+      margin-top: 9px;
+      font-size: 20px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .quick-menu-order {
+      min-height: 42px;
+      padding: 0 16px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      color: var(--white);
+      background: var(--blue);
+      border-radius: var(--pill);
+      font-size: 13px;
+      font-weight: 700;
+      white-space: nowrap;
+      transition: transform 0.25s ease, background 0.25s ease;
+    }
+
+    .quick-menu-order:hover {
+      background: var(--blue-dark);
+      transform: translateY(-2px);
+    }
+
+    .quick-menu-order .svg-icon {
+      width: 16px;
+      height: 16px;
+    }
+
+    .quick-menu-note {
+      margin-top: 16px;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px;
+      color: var(--white);
+    }
+
+    .quick-menu-note span {
+      min-height: 30px;
+      padding: 0 12px;
+      display: inline-flex;
+      align-items: center;
+      border-radius: var(--pill);
+      background: var(--blue);
+      font-size: 12.5px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    @media (max-width: 390px) {
+      .quick-menu {
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+
+      .quick-menu-item {
+        grid-template-columns: 1fr;
+      }
+
+      .quick-menu-order {
+        width: 100%;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .quick-menu-wrap {
+        padding: 30px;
+      }
+
+      .quick-menu-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .quick-menu {
+        padding: 42px 18px 44px;
+      }
+
+      .quick-menu-grid {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .quick-menu-item {
+        min-height: 230px;
+        grid-template-columns: 1fr;
+        align-content: space-between;
+      }
+
+      .quick-menu-order {
+        width: 100%;
+      }
+    }
+
+    /* =========================
        COMBO SECTION
     ========================= */
 
     .combo-section {
       position: relative;
+      isolation: isolate;
       width: 100%;
       padding: 34px 18px 34px;
       background: var(--blue);
       overflow: hidden;
     }
 
+    .combo-section::before {
+      content: none;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      z-index: -1;
+      width: 100vw;
+      background: url("assets/icons/flecha.svg") center center / 92px 92px no-repeat;
+      opacity: 0.18;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
     .combo-wrap {
       position: relative;
+      z-index: 1;
       width: min(1020px, 100%);
       margin: 0 auto;
       padding: 30px 0 28px;
@@ -1532,7 +1828,7 @@
         font-size: 86px;
         line-height: 0.82;
         letter-spacing: -0.045em;
-        margin-top: 150px;
+        margin-top: 34px;
       }
 
       .hero-title .soft {
@@ -1540,6 +1836,14 @@
       }
 
       .hero-copy {
+        display: block;
+        width: min(570px, 100%);
+        margin-top: 20px;
+        font-size: 19px;
+        line-height: 1.18;
+      }
+
+      .hero-proof {
         display: none;
       }
 
@@ -1548,7 +1852,7 @@
         grid-row: 3;
         order: initial;
         width: auto;
-        margin-top: 34px;
+        margin-top: 4px;
         padding-left: 0;
         display: flex;
         justify-content: center;
@@ -1635,13 +1939,30 @@
 
     .history-section {
       position: relative;
+      isolation: isolate;
       width: 100%;
       padding: 70px 18px 78px;
       background: var(--blue);
       overflow: hidden;
     }
 
+    .history-section::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 56%;
+      z-index: -1;
+      width: 100vw;
+      aspect-ratio: 1355 / 428;
+      background: url("assets/img/historia-b.svg") center center / 100vw auto no-repeat;
+      opacity: 0.95;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
     .history-wrap {
+      position: relative;
+      z-index: 1;
       width: min(1080px, 100%);
       margin: 0 auto;
       display: grid;
@@ -1994,13 +2315,30 @@
 
     .videos-section {
       position: relative;
+      isolation: isolate;
       width: 100%;
       padding: 44px 18px 90px;
       background: var(--blue);
       overflow: hidden;
     }
 
+    .videos-section::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      z-index: -1;
+      width: 100vw;
+      aspect-ratio: 1439 / 553;
+      background: url("assets/img/especialidades-b.svg") center center / 100vw auto no-repeat;
+      opacity: 0.72;
+      transform: translate(-50%, -50%);
+      pointer-events: none;
+    }
+
     .videos-wrap {
+      position: relative;
+      z-index: 1;
       width: min(1080px, 100%);
       margin: 0 auto;
     }
@@ -2094,8 +2432,8 @@
 
     .specialty-card.is-left {
       z-index: 2;
-      opacity: 0.62;
-      filter: blur(3px) brightness(0.72);
+      opacity: 1;
+      filter: blur(3px) brightness(0.62) saturate(0.9);
       transform: translate(-145%, -48%) rotate(-8deg) scale(0.88);
     }
 
@@ -2108,8 +2446,8 @@
 
     .specialty-card.is-right {
       z-index: 2;
-      opacity: 0.62;
-      filter: blur(3px) brightness(0.72);
+      opacity: 1;
+      filter: blur(3px) brightness(0.62) saturate(0.9);
       transform: translate(45%, -48%) rotate(8deg) scale(0.88);
     }
 
@@ -2138,14 +2476,14 @@
 
     .specialty-card.is-left:hover,
     .specialty-card.is-left.is-playing {
-      opacity: 0.86;
+      opacity: 1;
       filter: blur(1px) brightness(0.92);
       transform: translate(-145%, -49%) rotate(-6deg) scale(0.92);
     }
 
     .specialty-card.is-right:hover,
     .specialty-card.is-right.is-playing {
-      opacity: 0.86;
+      opacity: 1;
       filter: blur(1px) brightness(0.92);
       transform: translate(45%, -49%) rotate(6deg) scale(0.92);
     }
@@ -2258,8 +2596,8 @@
       }
 
       .specialty-card.is-left {
-        opacity: 0.54;
-        filter: blur(3px) brightness(0.68);
+        opacity: 1;
+        filter: blur(3px) brightness(0.58) saturate(0.9);
         transform: translate(-102%, -48%) rotate(-7deg) scale(0.86);
       }
 
@@ -2268,8 +2606,8 @@
       }
 
       .specialty-card.is-right {
-        opacity: 0.54;
-        filter: blur(3px) brightness(0.68);
+        opacity: 1;
+        filter: blur(3px) brightness(0.58) saturate(0.9);
         transform: translate(2%, -48%) rotate(7deg) scale(0.86);
       }
 
@@ -2454,19 +2792,825 @@
        OPTIMIZACIÓN DE CARGA
     ========================= */
 
+    /* =========================
+       CONTACTO + FOOTER
+    ========================= */
+
+    .contact-section {
+      position: relative;
+      isolation: isolate;
+      width: 100%;
+      padding: 38px 14px 0;
+      background: var(--blue);
+      overflow: hidden;
+    }
+
+    .contact-section::before {
+      content: none;
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      z-index: -1;
+      width: 100vw;
+      background: url("assets/icons/calendario.svg") center center / 34px 34px repeat;
+      opacity: 0.16;
+      transform: translateX(-50%);
+      pointer-events: none;
+    }
+
+    .contact-wrap {
+      position: relative;
+      z-index: 2;
+      width: min(1120px, 100%);
+      margin: 0 auto;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+    }
+
+    .contact-stack {
+      display: grid;
+      gap: 14px;
+      align-content: start;
+    }
+
+    .contact-card,
+    .trust-card {
+      color: var(--blue);
+      background: var(--white);
+      border-radius: 22px;
+      box-shadow: 0 18px 42px rgba(0, 42, 120, 0.16);
+    }
+
+    .contact-card {
+      padding: 22px 20px;
+    }
+
+    .contact-card h2,
+    .contact-card h3,
+    .trust-card h3 {
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1;
+      letter-spacing: 0;
+      text-transform: uppercase;
+    }
+
+    .contact-card p,
+    .trust-card p {
+      margin-top: 12px;
+      font-size: 13px;
+      font-weight: 400;
+      line-height: 1.25;
+    }
+
+    .contact-action {
+      width: 100%;
+      min-height: 46px;
+      margin-top: 20px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      color: var(--blue);
+      border: 2px solid var(--blue);
+      border-radius: var(--pill);
+      font-size: 15px;
+      font-weight: 700;
+      transition: color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+    }
+
+    .contact-action:hover {
+      color: var(--white);
+      background: var(--blue);
+      transform: translateY(-2px);
+    }
+
+    .contact-action .svg-icon {
+      width: 19px;
+      height: 19px;
+    }
+
+    .contact-list {
+      margin-top: 2px;
+      display: grid;
+      gap: 16px;
+    }
+
+    .trust-item {
+      display: grid;
+      grid-template-columns: 34px 1fr;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .trust-item .svg-icon {
+      width: 28px;
+      height: 28px;
+    }
+
+    .trust-item strong {
+      display: block;
+      font-size: 15px;
+      line-height: 1;
+    }
+
+    .trust-item span {
+      display: block;
+      margin-top: 4px;
+      font-size: 12px;
+      line-height: 1.15;
+    }
+
+    .map-card {
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .map-heading {
+      display: flex;
+      gap: 9px;
+      align-items: flex-start;
+    }
+
+    .map-heading .svg-icon {
+      width: 20px;
+      height: 20px;
+      margin-top: 1px;
+    }
+
+    .map-heading address {
+      margin-top: 7px;
+      font-size: 12.5px;
+      font-style: normal;
+      line-height: 1.25;
+    }
+
+    .real-map {
+      position: relative;
+      aspect-ratio: 16 / 10;
+      min-height: 156px;
+      overflow: hidden;
+      border-radius: 16px;
+      border: 1px solid rgba(0, 110, 237, 0.12);
+      background: #eef6ff;
+      box-shadow: inset 0 0 0 1px rgba(255, 255, 255, 0.42);
+    }
+
+    .real-map iframe {
+      width: 100%;
+      height: 100%;
+      display: block;
+      border: 0;
+      filter: saturate(1.05) contrast(1.02);
+    }
+
+    .branch-buttons {
+      display: grid;
+      gap: 8px;
+    }
+
+    .branch-button {
+      min-height: 46px;
+      padding: 9px 12px;
+      display: grid;
+      grid-template-columns: 22px 1fr;
+      gap: 10px;
+      align-items: center;
+      color: var(--blue);
+      border: 1px solid rgba(0, 110, 237, 0.15);
+      border-radius: 14px;
+      background: #f6fbff;
+      transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .branch-button:hover,
+    .branch-button:focus-visible {
+      transform: translateY(-1px);
+      background: var(--white);
+      box-shadow: 0 12px 22px rgba(0, 62, 145, 0.12);
+    }
+
+    .branch-button .svg-icon {
+      width: 22px;
+      height: 22px;
+    }
+
+    .branch-button strong {
+      display: block;
+      font-size: 13.5px;
+      line-height: 1.05;
+    }
+
+    .branch-button span:not(.svg-icon) {
+      display: block;
+      margin-top: 3px;
+      color: rgba(0, 58, 128, 0.72);
+      font-size: 11.5px;
+      line-height: 1.2;
+    }
+
+    .hours-list {
+      margin: 18px 0 0;
+      display: grid;
+      gap: 9px;
+      list-style: none;
+      font-size: 13px;
+      line-height: 1.2;
+    }
+
+    .hours-list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 14px;
+    }
+
+    .delivery-pill {
+      width: fit-content;
+      margin: 18px auto 0;
+      padding: 9px 18px;
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--blue);
+      border: 1.5px solid var(--blue);
+      border-radius: var(--pill);
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.1;
+    }
+
+    .delivery-pill .svg-icon {
+      width: 22px;
+      height: 22px;
+    }
+
+    .place-photo {
+      min-height: 154px;
+      margin-top: 18px;
+      overflow: hidden;
+      border-radius: 16px;
+      background:
+        linear-gradient(180deg, rgba(0, 28, 80, 0.05), rgba(0, 28, 80, 0.22)),
+        linear-gradient(90deg, #7b4a2a 0 16%, #c98949 16% 20%, #7b4a2a 20% 28%, #d7a460 28% 32%, #7b4a2a 32% 100%);
+      position: relative;
+    }
+
+    .place-photo::before {
+      content: "La Barra de Jackili";
+      position: absolute;
+      left: 18px;
+      bottom: 22px;
+      color: var(--white);
+      font-family: "SansitaSwashed", cursive;
+      font-size: 24px;
+      line-height: 0.9;
+      text-shadow: 0 4px 14px rgba(0, 0, 0, 0.28);
+    }
+
+    .place-photo::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: 42px;
+      height: 48px;
+      background: rgba(255, 255, 255, 0.86);
+      box-shadow: 0 24px 34px rgba(0, 0, 0, 0.16);
+    }
+
+    .social-proof {
+      margin: 28px auto 0;
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 16px;
+      align-items: center;
+      color: var(--white);
+    }
+
+    .review-card {
+      display: grid;
+      grid-template-columns: 58px 1fr;
+      gap: 14px;
+      align-items: center;
+    }
+
+    .avatar,
+    .avatar-mini {
+      display: grid;
+      place-items: center;
+      color: var(--blue);
+      background: var(--white);
+      border-radius: 50%;
+      font-weight: 700;
+      box-shadow: 0 12px 26px rgba(0, 31, 92, 0.2);
+    }
+
+    .avatar {
+      width: 58px;
+      height: 58px;
+      font-size: 18px;
+    }
+
+    .review-card strong {
+      display: block;
+      font-size: 23px;
+      line-height: 1;
+    }
+
+    .stars {
+      margin-top: 7px;
+      color: #ffd43b;
+      font-size: 16px;
+      letter-spacing: 0;
+    }
+
+    .review-text {
+      font-size: 17px;
+      font-weight: 700;
+      line-height: 1.08;
+    }
+
+    .happy-clients {
+      display: flex;
+      align-items: center;
+      justify-content: flex-start;
+      gap: 10px;
+    }
+
+    .avatar-stack {
+      display: flex;
+      align-items: center;
+    }
+
+    .avatar-mini {
+      width: 46px;
+      height: 46px;
+      margin-left: -12px;
+      border: 3px solid var(--blue);
+      font-size: 14px;
+    }
+
+    .avatar-mini:first-child {
+      margin-left: 0;
+    }
+
+    .happy-clients strong {
+      display: block;
+      font-size: 18px;
+      line-height: 1;
+    }
+
+    .happy-clients span {
+      display: block;
+      font-size: 14px;
+      line-height: 1.05;
+    }
+
+    .site-footer {
+      position: relative;
+      margin-top: 34px;
+      color: var(--white);
+      background: #002a61;
+      overflow: hidden;
+    }
+
+    .site-footer::after {
+      content: "";
+      position: absolute;
+      right: -30px;
+      bottom: -42px;
+      width: min(330px, 58vw);
+      aspect-ratio: 1.8 / 1;
+      opacity: 0.18;
+      background-color: var(--white);
+      -webkit-mask: url("assets/icons/pez-w.svg") center / contain no-repeat;
+      mask: url("assets/icons/pez-w.svg") center / contain no-repeat;
+    }
+
+    .footer-wrap {
+      position: relative;
+      z-index: 2;
+      width: min(1120px, 100%);
+      margin: 0 auto;
+      padding: 28px 18px 18px;
+      display: grid;
+      gap: 24px;
+    }
+
+    .footer-brand img {
+      width: 178px;
+      filter: brightness(0) invert(1);
+    }
+
+    .footer-brand p {
+      width: min(235px, 100%);
+      margin-top: 12px;
+      font-size: 13px;
+      line-height: 1.25;
+    }
+
+    .footer-social {
+      margin-top: 16px;
+      display: flex;
+      gap: 14px;
+    }
+
+    .footer-social a,
+    .footer-contact-line .svg-icon {
+      width: 24px;
+      height: 24px;
+      display: grid;
+      place-items: center;
+    }
+
+    .footer-social a {
+      color: var(--white);
+      font-size: 15px;
+      font-weight: 700;
+      border: 1px solid rgba(255, 255, 255, 0.26);
+      border-radius: 50%;
+    }
+
+    .footer-col h3 {
+      margin-bottom: 12px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0;
+    }
+
+    .footer-col a,
+    .footer-col p,
+    .footer-contact-line {
+      font-size: 13px;
+      line-height: 1.35;
+    }
+
+    .footer-col a {
+      display: block;
+      width: fit-content;
+      margin-top: 5px;
+    }
+
+    .footer-contact-line {
+      display: grid;
+      grid-template-columns: 24px 1fr;
+      gap: 8px;
+      align-items: start;
+      margin-top: 7px;
+    }
+
+    .footer-bottom {
+      position: relative;
+      z-index: 2;
+      padding: 0 18px 18px;
+      font-size: 12px;
+      text-align: center;
+      opacity: 0.86;
+    }
+
+    .sticky-mobile-cta {
+      position: fixed;
+      left: 10px;
+      right: 10px;
+      bottom: 10px;
+      z-index: 120;
+      display: none;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 8px;
+      padding: 8px;
+      color: var(--blue);
+      background: rgba(255, 255, 255, 0.96);
+      border: 1px solid rgba(0, 110, 237, 0.12);
+      border-radius: 22px;
+      box-shadow: 0 16px 40px rgba(0, 34, 98, 0.26);
+      backdrop-filter: blur(14px);
+    }
+
+    .sticky-mobile-cta a {
+      min-height: 48px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      border-radius: var(--pill);
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .sticky-mobile-cta .primary {
+      color: var(--white);
+      background: var(--blue);
+    }
+
+    .sticky-mobile-cta .secondary {
+      color: var(--blue);
+      background: #eef6ff;
+      border: 1px solid rgba(0, 110, 237, 0.16);
+    }
+
+    .sticky-mobile-cta .svg-icon {
+      width: 18px;
+      height: 18px;
+    }
+
+    .whatsapp-branch-float {
+      position: fixed;
+      right: 18px;
+      bottom: 18px;
+      z-index: 135;
+      color: #07172f;
+    }
+
+    .whatsapp-branch-float summary {
+      width: 62px;
+      height: 62px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: #10b981;
+      border: 3px solid rgba(255, 255, 255, 0.82);
+      border-radius: 50%;
+      box-shadow: 0 18px 42px rgba(0, 36, 92, 0.26);
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .whatsapp-branch-float summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .whatsapp-branch-float summary .svg-icon {
+      width: 30px;
+      height: 30px;
+    }
+
+    .whatsapp-branch-panel {
+      position: absolute;
+      right: 0;
+      bottom: 74px;
+      width: min(372px, calc(100vw - 28px));
+      max-height: min(580px, calc(100vh - 122px));
+      overflow: auto;
+      color: #0f1b2f;
+      background: var(--white);
+      border: 1px solid rgba(0, 110, 237, 0.16);
+      border-radius: 22px;
+      box-shadow: 0 24px 60px rgba(0, 26, 78, 0.32);
+      opacity: 0;
+      pointer-events: none;
+      transform: translateY(10px) scale(0.98);
+      transform-origin: bottom right;
+      transition: opacity 0.18s ease, transform 0.18s ease;
+    }
+
+    .whatsapp-branch-float[open] .whatsapp-branch-panel {
+      opacity: 1;
+      pointer-events: auto;
+      transform: translateY(0) scale(1);
+    }
+
+    .whatsapp-panel-head {
+      position: relative;
+      padding: 16px 18px;
+      display: flex;
+      gap: 12px;
+      align-items: center;
+      color: var(--white);
+      background: #005b90;
+      border-radius: 21px 21px 0 0;
+    }
+
+    .whatsapp-panel-close {
+      position: absolute;
+      right: 14px;
+      top: 14px;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.15);
+      border-radius: 50%;
+      font-size: 20px;
+      line-height: 1;
+    }
+
+    .whatsapp-panel-head img {
+      width: 46px;
+      height: 46px;
+      object-fit: contain;
+      padding: 6px;
+      background: var(--white);
+      border-radius: 50%;
+    }
+
+    .whatsapp-panel-head strong,
+    .whatsapp-panel-head span {
+      display: block;
+      line-height: 1.08;
+    }
+
+    .whatsapp-panel-head strong {
+      font-size: 17px;
+    }
+
+    .whatsapp-panel-head span {
+      margin-top: 3px;
+      font-size: 12px;
+      opacity: 0.92;
+      padding-right: 38px;
+    }
+
+    .whatsapp-panel-body {
+      padding: 14px 18px 18px;
+    }
+
+    .whatsapp-panel-body > strong {
+      display: block;
+      font-size: 14px;
+      color: #334155;
+    }
+
+    .whatsapp-panel-body > p {
+      margin: 5px 0 12px;
+      color: #64748b;
+      font-size: 12.5px;
+      line-height: 1.25;
+    }
+
+    .whatsapp-branch-row {
+      padding: 14px 0;
+      display: grid;
+      grid-template-columns: 42px 1fr auto;
+      gap: 12px;
+      align-items: center;
+      border-top: 1px solid #e2e8f0;
+    }
+
+    .whatsapp-branch-row:first-of-type {
+      border-top: 0;
+    }
+
+    .whatsapp-branch-row .wa-icon {
+      width: 40px;
+      height: 40px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: #10b981;
+      border-radius: 14px;
+    }
+
+    .whatsapp-branch-row .wa-icon .svg-icon {
+      width: 22px;
+      height: 22px;
+    }
+
+    .whatsapp-branch-row strong,
+    .whatsapp-branch-row > span:not(.wa-icon),
+    .whatsapp-branch-row > span:not(.wa-icon) > span {
+      display: block;
+    }
+
+    .whatsapp-branch-row strong {
+      font-size: 15px;
+      line-height: 1.05;
+    }
+
+    .whatsapp-branch-row > span:not(.wa-icon) > span {
+      margin-top: 4px;
+      color: #475569;
+      font-size: 13px;
+      line-height: 1.1;
+    }
+
+    .whatsapp-branch-row em {
+      padding: 6px 9px;
+      color: #047857;
+      background: #dcfce7;
+      border-radius: var(--pill);
+      font-size: 11px;
+      font-style: normal;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    @media (max-width: 767px) {
+      body {
+        padding-bottom: 82px;
+      }
+
+      .contact-section {
+        padding-top: 28px;
+      }
+
+      .contact-card {
+        padding: 20px 18px;
+      }
+
+      .social-proof {
+        gap: 18px;
+      }
+
+      .review-text {
+        font-size: 15px;
+      }
+
+      .sticky-mobile-cta {
+        display: grid;
+      }
+
+      .whatsapp-branch-float {
+        right: 14px;
+        bottom: 92px;
+      }
+
+      .whatsapp-branch-float summary {
+        width: 56px;
+        height: 56px;
+      }
+    }
+
+    @media (min-width: 768px) {
+      .contact-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .map-card {
+        grid-row: auto;
+      }
+
+      .hours-card {
+        grid-column: span 2;
+      }
+
+      .social-proof {
+        grid-template-columns: 1fr 1.25fr 1fr;
+      }
+
+      .happy-clients {
+        justify-content: flex-end;
+      }
+
+      .footer-wrap {
+        grid-template-columns: 1.3fr 0.8fr 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 1024px) {
+      .contact-section {
+        padding-top: 48px;
+      }
+
+      .contact-grid {
+        grid-template-columns: 1fr 1.04fr 1.35fr;
+        align-items: stretch;
+      }
+
+      .contact-stack {
+        grid-column: 1;
+      }
+
+      .hours-card {
+        grid-column: 3;
+        padding: 22px 28px;
+      }
+
+      .map-card {
+        grid-column: 2;
+        padding: 22px 28px;
+      }
+
+      .social-proof {
+        width: min(980px, 100%);
+      }
+    }
+
     .featured-dishes,
+    .quick-menu,
     .combo-section,
     .history-section,
-    .videos-section {
+    .videos-section,
+    .contact-section {
       content-visibility: auto;
       contain-intrinsic-size: 700px;
     }
 
     @media (max-width: 767px) {
       .featured-dishes,
+      .quick-menu,
       .combo-section,
       .history-section,
-      .videos-section {
+      .videos-section,
+      .contact-section {
         contain-intrinsic-size: 620px;
       }
     }
@@ -2482,6 +3626,7 @@
 
         <div class="nav-desktop nav-left">
           <a href="#carta" class="nav-link">Carta</a>
+          <a href="#promociones" class="nav-link">Promos</a>
           <a href="#historia" class="nav-link">Historia</a>
         </div>
 
@@ -2511,6 +3656,7 @@
 
         <div class="mobile-panel" id="mobilePanel">
           <a href="#carta" class="nav-link">Carta</a>
+          <a href="#promociones" class="nav-link">Promos</a>
           <a href="#historia" class="nav-link">Historia</a>
           <a href="#ubicacion" class="nav-link">Ubicación</a>
 
@@ -2555,6 +3701,12 @@
         <p class="hero-copy">
           Pescados y mariscos con sabor criollo, frescura del mar y platos abundantes que te conquistan desde el primer bocado.
         </p>
+
+        <ul class="hero-proof" aria-label="Razones para reservar">
+          <li>Pedidos por WhatsApp</li>
+          <li>Atención rápida</li>
+          <li>Mariscos frescos</li>
+        </ul>
       </div>
 
       <div class="hero-actions">
@@ -2703,6 +3855,72 @@
 
         <button class="dish-arrow next" id="dishNext" type="button" aria-label="Siguiente plato"></button>
 
+      </div>
+    </section>
+
+    <section class="quick-menu" id="carta-completa" aria-label="Carta rápida">
+      <div class="quick-menu-wrap">
+        <div class="quick-menu-head">
+          <span class="quick-menu-kicker">Carta rápida</span>
+          <h2>Elige y pide en segundos</h2>
+          <p>Opciones directas para clientes que ya tienen antojo y quieren reservar o pedir sin vueltas.</p>
+        </div>
+
+        <div class="quick-menu-grid">
+          <article class="quick-menu-item">
+            <div>
+              <h3>Ceviche mixto</h3>
+              <p>Fresco, cítrico y con sabor marino intenso.</p>
+              <strong class="quick-menu-price">Desde S/35</strong>
+            </div>
+            <a class="quick-menu-order" href="https://wa.me/51972667751?text=Hola%20La%20Barra%20de%20Jackili%2C%20quiero%20pedir%20ceviche%20mixto." target="_blank" rel="noopener">
+              <span class="svg-icon icon-whatsapp"></span>
+              <span>Pedir</span>
+            </a>
+          </article>
+
+          <article class="quick-menu-item">
+            <div>
+              <h3>Arroz con mariscos</h3>
+              <p>Arroz cremoso, mariscos y sazón criolla.</p>
+              <strong class="quick-menu-price">Desde S/38</strong>
+            </div>
+            <a class="quick-menu-order" href="https://wa.me/51972667751?text=Hola%20La%20Barra%20de%20Jackili%2C%20quiero%20pedir%20arroz%20con%20mariscos." target="_blank" rel="noopener">
+              <span class="svg-icon icon-whatsapp"></span>
+              <span>Pedir</span>
+            </a>
+          </article>
+
+          <article class="quick-menu-item">
+            <div>
+              <h3>Parihuela</h3>
+              <p>Caldo potente con esencia del mar.</p>
+              <strong class="quick-menu-price">Desde S/42</strong>
+            </div>
+            <a class="quick-menu-order" href="https://wa.me/51972667751?text=Hola%20La%20Barra%20de%20Jackili%2C%20quiero%20pedir%20parihuela." target="_blank" rel="noopener">
+              <span class="svg-icon icon-whatsapp"></span>
+              <span>Pedir</span>
+            </a>
+          </article>
+
+          <article class="quick-menu-item">
+            <div>
+              <h3>Combo para 2</h3>
+              <p>Ceviche mixto, jalea mixta, bebidas y causas.</p>
+              <strong class="quick-menu-price">S/99</strong>
+            </div>
+            <a class="quick-menu-order" href="https://wa.me/51972667751?text=Hola%20La%20Barra%20de%20Jackili%2C%20quiero%20pedir%20el%20Combo%20para%202." target="_blank" rel="noopener">
+              <span class="svg-icon icon-whatsapp"></span>
+              <span>Pedir</span>
+            </a>
+          </article>
+        </div>
+
+        <div class="quick-menu-note" aria-label="Beneficios de pedido">
+          <span>Confirmación rápida</span>
+          <span>Reservas por WhatsApp</span>
+          <span>Horarios visibles</span>
+        </div>
       </div>
     </section>
 
@@ -2948,11 +4166,244 @@
       </div>
     </section>
 
+    <section class="contact-section" id="ubicacion" aria-label="Contacto, ubicación y horarios">
+      <div class="contact-wrap">
+        <div class="contact-grid">
+          <div class="contact-stack">
+            <div class="contact-card">
+              <h2>¿Prefieres escribirnos?</h2>
+              <p>Te respondemos al instante y te ayudamos con tu reserva.</p>
+              <a
+                href="https://wa.me/51972667751?text=Hola%20La%20Barra%20de%20Jackili%2C%20quiero%20reservar%20una%20mesa."
+                class="contact-action"
+                target="_blank"
+                rel="noopener"
+              >
+                <span class="svg-icon icon-whatsapp"></span>
+                <span>Reservar</span>
+              </a>
+            </div>
+
+            <div class="contact-card trust-card">
+              <div class="contact-list">
+                <div class="trust-item">
+                  <span class="svg-icon icon-pez" aria-hidden="true"></span>
+                  <div>
+                    <strong>Confirmación rápida</strong>
+                    <span>Te confirmamos al instante.</span>
+                  </div>
+                </div>
+
+                <div class="trust-item">
+                  <span class="svg-icon icon-calendar" aria-hidden="true"></span>
+                  <div>
+                    <strong>Cambios sin complicaciones</strong>
+                    <span>Reprograma tu reserva fácilmente.</span>
+                  </div>
+                </div>
+
+                <div class="trust-item">
+                  <span class="svg-icon icon-sun" aria-hidden="true"></span>
+                  <div>
+                    <strong>Ambiente acogedor</strong>
+                    <span>Ideal para compartir con familia y amigos.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="contact-card map-card">
+            <div class="map-heading">
+              <span class="svg-icon icon-location" aria-hidden="true"></span>
+              <div>
+                <h2>Nuestra ubicación</h2>
+                <address>Av. 28 de Julio 1275,<br>Miraflores, Lima</address>
+              </div>
+            </div>
+
+            <div class="real-map">
+              <iframe
+                title="Mapa de La Barra de Jackili Miraflores"
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade"
+                src="https://www.google.com/maps?q=La%20Barra%20de%20Jackili%20Av.%2028%20de%20Julio%201275%20Miraflores%20Lima&output=embed"
+              ></iframe>
+            </div>
+
+            <a href="https://maps.google.com/?q=Av.%2028%20de%20Julio%201275%2C%20Miraflores%2C%20Lima" class="contact-action" target="_blank" rel="noopener">
+              <span class="svg-icon icon-location"></span>
+              <span>Ver en mapa</span>
+            </a>
+
+            <div class="branch-buttons" aria-label="Locales de La Barra de Jackili">
+              <a class="branch-button" href="https://maps.google.com/?q=La%20Barra%20de%20Jackili%20Av.%2028%20de%20Julio%201275%20Miraflores%20Lima" target="_blank" rel="noopener">
+                <span class="svg-icon icon-location" aria-hidden="true"></span>
+                <span><strong>Miraflores</strong>Av. 28 de Julio 1275</span>
+              </a>
+              <a class="branch-button" href="https://maps.google.com/?q=La%20Barra%20de%20Jackili%20Av.%20Universitaria%20Mz%20G%20Lote%2056%20Los%20Olivos%20Lima" target="_blank" rel="noopener">
+                <span class="svg-icon icon-location" aria-hidden="true"></span>
+                <span><strong>Los Olivos</strong>Av. Universitaria Mz G Lote 56</span>
+              </a>
+              <a class="branch-button" href="https://maps.google.com/?q=La%20Barra%20de%20Jackili%20Av.%20Guardia%20Republicana%201118%20Rimac%20Lima" target="_blank" rel="noopener">
+                <span class="svg-icon icon-location" aria-hidden="true"></span>
+                <span><strong>Rímac</strong>Av. Guardia Republicana 1118</span>
+              </a>
+            </div>
+
+            <p>Elige la sede que te quede más cerca y abre la ruta directa en Google Maps.</p>
+          </div>
+
+          <div class="contact-card hours-card">
+            <h2>Horarios de atención</h2>
+            <ul class="hours-list">
+              <li><strong>Lunes a Viernes</strong><span>12:00 pm - 11:00 pm</span></li>
+              <li><strong>Sábados</strong><span>12:00 pm - 11:00 pm</span></li>
+              <li><strong>Domingos y feriados</strong><span>12:00 pm - 11:00 pm</span></li>
+            </ul>
+
+            <a href="tel:+51972667751" class="delivery-pill">
+              <span class="svg-icon icon-whatsapp"></span>
+              <span>Pedidos a domicilio<br>972 667 751</span>
+            </a>
+
+            <div class="place-photo" aria-hidden="true"></div>
+          </div>
+        </div>
+
+        <div class="social-proof" aria-label="Opiniones de clientes">
+          <div class="review-card">
+            <span class="avatar" aria-hidden="true">MP</span>
+            <div>
+              <strong>Maria P.</strong>
+              <div class="stars" aria-label="5 estrellas">★★★★★</div>
+            </div>
+          </div>
+
+          <p class="review-text">El ceviche más fresco y delicioso que he probado en Lima. ¡Recomendado al 100%!</p>
+
+          <div class="happy-clients">
+            <div class="avatar-stack" aria-hidden="true">
+              <span class="avatar-mini">A</span>
+              <span class="avatar-mini">J</span>
+              <span class="avatar-mini">L</span>
+            </div>
+            <div>
+              <strong>+500</strong>
+              <span>Clientes felices</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <footer class="site-footer">
+        <div class="footer-wrap">
+          <div class="footer-brand">
+            <img src="assets/img/Logo.svg" alt="La Barra de Jackili Cevichería Peruana" loading="lazy" decoding="async" width="180" height="70">
+            <p>Ceviches y platos marinos con sabor auténtico, frescura, tradición y pasión por el mar.</p>
+            <div class="footer-social" aria-label="Accesos rápidos">
+              <a href="#carta-completa" aria-label="Ver carta">C</a>
+              <a href="https://maps.google.com/?q=Av.%2028%20de%20Julio%201275%2C%20Miraflores%2C%20Lima" target="_blank" rel="noopener" aria-label="Ver mapa">M</a>
+              <a href="https://wa.me/51972667751" target="_blank" rel="noopener" aria-label="WhatsApp">W</a>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h3>Enlaces rápidos</h3>
+            <a href="#inicio">Inicio</a>
+            <a href="#carta">Carta</a>
+            <a href="#historia">Historia</a>
+            <a href="#ubicacion">Ubicación</a>
+            <a href="#promociones">Promociones</a>
+            <a href="https://wa.me/51972667751?text=Hola%20La%20Barra%20de%20Jackili%2C%20quiero%20reservar%20una%20mesa." target="_blank" rel="noopener">Reservas</a>
+          </div>
+
+          <div class="footer-col">
+            <h3>Contacto</h3>
+            <div class="footer-contact-line">
+              <span class="svg-icon icon-whatsapp" aria-hidden="true"></span>
+              <a href="tel:+51972667751">972 667 751</a>
+            </div>
+            <div class="footer-contact-line">
+              <span class="svg-icon icon-carta" aria-hidden="true"></span>
+              <a href="mailto:hola@jackilicevicheria.pe">hola@jackilicevicheria.pe</a>
+            </div>
+            <div class="footer-contact-line">
+              <span class="svg-icon icon-location" aria-hidden="true"></span>
+              <p>Av. 28 de Julio 1275,<br>Miraflores, Lima, Perú</p>
+            </div>
+          </div>
+
+          <div class="footer-col">
+            <h3>Información</h3>
+            <a href="#">Términos y condiciones</a>
+            <a href="#">Política de privacidad</a>
+            <a href="#">Libro de reclamaciones</a>
+          </div>
+        </div>
+
+        <p class="footer-bottom">© 2025 La Barra de Jackili Cevichería Peruana. Todos los derechos reservados.</p>
+      </footer>
+    </section>
+
     </main>
+
+  <nav class="sticky-mobile-cta" aria-label="Acciones rápidas">
+    <a class="primary" href="https://wa.me/51972667751?text=Hola%20La%20Barra%20de%20Jackili%2C%20quiero%20reservar%20una%20mesa." target="_blank" rel="noopener">
+      <span class="svg-icon icon-whatsapp"></span>
+      <span>Reservar</span>
+    </a>
+    <a class="secondary" href="#carta-completa">
+      <span class="svg-icon icon-carta"></span>
+      <span>Carta</span>
+    </a>
+  </nav>
+
+  <details class="whatsapp-branch-float">
+    <summary aria-label="Abrir contactos de WhatsApp por sede">
+      <span class="svg-icon icon-whatsapp" aria-hidden="true"></span>
+    </summary>
+
+    <div class="whatsapp-branch-panel" role="dialog" aria-label="Contactos de WhatsApp por sede">
+      <div class="whatsapp-panel-head">
+        <button class="whatsapp-panel-close" type="button" aria-label="Cerrar contactos WhatsApp">x</button>
+        <img src="assets/img/Logo.svg" alt="" loading="lazy" decoding="async" width="46" height="46">
+        <div>
+          <strong>La Barra de Jackili</strong>
+          <span>El mar en un solo bocado</span>
+        </div>
+      </div>
+
+      <div class="whatsapp-panel-body">
+        <strong>Elige una sede</strong>
+        <p>Te abrimos WhatsApp con un mensaje listo para reservar o pedir.</p>
+
+        <a class="whatsapp-branch-row" href="https://wa.me/51972574132?text=Hola%20La%20Barra%20de%20Jackili%20Miraflores%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">
+          <span class="wa-icon"><span class="svg-icon icon-whatsapp" aria-hidden="true"></span></span>
+          <span><strong>Sede Miraflores</strong><span>+51 972 574 132</span></span>
+          <em>Miraflores</em>
+        </a>
+
+        <a class="whatsapp-branch-row" href="https://wa.me/51949041249?text=Hola%20La%20Barra%20de%20Jackili%20Los%20Olivos%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">
+          <span class="wa-icon"><span class="svg-icon icon-whatsapp" aria-hidden="true"></span></span>
+          <span><strong>Sede Los Olivos</strong><span>+51 949 041 249</span></span>
+          <em>Los Olivos</em>
+        </a>
+
+        <a class="whatsapp-branch-row" href="https://wa.me/51972667751?text=Hola%20La%20Barra%20de%20Jackili%20Rimac%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">
+          <span class="wa-icon"><span class="svg-icon icon-whatsapp" aria-hidden="true"></span></span>
+          <span><strong>Sede Rímac</strong><span>+51 972 667 751</span></span>
+          <em>Rímac</em>
+        </a>
+      </div>
+    </div>
+  </details>
 
   <script>
     const navbar = document.getElementById("navbar");
     const menuToggle = document.getElementById("menuToggle");
+    const whatsappPanel = document.querySelector(".whatsapp-branch-float");
+    const whatsappPanelClose = document.querySelector(".whatsapp-panel-close");
 
     function closeMobileMenu() {
       navbar.classList.remove("is-open");
@@ -3003,6 +4454,10 @@
       if (window.innerWidth >= 1024) {
         closeMobileMenu();
       }
+    });
+
+    whatsappPanelClose?.addEventListener("click", () => {
+      whatsappPanel?.removeAttribute("open");
     });
 
     const dishes = [
