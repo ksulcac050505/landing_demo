@@ -3061,10 +3061,8 @@
       margin-top: 18px;
       overflow: hidden;
       border-radius: 16px;
-      background:
-        linear-gradient(180deg, rgba(0, 28, 80, 0.05), rgba(0, 28, 80, 0.22)),
-        linear-gradient(90deg, #7b4a2a 0 16%, #c98949 16% 20%, #7b4a2a 20% 28%, #d7a460 28% 32%, #7b4a2a 32% 100%);
       position: relative;
+      background: #d9ecff;
     }
 
     .place-photo::before {
@@ -3072,6 +3070,7 @@
       position: absolute;
       left: 18px;
       bottom: 22px;
+      z-index: 2;
       color: var(--white);
       font-family: "SansitaSwashed", cursive;
       font-size: 24px;
@@ -3084,10 +3083,19 @@
       position: absolute;
       left: 0;
       right: 0;
-      top: 42px;
-      height: 48px;
-      background: rgba(255, 255, 255, 0.86);
-      box-shadow: 0 24px 34px rgba(0, 0, 0, 0.16);
+      top: 0;
+      bottom: 0;
+      z-index: 1;
+      background: linear-gradient(180deg, rgba(0, 36, 92, 0.02), rgba(0, 36, 92, 0.42));
+    }
+
+    .place-photo img {
+      width: 100%;
+      height: 100%;
+      min-height: 154px;
+      display: block;
+      object-fit: cover;
+      object-position: center;
     }
 
     .social-proof {
@@ -4450,7 +4458,9 @@
               <span>Pedidos a domicilio<br>972 667 751</span>
             </a>
 
-            <div class="place-photo" aria-hidden="true"></div>
+            <div class="place-photo">
+              <img src="assets/img/local-miraflores.jpg" alt="Fachada de La Barra de Jackili en Miraflores" loading="lazy" decoding="async" width="600" height="600">
+            </div>
           </div>
         </div>
 
