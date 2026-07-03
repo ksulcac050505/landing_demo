@@ -3662,6 +3662,41 @@
     }
 
     @media (max-width: 767px) {
+      a,
+      button,
+      summary,
+      [role="button"],
+      .btn,
+      .branch-button,
+      .quick-menu-drive,
+      .contact-action,
+      .whatsapp-branch-row {
+        -webkit-tap-highlight-color: transparent;
+        -webkit-touch-callout: none;
+      }
+
+      a:focus,
+      button:focus,
+      summary:focus,
+      [role="button"]:focus,
+      .btn:focus,
+      .branch-button:focus,
+      .quick-menu-drive:focus,
+      .contact-action:focus,
+      .whatsapp-branch-row:focus,
+      a:focus-visible,
+      button:focus-visible,
+      summary:focus-visible,
+      [role="button"]:focus-visible,
+      .btn:focus-visible,
+      .branch-button:focus-visible,
+      .quick-menu-drive:focus-visible,
+      .contact-action:focus-visible,
+      .whatsapp-branch-row:focus-visible {
+        outline: 0;
+        box-shadow: none;
+      }
+
       .offer-alert {
         left: 10px;
         right: 10px;
