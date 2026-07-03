@@ -932,15 +932,36 @@
     }
 
     .quick-menu-item {
-      min-height: 118px;
-      padding: 16px;
+      min-height: 138px;
+      padding: 0;
       display: grid;
-      grid-template-columns: 1fr auto;
-      gap: 12px;
-      align-items: center;
+      grid-template-columns: 120px 1fr;
+      gap: 0;
+      align-items: stretch;
       border: 2px solid rgba(0, 110, 237, 0.14);
       border-radius: 18px;
       background: #f5faff;
+      overflow: hidden;
+    }
+
+    .quick-menu-media {
+      min-height: 138px;
+      background: #d9ecff;
+    }
+
+    .quick-menu-media img {
+      width: 100%;
+      height: 100%;
+      min-height: 138px;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .quick-menu-body {
+      padding: 15px;
+      display: grid;
+      align-content: center;
     }
 
     .quick-menu-item h3 {
@@ -964,30 +985,32 @@
       line-height: 1;
     }
 
-    .quick-menu-order {
-      min-height: 42px;
-      padding: 0 16px;
+    .quick-menu-drive {
+      width: fit-content;
+      min-height: 48px;
+      margin: 22px auto 0;
+      padding: 0 22px;
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 7px;
+      gap: 9px;
       color: var(--white);
       background: var(--blue);
       border-radius: var(--pill);
-      font-size: 13px;
+      font-size: 15px;
       font-weight: 700;
       white-space: nowrap;
       transition: transform 0.25s ease, background 0.25s ease;
     }
 
-    .quick-menu-order:hover {
+    .quick-menu-drive:hover {
       background: var(--blue-dark);
       transform: translateY(-2px);
     }
 
-    .quick-menu-order .svg-icon {
-      width: 16px;
-      height: 16px;
+    .quick-menu-drive .svg-icon {
+      width: 18px;
+      height: 18px;
     }
 
     .quick-menu-note {
@@ -1021,7 +1044,7 @@
         grid-template-columns: 1fr;
       }
 
-      .quick-menu-order {
+      .quick-menu-drive {
         width: 100%;
       }
     }
@@ -1046,13 +1069,14 @@
       }
 
       .quick-menu-item {
-        min-height: 230px;
+        min-height: 292px;
         grid-template-columns: 1fr;
-        align-content: space-between;
       }
 
-      .quick-menu-order {
-        width: 100%;
+      .quick-menu-media,
+      .quick-menu-media img {
+        min-height: 154px;
+        height: 154px;
       }
     }
 
@@ -3336,6 +3360,82 @@
       background: var(--blue);
     }
 
+    .offer-alert {
+      position: fixed;
+      left: 14px;
+      top: 50%;
+      z-index: 132;
+      width: min(248px, calc(100vw - 28px));
+      padding: 14px 15px;
+      color: var(--white);
+      background:
+        linear-gradient(135deg, #003f93 0%, var(--blue) 58%, #12b981 100%);
+      border: 1px solid rgba(255, 255, 255, 0.36);
+      border-radius: 18px;
+      box-shadow: 0 18px 44px rgba(0, 26, 78, 0.28);
+      transform: translateY(-50%);
+    }
+
+    .offer-alert strong,
+    .offer-alert span {
+      display: block;
+    }
+
+    .offer-alert strong {
+      font-size: 15px;
+      line-height: 1.05;
+    }
+
+    .offer-alert span {
+      margin-top: 5px;
+      font-size: 12px;
+      line-height: 1.2;
+      opacity: 0.95;
+    }
+
+    .offer-countdown {
+      margin-top: 10px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+    }
+
+    .offer-countdown span {
+      min-height: 42px;
+      display: grid;
+      place-items: center;
+      padding: 6px 5px;
+      color: var(--blue);
+      background: rgba(255, 255, 255, 0.94);
+      border-radius: 12px;
+      font-size: 10px;
+      font-weight: 700;
+      line-height: 1;
+      text-align: center;
+      opacity: 1;
+    }
+
+    .offer-countdown b {
+      display: block;
+      font-size: 17px;
+      line-height: 1;
+    }
+
+    .offer-alert a {
+      width: fit-content;
+      margin-top: 10px;
+      min-height: 34px;
+      padding: 0 13px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blue);
+      background: var(--white);
+      border-radius: var(--pill);
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
     .sticky-mobile-cta .secondary {
       color: var(--blue);
       background: #eef6ff;
@@ -3562,6 +3662,54 @@
     }
 
     @media (max-width: 767px) {
+      .offer-alert {
+        left: 10px;
+        right: 10px;
+        top: 8px;
+        width: auto;
+        padding: 10px 12px;
+        display: grid;
+        grid-template-columns: 1fr auto;
+        gap: 8px 12px;
+        align-items: center;
+        border-radius: 14px;
+        transform: none;
+      }
+
+      .offer-alert strong {
+        font-size: 13px;
+      }
+
+      .offer-alert span {
+        margin-top: 3px;
+        font-size: 10.8px;
+      }
+
+      .offer-countdown {
+        grid-column: 1 / -1;
+        margin-top: 2px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .offer-countdown span {
+        min-height: 34px;
+        padding: 4px;
+        border-radius: 10px;
+        font-size: 9px;
+      }
+
+      .offer-countdown b {
+        font-size: 15px;
+      }
+
+      .offer-alert a {
+        grid-row: span 2;
+        margin-top: 0;
+        min-height: 32px;
+        padding: 0 10px;
+        font-size: 11.5px;
+      }
+
       body {
         padding-bottom: 0;
       }
@@ -3802,6 +3950,19 @@
 </head>
 
 <body>
+  <aside class="offer-alert" aria-label="Oferta especial por tiempo limitado">
+    <div>
+      <strong>Expira en 2 días</strong>
+      <span>Comunícate al 933 414 437. Pago único S/350. No pierdas la oportunidad y adquiere ya.</span>
+      <div class="offer-countdown" aria-label="Cuenta regresiva de la oferta">
+        <span><b data-offer-days>02</b>Días</span>
+        <span><b data-offer-hours>00</b>Horas</span>
+        <span><b data-offer-minutes>00</b>Min</span>
+      </div>
+    </div>
+    <a href="https://wa.me/51933414437?text=Hola%2C%20quiero%20aprovechar%20la%20oferta%20especial%20de%20S%2F350%20antes%20de%20que%20expire." target="_blank" rel="noopener">Adquirir ya</a>
+  </aside>
+
   <main class="page">
 
     <header class="site-header">
@@ -4045,64 +4206,65 @@
       <div class="quick-menu-wrap">
         <div class="quick-menu-head">
           <span class="quick-menu-kicker">Carta rápida</span>
-          <h2>Elige y pide en segundos</h2>
-          <p>Opciones directas para clientes que ya tienen antojo y quieren reservar o pedir sin vueltas.</p>
+          <h2>Mira lo más pedido</h2>
+          <p>Imágenes referenciales para abrir el apetito. Revisa la carta completa antes de elegir.</p>
         </div>
 
         <div class="quick-menu-grid">
           <article class="quick-menu-item">
-            <div>
+            <div class="quick-menu-media">
+              <img src="assets/img/cevichemixto.webp" alt="Ceviche mixto referencial" loading="lazy" decoding="async" width="320" height="220">
+            </div>
+            <div class="quick-menu-body">
               <h3>Ceviche mixto</h3>
               <p>Fresco, cítrico y con sabor marino intenso.</p>
               <strong class="quick-menu-price">Desde S/35</strong>
             </div>
-            <a class="quick-menu-order" href="https://wa.me/51972667751?text=Hola%20La%20Barra%20de%20Jackili%2C%20quiero%20pedir%20ceviche%20mixto." target="_blank" rel="noopener">
-              <span class="svg-icon icon-whatsapp"></span>
-              <span>Pedir</span>
-            </a>
           </article>
 
           <article class="quick-menu-item">
-            <div>
+            <div class="quick-menu-media">
+              <img src="assets/img/arrozconmariscos.webp" alt="Arroz con mariscos referencial" loading="lazy" decoding="async" width="320" height="220">
+            </div>
+            <div class="quick-menu-body">
               <h3>Arroz con mariscos</h3>
               <p>Arroz cremoso, mariscos y sazón criolla.</p>
               <strong class="quick-menu-price">Desde S/38</strong>
             </div>
-            <a class="quick-menu-order" href="https://wa.me/51972667751?text=Hola%20La%20Barra%20de%20Jackili%2C%20quiero%20pedir%20arroz%20con%20mariscos." target="_blank" rel="noopener">
-              <span class="svg-icon icon-whatsapp"></span>
-              <span>Pedir</span>
-            </a>
           </article>
 
           <article class="quick-menu-item">
-            <div>
+            <div class="quick-menu-media">
+              <img src="assets/img/parihuela.webp" alt="Parihuela referencial" loading="lazy" decoding="async" width="320" height="220">
+            </div>
+            <div class="quick-menu-body">
               <h3>Parihuela</h3>
               <p>Caldo potente con esencia del mar.</p>
               <strong class="quick-menu-price">Desde S/42</strong>
             </div>
-            <a class="quick-menu-order" href="https://wa.me/51972667751?text=Hola%20La%20Barra%20de%20Jackili%2C%20quiero%20pedir%20parihuela." target="_blank" rel="noopener">
-              <span class="svg-icon icon-whatsapp"></span>
-              <span>Pedir</span>
-            </a>
           </article>
 
           <article class="quick-menu-item">
-            <div>
+            <div class="quick-menu-media">
+              <img src="assets/img/combo.svg" alt="Combo para dos referencial" loading="lazy" decoding="async" width="320" height="220">
+            </div>
+            <div class="quick-menu-body">
               <h3>Combo para 2</h3>
               <p>Ceviche mixto, jalea mixta, bebidas y causas.</p>
               <strong class="quick-menu-price">S/99</strong>
             </div>
-            <a class="quick-menu-order" href="https://wa.me/51972667751?text=Hola%20La%20Barra%20de%20Jackili%2C%20quiero%20pedir%20el%20Combo%20para%202." target="_blank" rel="noopener">
-              <span class="svg-icon icon-whatsapp"></span>
-              <span>Pedir</span>
-            </a>
           </article>
         </div>
 
+        <a class="quick-menu-drive" href="https://drive.google.com/file/d/1TFm6dxaSpysK8uL3GZHhZkFnPI2a08In/view?usp=drive_link" target="_blank" rel="noopener">
+          <span class="svg-icon icon-carta" aria-hidden="true"></span>
+          <span>Ver carta</span>
+        </a>
+
         <div class="quick-menu-note" aria-label="Beneficios de pedido">
-          <span>Confirmación rápida</span>
-          <span>Reservas por WhatsApp</span>
-          <span>Horarios visibles</span>
+          <span>Fotos referenciales</span>
+          <span>Carta completa en Drive</span>
+          <span>Precios sujetos a sede</span>
         </div>
       </div>
     </section>
@@ -4610,6 +4772,32 @@
     const menuToggle = document.getElementById("menuToggle");
     const whatsappPanel = document.querySelector(".whatsapp-branch-float");
     const whatsappPanelClose = document.querySelector(".whatsapp-panel-close");
+    const offerDays = document.querySelector("[data-offer-days]");
+    const offerHours = document.querySelector("[data-offer-hours]");
+    const offerMinutes = document.querySelector("[data-offer-minutes]");
+    const offerDeadlineKey = "jackili-offer-deadline";
+
+    let offerDeadline = Number(localStorage.getItem(offerDeadlineKey));
+
+    if (!offerDeadline || offerDeadline < Date.now()) {
+      offerDeadline = Date.now() + 48 * 60 * 60 * 1000;
+      localStorage.setItem(offerDeadlineKey, String(offerDeadline));
+    }
+
+    function updateOfferCountdown() {
+      const remaining = Math.max(0, offerDeadline - Date.now());
+      const totalMinutes = Math.floor(remaining / 60000);
+      const days = Math.floor(totalMinutes / 1440);
+      const hours = Math.floor((totalMinutes % 1440) / 60);
+      const minutes = totalMinutes % 60;
+
+      if (offerDays) offerDays.textContent = String(days).padStart(2, "0");
+      if (offerHours) offerHours.textContent = String(hours).padStart(2, "0");
+      if (offerMinutes) offerMinutes.textContent = String(minutes).padStart(2, "0");
+    }
+
+    updateOfferCountdown();
+    setInterval(updateOfferCountdown, 30000);
 
     function closeMobileMenu() {
       navbar.classList.remove("is-open");
