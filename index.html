@@ -406,6 +406,12 @@
       pointer-events: none;
     }
 
+    @media (max-width: 767px) {
+      .hero::before {
+        top: calc(50% - 10px);
+      }
+    }
+
     .hero > * {
       position: relative;
       z-index: 1;
@@ -3111,6 +3117,15 @@
       box-shadow: 0 12px 26px rgba(0, 31, 92, 0.2);
     }
 
+    .avatar img,
+    .avatar-mini img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
     .avatar {
       width: 58px;
       height: 58px;
@@ -3174,6 +3189,9 @@
 
     .site-footer {
       position: relative;
+      left: 50%;
+      width: 100vw;
+      margin-left: -50vw;
       margin-top: 34px;
       color: var(--white);
       background: #002a61;
@@ -3556,6 +3574,43 @@
         font-size: 15px;
       }
 
+      .review-card,
+      .happy-clients {
+        justify-content: center;
+      }
+
+      .review-card {
+        grid-template-columns: 58px minmax(0, auto);
+        text-align: left;
+      }
+
+      .site-footer {
+        text-align: center;
+      }
+
+      .footer-wrap {
+        justify-items: center;
+        padding: 30px 18px 20px;
+      }
+
+      .footer-brand img,
+      .footer-brand p,
+      .footer-col a {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .footer-social {
+        justify-content: center;
+      }
+
+      .footer-contact-line {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        text-align: center;
+      }
+
       .whatsapp-branch-float {
         right: 12px;
         bottom: 14px;
@@ -3676,7 +3731,8 @@
       }
 
       .footer-wrap {
-        grid-template-columns: 1.3fr 0.8fr 1fr 1fr;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-items: start;
       }
     }
 
@@ -3706,6 +3762,10 @@
 
       .social-proof {
         width: min(980px, 100%);
+      }
+
+      .footer-wrap {
+        grid-template-columns: 1.3fr 0.8fr 1fr 1fr;
       }
     }
 
@@ -4396,20 +4456,22 @@
 
         <div class="social-proof" aria-label="Opiniones de clientes">
           <div class="review-card">
-            <span class="avatar" aria-hidden="true">MP</span>
+            <span class="avatar" aria-hidden="true">
+              <img src="assets/img/review-maria.svg" alt="" loading="lazy" decoding="async" width="58" height="58">
+            </span>
             <div>
               <strong>Maria P.</strong>
               <div class="stars" aria-label="5 estrellas">★★★★★</div>
             </div>
           </div>
 
-          <p class="review-text">El ceviche más fresco y delicioso que he probado en Lima. ¡Recomendado al 100%!</p>
+          <p class="review-text">Reseña en Google: “El ceviche más fresco y delicioso que he probado en Lima. ¡Recomendado al 100%!”</p>
 
           <div class="happy-clients">
             <div class="avatar-stack" aria-hidden="true">
-              <span class="avatar-mini">A</span>
-              <span class="avatar-mini">J</span>
-              <span class="avatar-mini">L</span>
+              <span class="avatar-mini"><img src="assets/img/review-ana.svg" alt="" loading="lazy" decoding="async" width="46" height="46"></span>
+              <span class="avatar-mini"><img src="assets/img/review-luis.svg" alt="" loading="lazy" decoding="async" width="46" height="46"></span>
+              <span class="avatar-mini"><img src="assets/img/review-maria.svg" alt="" loading="lazy" decoding="async" width="46" height="46"></span>
             </div>
             <div>
               <strong>+500</strong>
