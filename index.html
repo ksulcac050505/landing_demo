@@ -3376,6 +3376,49 @@
       transform: translateY(-50%);
     }
 
+    .offer-alert.is-hidden {
+      display: none;
+    }
+
+    .offer-reopen {
+      position: fixed;
+      left: 14px;
+      top: 50%;
+      z-index: 132;
+      min-height: 38px;
+      padding: 0 13px;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      color: var(--white);
+      background: var(--blue);
+      border: 1px solid rgba(255, 255, 255, 0.35);
+      border-radius: var(--pill);
+      box-shadow: 0 14px 34px rgba(0, 26, 78, 0.24);
+      font-size: 12px;
+      font-weight: 700;
+      transform: translateY(-50%);
+    }
+
+    .offer-reopen.is-visible {
+      display: inline-flex;
+    }
+
+    .offer-close {
+      position: absolute;
+      right: 8px;
+      top: 8px;
+      width: 26px;
+      height: 26px;
+      display: grid;
+      place-items: center;
+      color: var(--white);
+      background: rgba(255, 255, 255, 0.16);
+      border-radius: 50%;
+      font-size: 17px;
+      line-height: 1;
+    }
+
     .offer-alert strong,
     .offer-alert span {
       display: block;
@@ -3698,51 +3741,68 @@
       }
 
       .offer-alert {
-        left: 10px;
+        left: auto;
         right: 10px;
-        top: 8px;
-        width: auto;
-        padding: 10px 12px;
-        display: grid;
-        grid-template-columns: 1fr auto;
-        gap: 8px 12px;
+        top: 10px;
+        width: min(188px, calc(100vw - 20px));
+        padding: 9px 10px 10px;
+        display: block;
         align-items: center;
-        border-radius: 14px;
+        border-radius: 13px;
         transform: none;
       }
 
       .offer-alert strong {
-        font-size: 13px;
+        padding-right: 26px;
+        font-size: 12px;
       }
 
       .offer-alert span {
         margin-top: 3px;
-        font-size: 10.8px;
+        padding-right: 8px;
+        font-size: 9.6px;
       }
 
-      .offer-countdown {
-        grid-column: 1 / -1;
-        margin-top: 2px;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-      }
-
-      .offer-countdown span {
-        min-height: 34px;
-        padding: 4px;
-        border-radius: 10px;
-        font-size: 9px;
-      }
-
-      .offer-countdown b {
+      .offer-close {
+        right: 6px;
+        top: 6px;
+        width: 23px;
+        height: 23px;
         font-size: 15px;
       }
 
+      .offer-countdown {
+        margin-top: 7px;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 4px;
+      }
+
+      .offer-countdown span {
+        min-height: 30px;
+        padding: 3px;
+        border-radius: 8px;
+        font-size: 8px;
+      }
+
+      .offer-countdown b {
+        font-size: 13px;
+      }
+
       .offer-alert a {
-        grid-row: span 2;
-        margin-top: 0;
-        min-height: 32px;
+        margin-top: 7px;
+        min-height: 28px;
         padding: 0 10px;
-        font-size: 11.5px;
+        font-size: 10.5px;
+      }
+
+      .offer-reopen {
+        left: auto;
+        right: 10px;
+        top: 10px;
+        min-height: 31px;
+        padding: 0 10px;
+        font-size: 10.5px;
+        transform: none;
       }
 
       body {
@@ -3986,6 +4046,7 @@
 
 <body>
   <aside class="offer-alert" aria-label="Oferta especial por tiempo limitado">
+    <button class="offer-close" type="button" aria-label="Ocultar oferta">x</button>
     <div>
       <strong>Expira en 2 días</strong>
       <span>Comunícate al 933 414 437. Pago único S/350. No pierdas la oportunidad y adquiere ya.</span>
@@ -3997,6 +4058,7 @@
     </div>
     <a href="https://wa.me/51933414437?text=Hola%2C%20quiero%20aprovechar%20la%20oferta%20especial%20de%20S%2F350%20antes%20de%20que%20expire." target="_blank" rel="noopener">Adquirir ya</a>
   </aside>
+  <button class="offer-reopen" type="button" aria-label="Volver a mostrar oferta">Oferta</button>
 
   <main class="page">
 
@@ -4807,10 +4869,24 @@
     const menuToggle = document.getElementById("menuToggle");
     const whatsappPanel = document.querySelector(".whatsapp-branch-float");
     const whatsappPanelClose = document.querySelector(".whatsapp-panel-close");
+    const offerAlert = document.querySelector(".offer-alert");
+    const offerClose = document.querySelector(".offer-close");
+    const offerReopen = document.querySelector(".offer-reopen");
     const offerDays = document.querySelector("[data-offer-days]");
     const offerHours = document.querySelector("[data-offer-hours]");
     const offerMinutes = document.querySelector("[data-offer-minutes]");
     const offerDeadlineKey = "jackili-offer-deadline";
+    const offerHiddenKey = "jackili-offer-hidden";
+
+    function setOfferVisibility(isVisible) {
+      offerAlert?.classList.toggle("is-hidden", !isVisible);
+      offerReopen?.classList.toggle("is-visible", !isVisible);
+      localStorage.setItem(offerHiddenKey, isVisible ? "0" : "1");
+    }
+
+    if (localStorage.getItem(offerHiddenKey) === "1") {
+      setOfferVisibility(false);
+    }
 
     let offerDeadline = Number(localStorage.getItem(offerDeadlineKey));
 
@@ -4887,6 +4963,14 @@
 
     whatsappPanelClose?.addEventListener("click", () => {
       whatsappPanel?.removeAttribute("open");
+    });
+
+    offerClose?.addEventListener("click", () => {
+      setOfferVisibility(false);
+    });
+
+    offerReopen?.addEventListener("click", () => {
+      setOfferVisibility(true);
     });
 
     const dishes = [
