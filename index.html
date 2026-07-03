@@ -3335,10 +3335,14 @@
       display: grid;
       place-items: center;
       color: var(--white);
-      background: #10b981;
-      border: 3px solid rgba(255, 255, 255, 0.82);
+      background:
+        radial-gradient(circle at 68% 26%, rgba(255, 255, 255, 0.34) 0 11%, transparent 12%),
+        linear-gradient(135deg, var(--blue) 0%, #0086ff 56%, #12b981 100%);
+      border: 3px solid rgba(255, 255, 255, 0.92);
       border-radius: 50%;
-      box-shadow: 0 18px 42px rgba(0, 36, 92, 0.26);
+      box-shadow:
+        0 18px 42px rgba(0, 36, 92, 0.28),
+        0 0 0 8px rgba(0, 110, 237, 0.16);
       cursor: pointer;
       list-style: none;
     }
@@ -3384,7 +3388,8 @@
       gap: 12px;
       align-items: center;
       color: var(--white);
-      background: #005b90;
+      background:
+        linear-gradient(135deg, var(--blue-dark) 0%, var(--blue) 68%, #12b981 100%);
       border-radius: 21px 21px 0 0;
     }
 
@@ -3453,10 +3458,21 @@
       gap: 12px;
       align-items: center;
       border-top: 1px solid #e2e8f0;
+      transition: background 0.18s ease, padding-left 0.18s ease, padding-right 0.18s ease;
     }
 
     .whatsapp-branch-row:first-of-type {
       border-top: 0;
+    }
+
+    .whatsapp-branch-row:hover,
+    .whatsapp-branch-row:focus-visible {
+      margin-left: -8px;
+      margin-right: -8px;
+      padding-left: 8px;
+      padding-right: 8px;
+      background: #f0f8ff;
+      border-radius: 14px;
     }
 
     .whatsapp-branch-row .wa-icon {
@@ -3465,7 +3481,7 @@
       display: grid;
       place-items: center;
       color: var(--white);
-      background: #10b981;
+      background: linear-gradient(135deg, var(--blue), #12b981);
       border-radius: 14px;
     }
 
@@ -3503,9 +3519,25 @@
       white-space: nowrap;
     }
 
+    .whatsapp-branch-row:nth-of-type(2) em,
+    .whatsapp-branch-row:nth-of-type(5) em {
+      color: #0056bd;
+      background: #e8f3ff;
+    }
+
+    .whatsapp-branch-row:nth-of-type(3) em {
+      color: #b45309;
+      background: #fff7ed;
+    }
+
+    .whatsapp-branch-row:nth-of-type(4) em {
+      color: #047857;
+      background: #dcfce7;
+    }
+
     @media (max-width: 767px) {
       body {
-        padding-bottom: 82px;
+        padding-bottom: 0;
       }
 
       .contact-section {
@@ -3524,13 +3556,9 @@
         font-size: 15px;
       }
 
-      .sticky-mobile-cta {
-        display: grid;
-      }
-
       .whatsapp-branch-float {
         right: 14px;
-        bottom: 92px;
+        bottom: 16px;
       }
 
       .whatsapp-branch-float summary {
@@ -4249,6 +4277,14 @@
                 <span class="svg-icon icon-location" aria-hidden="true"></span>
                 <span><strong>Rímac</strong>Av. Guardia Republicana 1118</span>
               </a>
+              <a class="branch-button" href="https://maps.google.com/?q=La%20Barra%20de%20Jackili%20Urb.%20Mariscal%20Caceres%20Mz%20A%20Lt%2042%20Ayacucho%20Peru" target="_blank" rel="noopener">
+                <span class="svg-icon icon-location" aria-hidden="true"></span>
+                <span><strong>Ayacucho</strong>Urb. Mariscal Cáceres Mz A Lt 42</span>
+              </a>
+              <a class="branch-button" href="https://maps.google.com/?q=La%20Barra%20de%20Jackili%20Av.%20Pardo%20885%20B%20Cusco%20Peru" target="_blank" rel="noopener">
+                <span class="svg-icon icon-location" aria-hidden="true"></span>
+                <span><strong>Cusco</strong>Av. Pardo 885 B</span>
+              </a>
             </div>
 
             <p>Elige la sede que te quede más cerca y abre la ruta directa en Google Maps.</p>
@@ -4348,7 +4384,7 @@
 
     </main>
 
-  <nav class="sticky-mobile-cta" aria-label="Acciones rápidas">
+  <nav hidden class="sticky-mobile-cta" aria-label="Acciones rápidas">
     <a class="primary" href="https://wa.me/51972667751?text=Hola%20La%20Barra%20de%20Jackili%2C%20quiero%20reservar%20una%20mesa." target="_blank" rel="noopener">
       <span class="svg-icon icon-whatsapp"></span>
       <span>Reservar</span>
@@ -4394,6 +4430,17 @@
           <span class="wa-icon"><span class="svg-icon icon-whatsapp" aria-hidden="true"></span></span>
           <span><strong>Sede Rímac</strong><span>+51 972 667 751</span></span>
           <em>Rímac</em>
+        </a>
+        <a class="whatsapp-branch-row" href="https://wa.me/51945048149?text=Hola%20La%20Barra%20de%20Jackili%20Ayacucho%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">
+          <span class="wa-icon"><span class="svg-icon icon-whatsapp" aria-hidden="true"></span></span>
+          <span><strong>Sede Ayacucho</strong><span>+51 945 048 149</span></span>
+          <em>Ayacucho</em>
+        </a>
+
+        <a class="whatsapp-branch-row" href="https://wa.me/51901435902?text=Hola%20La%20Barra%20de%20Jackili%20Cusco%2C%20quiero%20hacer%20una%20consulta." target="_blank" rel="noopener">
+          <span class="wa-icon"><span class="svg-icon icon-whatsapp" aria-hidden="true"></span></span>
+          <span><strong>Sede Cusco</strong><span>+51 901 435 902</span></span>
+          <em>Cusco</em>
         </a>
       </div>
     </div>
