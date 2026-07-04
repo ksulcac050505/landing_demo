@@ -440,8 +440,6 @@
       transform: translateX(-50%);
       user-select: none;
       pointer-events: none;
-      transition: transform 0.42s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.42s ease;
-      will-change: transform;
     }
 
     .hero-caption {
@@ -1221,11 +1219,6 @@
     }
 
     @media (hover: hover) and (pointer: fine) {
-      .hero:hover .hero-person {
-        transform: translateX(-50%) scale(1.035);
-        filter: drop-shadow(0 18px 24px rgba(0, 38, 110, 0.16));
-      }
-
       .dish-stage:hover .dish-img.is-center {
         transform: translate(-50%, -50%) rotate(1.4deg) scale(1.045);
       }
@@ -1264,7 +1257,6 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .hero-person,
       .dish-img,
       .quick-menu-media img,
       .combo-img,
