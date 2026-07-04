@@ -1,0 +1,15 @@
+<svg width="720" height="1280" viewBox="0 0 720 1280" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <rect width="720" height="1280" fill="#006EED"/>
+  <path d="M90 790C164 620 283 521 430 493C354 578 344 684 401 811C290 758 186 751 90 790Z" fill="#F5A51B"/>
+  <path d="M96 820C183 763 280 757 388 803C289 840 204 895 133 968C113 926 101 877 96 820Z" fill="white" fill-opacity=".9"/>
+  <path d="M462 423C536 337 595 233 638 111C642 265 602 401 519 520C483 493 464 460 462 423Z" stroke="#F5A51B" stroke-width="12" stroke-linecap="round"/>
+  <path d="M271 384C227 273 182 183 135 113C141 253 185 376 268 482C291 451 292 419 271 384Z" stroke="#F5A51B" stroke-width="12" stroke-linecap="round"/>
+  <circle cx="360" cy="452" r="118" fill="#BEE0FF" fill-opacity=".22"/>
+  <text x="360" y="550" text-anchor="middle" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="54" font-weight="700">La Barra de Jackili</text>
+  <text x="360" y="628" text-anchor="middle" fill="white" font-family="Arial, Helvetica, sans-serif" font-size="34" font-weight="700">Conoce mi historia</text>
+  <text x="360" y="682" text-anchor="middle" fill="white" fill-opacity=".82" font-family="Arial, Helvetica, sans-serif" font-size="25">Toca para reproducir</text>
+  <circle cx="360" cy="806" r="58" fill="white"/>
+  <path d="M344 774L398 806L344 838V774Z" fill="#006EED"/>
+  <path d="M210 1082C278 1050 347 1050 416 1082C478 1110 535 1110 586 1082" stroke="white" stroke-opacity=".55" stroke-width="10" stroke-linecap="round"/>
+  <path d="M169 1135C237 1103 306 1103 375 1135C437 1163 494 1163 545 1135" stroke="white" stroke-opacity=".38" stroke-width="10" stroke-linecap="round"/>
+</svg>

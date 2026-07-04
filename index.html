@@ -2076,7 +2076,8 @@
       aspect-ratio: 9 / 16;
       border-radius: 30px;
       overflow: hidden;
-      background: rgba(255, 255, 255, 0.1);
+      background:
+        #006eed url("assets/img/history-poster.svg") center / cover no-repeat;
       box-shadow: 0 24px 55px rgba(0, 37, 105, 0.14);
       isolation: isolate;
     }
@@ -2086,7 +2087,8 @@
       height: 100%;
       display: block;
       object-fit: cover;
-      background: rgba(0, 0, 0, 0.16);
+      background:
+        #006eed url("assets/img/history-poster.svg") center / cover no-repeat;
     }
 
     .history-video-card::after {
@@ -4236,6 +4238,9 @@
               playsinline
               webkit-playsinline
               preload="auto"
+              poster="assets/img/history-poster.svg"
+              data-desktop-src="assets/video/mihistoria.mp4"
+              data-mobile-src="assets/video/mihistoriaa.mp4"
             >
               <source src="assets/video/mihistoria.mp4" type="video/mp4">
             </video>
@@ -5401,6 +5406,68 @@
     const historyVideo = document.getElementById("historyVideo");
     const historyPlayButton = document.querySelector(".history-play-btn");
     const historySoundButton = document.querySelector(".history-sound-btn");
+    const mobileHistoryQuery = window.matchMedia("(max-width: 767px)");
+
+    function isMobileHistory() {
+      return mobileHistoryQuery.matches;
+    }
+
+    function getHistoryVideoSource() {
+      if (!historyVideo) return "";
+      return isMobileHistory() ? historyVideo.dataset.mobileSrc : historyVideo.dataset.desktopSrc;
+    }
+
+    function warmHistoryFirstFrame() {
+      if (!historyVideo || historyVideo.dataset.frameReady === "true") return;
+
+      const setFrame = () => {
+        if (historyVideo.dataset.frameReady === "true") return;
+
+        try {
+          historyVideo.currentTime = Math.min(0.08, historyVideo.duration || 0.08);
+          historyVideo.dataset.frameReady = "true";
+        } catch (error) {
+          /* Safari iOS puede bloquear seek antes de metadata; el poster cubre ese caso. */
+        }
+      };
+
+      if (historyVideo.readyState >= 1) {
+        setFrame();
+      } else {
+        historyVideo.addEventListener("loadedmetadata", setFrame, { once: true });
+      }
+    }
+
+    function applyHistoryVideoSource(force = false) {
+      if (!historyVideo || !historyVideoCard) return;
+
+      const source = historyVideo.querySelector("source");
+      const nextSource = getHistoryVideoSource();
+      if (!source || !nextSource) return;
+
+      const currentSource = source.getAttribute("src") || "";
+      historyVideo.setAttribute("poster", "assets/img/history-poster.svg");
+      historyVideo.setAttribute("preload", "auto");
+
+      if (!force && currentSource === nextSource) {
+        warmHistoryFirstFrame();
+        return;
+      }
+
+      const wasPlaying = !historyVideo.paused;
+      historyVideo.pause();
+      historyVideo.dataset.frameReady = "false";
+      source.setAttribute("src", nextSource);
+      historyVideo.load();
+      setHistorySound(false);
+      historyVideoCard.classList.remove("is-playing", "is-sound-on");
+      setHistoryPlayIcon("play");
+      warmHistoryFirstFrame();
+
+      if (wasPlaying) {
+        playHistoryVideo(false);
+      }
+    }
 
     function setHistoryPlayIcon(state) {
       if (!historyPlayButton) return;
@@ -5494,9 +5561,20 @@
       historyVideo.setAttribute("playsinline", "");
       historyVideo.setAttribute("webkit-playsinline", "");
       historyVideo.setAttribute("preload", "auto");
+      applyHistoryVideoSource(false);
       setHistorySound(false);
       setHistoryPlayIcon("play");
       setHistorySoundIcon("muted");
+
+      const handleHistorySourceChange = () => {
+        applyHistoryVideoSource(true);
+      };
+
+      if (typeof mobileHistoryQuery.addEventListener === "function") {
+        mobileHistoryQuery.addEventListener("change", handleHistorySourceChange);
+      } else if (typeof mobileHistoryQuery.addListener === "function") {
+        mobileHistoryQuery.addListener(handleHistorySourceChange);
+      }
 
       historyPlayButton.addEventListener("click", (event) => {
         event.stopPropagation();
