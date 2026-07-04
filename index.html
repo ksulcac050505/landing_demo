@@ -2126,13 +2126,14 @@
       z-index: 998;
       background: rgba(0, 22, 70, 0.72);
       backdrop-filter: blur(10px);
+      pointer-events: none;
     }
 
     .history-video-card.is-expanded {
       position: fixed;
       left: 50%;
       top: 50%;
-      z-index: 999;
+      z-index: 1000;
       width: min(92vw, calc(92vh * 9 / 16));
       max-height: 92vh;
       border-radius: 24px;
@@ -5477,6 +5478,8 @@
     const historyFullscreenButton = document.querySelector(".history-fullscreen-btn");
     const mobileHistoryQuery = window.matchMedia("(max-width: 767px)");
     const hoverHistoryQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
+    const historyOriginalParent = historyVideoCard?.parentNode;
+    const historyOriginalNextSibling = historyVideoCard?.nextSibling;
 
     function isMobileHistory() {
       return mobileHistoryQuery.matches;
@@ -5578,12 +5581,20 @@
     function setHistoryFocus(isExpanded) {
       if (!historyVideoCard) return;
 
+      if (isExpanded && historyVideoCard.parentNode !== document.body) {
+        document.body.appendChild(historyVideoCard);
+      }
+
       historyVideoCard.classList.toggle("is-expanded", isExpanded);
       document.body.classList.toggle("history-focus-open", isExpanded);
       setHistoryFullscreenIcon(isExpanded);
 
       if (!isExpanded) {
         resetHistoryTilt();
+
+        if (historyOriginalParent && historyVideoCard.parentNode === document.body) {
+          historyOriginalParent.insertBefore(historyVideoCard, historyOriginalNextSibling);
+        }
       }
     }
 
