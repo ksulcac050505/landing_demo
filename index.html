@@ -2678,9 +2678,8 @@
         transform: translate(2%, -48%) rotate(7deg) scale(0.86);
       }
 
-      .specialty-card.is-center:hover,
       .specialty-card.is-center.is-playing {
-        transform: translate(-50%, -51%) rotate(0deg) scale(1.025);
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
       }
 
       .video-play-btn {
@@ -2699,6 +2698,17 @@
         left: 16px;
         right: 72px;
         bottom: 18px;
+      }
+    }
+
+    @media (hover: none), (pointer: coarse) {
+      .specialty-card.is-center:hover,
+      .specialty-card.is-center.is-playing {
+        transform: translate(-50%, -50%) rotate(0deg) scale(1);
+      }
+
+      .specialty-card:hover .video-play-btn {
+        transform: none;
       }
     }
 
