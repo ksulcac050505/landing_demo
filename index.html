@@ -2079,7 +2079,24 @@
       background:
         #006eed url("assets/img/history-poster.svg") center / cover no-repeat;
       box-shadow: 0 24px 55px rgba(0, 37, 105, 0.14);
+      cursor: pointer;
       isolation: isolate;
+      transform:
+        perspective(900px)
+        rotateX(var(--history-tilt-x, 0deg))
+        rotateY(var(--history-tilt-y, 0deg))
+        scale(var(--history-scale, 1));
+      transform-origin: center;
+      transition:
+        transform 0.36s cubic-bezier(0.2, 0.8, 0.2, 1),
+        box-shadow 0.36s ease,
+        border-radius 0.28s ease;
+      will-change: transform;
+    }
+
+    .history-video-card:hover {
+      --history-scale: 1.035;
+      box-shadow: 0 30px 70px rgba(0, 37, 105, 0.24);
     }
 
     .history-video-card video {
@@ -2089,6 +2106,42 @@
       object-fit: cover;
       background:
         #006eed url("assets/img/history-poster.svg") center / cover no-repeat;
+      transform: scale(var(--history-video-scale, 1));
+      transition: transform 0.42s ease, filter 0.42s ease;
+    }
+
+    .history-video-card:hover video,
+    .history-video-card.is-playing video {
+      --history-video-scale: 1.045;
+    }
+
+    body.history-focus-open {
+      overflow: hidden;
+    }
+
+    body.history-focus-open::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      z-index: 998;
+      background: rgba(0, 22, 70, 0.72);
+      backdrop-filter: blur(10px);
+    }
+
+    .history-video-card.is-expanded {
+      position: fixed;
+      left: 50%;
+      top: 50%;
+      z-index: 999;
+      width: min(92vw, calc(92vh * 9 / 16));
+      max-height: 92vh;
+      border-radius: 24px;
+      box-shadow: 0 34px 90px rgba(0, 10, 40, 0.42);
+      transform: translate(-50%, -50%) !important;
+    }
+
+    .history-video-card.is-expanded video {
+      --history-video-scale: 1;
     }
 
     .history-video-card::after {
@@ -2193,7 +2246,8 @@
     }
 
     .history-video-card.is-playing .history-play-btn,
-    .history-video-card.is-sound-on .history-sound-btn {
+    .history-video-card.is-sound-on .history-sound-btn,
+    .history-video-card.is-expanded .history-fullscreen-btn {
       color: var(--white);
       background: var(--blue);
     }
@@ -4268,6 +4322,10 @@
               <button class="history-play-btn history-control-btn" type="button" aria-label="Reproducir video">
                 <span class="history-control-icon" aria-hidden="true"></span>
               </button>
+
+              <button class="history-fullscreen-btn history-control-btn" type="button" aria-label="Maximizar video">
+                <span class="history-control-icon" aria-hidden="true"></span>
+              </button>
             </div>
           </article>
 
@@ -4836,6 +4894,16 @@
         <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
           <path fill="currentColor" d="M4 9v6h4l5 4V5L8 9H4z"></path>
           <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" d="M17 9l4 4m0-4l-4 4"></path>
+        </svg>
+      `,
+      expand: `
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M8 3H3v5m13-5h5v5M8 21H3v-5m18 0v5h-5"></path>
+        </svg>
+      `,
+      compress: `
+        <svg viewBox="0 0 24 24" aria-hidden="true" focusable="false">
+          <path fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" d="M9 3v6H3m12-6v6h6M9 21v-6H3m12 6v-6h6"></path>
         </svg>
       `
     };
@@ -5406,7 +5474,9 @@
     const historyVideo = document.getElementById("historyVideo");
     const historyPlayButton = document.querySelector(".history-play-btn");
     const historySoundButton = document.querySelector(".history-sound-btn");
+    const historyFullscreenButton = document.querySelector(".history-fullscreen-btn");
     const mobileHistoryQuery = window.matchMedia("(max-width: 767px)");
+    const hoverHistoryQuery = window.matchMedia("(hover: hover) and (pointer: fine)");
 
     function isMobileHistory() {
       return mobileHistoryQuery.matches;
@@ -5497,6 +5567,52 @@
       }
     }
 
+    function setHistoryFullscreenIcon(isExpanded) {
+      if (!historyFullscreenButton) return;
+
+      const icon = historyFullscreenButton.querySelector(".history-control-icon");
+      icon.innerHTML = isExpanded ? videoControlIcons.compress : videoControlIcons.expand;
+      historyFullscreenButton.setAttribute("aria-label", isExpanded ? "Reducir video" : "Maximizar video");
+    }
+
+    function setHistoryFocus(isExpanded) {
+      if (!historyVideoCard) return;
+
+      historyVideoCard.classList.toggle("is-expanded", isExpanded);
+      document.body.classList.toggle("history-focus-open", isExpanded);
+      setHistoryFullscreenIcon(isExpanded);
+
+      if (!isExpanded) {
+        resetHistoryTilt();
+      }
+    }
+
+    function toggleHistoryFocus() {
+      if (!historyVideoCard) return;
+      setHistoryFocus(!historyVideoCard.classList.contains("is-expanded"));
+    }
+
+    function resetHistoryTilt() {
+      if (!historyVideoCard) return;
+      historyVideoCard.style.removeProperty("--history-tilt-x");
+      historyVideoCard.style.removeProperty("--history-tilt-y");
+      historyVideoCard.style.removeProperty("--history-scale");
+    }
+
+    function handleHistoryPointerMove(event) {
+      if (!historyVideoCard || !hoverHistoryQuery.matches || historyVideoCard.classList.contains("is-expanded")) return;
+
+      const rect = historyVideoCard.getBoundingClientRect();
+      const x = (event.clientX - rect.left) / rect.width - 0.5;
+      const y = (event.clientY - rect.top) / rect.height - 0.5;
+      const rotateY = x * 8;
+      const rotateX = y * -6;
+
+      historyVideoCard.style.setProperty("--history-tilt-x", `${rotateX.toFixed(2)}deg`);
+      historyVideoCard.style.setProperty("--history-tilt-y", `${rotateY.toFixed(2)}deg`);
+      historyVideoCard.style.setProperty("--history-scale", "1.04");
+    }
+
     function setHistorySound(withSound) {
       if (!historyVideo || !historyVideoCard) return;
 
@@ -5557,7 +5673,7 @@
       }
     }
 
-    if (historyVideo && historyVideoCard && historyPlayButton && historySoundButton) {
+    if (historyVideo && historyVideoCard && historyPlayButton && historySoundButton && historyFullscreenButton) {
       historyVideo.setAttribute("playsinline", "");
       historyVideo.setAttribute("webkit-playsinline", "");
       historyVideo.setAttribute("preload", "auto");
@@ -5565,6 +5681,7 @@
       setHistorySound(false);
       setHistoryPlayIcon("play");
       setHistorySoundIcon("muted");
+      setHistoryFullscreenIcon(false);
 
       const handleHistorySourceChange = () => {
         applyHistoryVideoSource(true);
@@ -5595,9 +5712,28 @@
         }
       });
 
+      historyFullscreenButton.addEventListener("click", (event) => {
+        event.stopPropagation();
+        toggleHistoryFocus();
+      });
+
+      historyVideoCard.addEventListener("pointermove", handleHistoryPointerMove);
+
+      historyVideoCard.addEventListener("pointerleave", () => {
+        if (!historyVideoCard.classList.contains("is-expanded")) {
+          resetHistoryTilt();
+        }
+      });
+
       historyVideoCard.addEventListener("click", (event) => {
         if (event.target.closest(".history-control-btn")) return;
         toggleHistoryVideo();
+      });
+
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape" && historyVideoCard.classList.contains("is-expanded")) {
+          setHistoryFocus(false);
+        }
       });
 
       historyVideo.addEventListener("ended", () => {
