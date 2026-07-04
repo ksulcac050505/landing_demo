@@ -440,6 +440,8 @@
       transform: translateX(-50%);
       user-select: none;
       pointer-events: none;
+      transition: transform 0.42s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.42s ease;
+      will-change: transform;
     }
 
     .hero-caption {
@@ -962,6 +964,8 @@
       display: block;
       object-fit: contain;
       object-position: center;
+      transition: transform 0.38s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.38s ease;
+      will-change: transform;
     }
 
     .quick-menu-media.is-contain img {
@@ -1150,6 +1154,8 @@
       width: 270px;
       max-width: none;
       margin-left: -18px;
+      transition: transform 0.42s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.42s ease;
+      will-change: transform;
     }
 
     .combo-label {
@@ -1212,6 +1218,61 @@
     .combo-action:hover {
       transform: translateY(-2px);
       box-shadow: 0 12px 25px rgba(0, 45, 120, 0.22);
+    }
+
+    @media (hover: hover) and (pointer: fine) {
+      .hero:hover .hero-person {
+        transform: translateX(-50%) scale(1.035);
+        filter: drop-shadow(0 18px 24px rgba(0, 38, 110, 0.16));
+      }
+
+      .dish-stage:hover .dish-img.is-center {
+        transform: translate(-50%, -50%) rotate(1.4deg) scale(1.045);
+      }
+
+      .dish-stage:hover .dish-img.is-left {
+        transform: translate(-118%, -52%) rotate(-2.4deg) scale(0.94);
+      }
+
+      .dish-stage:hover .dish-img.is-right {
+        transform: translate(18%, -52%) rotate(2.4deg) scale(0.94);
+      }
+
+      .quick-menu-item:hover .quick-menu-media img {
+        transform: rotate(-1.8deg) scale(1.06);
+        filter: drop-shadow(0 14px 16px rgba(0, 82, 170, 0.14));
+      }
+
+      .quick-menu-item:nth-child(even):hover .quick-menu-media img {
+        transform: rotate(1.8deg) scale(1.06);
+      }
+
+      .combo-card:hover .combo-img {
+        transform: rotate(-2deg) scale(1.055);
+        filter: drop-shadow(0 14px 18px rgba(0, 32, 92, 0.2));
+      }
+
+      .place-photo:hover img {
+        transform: rotate(0.7deg) scale(1.055);
+        filter: saturate(1.06);
+      }
+
+      .avatar:hover img,
+      .avatar-mini:hover img {
+        transform: rotate(-2deg) scale(1.08);
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .hero-person,
+      .dish-img,
+      .quick-menu-media img,
+      .combo-img,
+      .place-photo img,
+      .avatar img,
+      .avatar-mini img {
+        transition: none;
+      }
     }
 
     /* =========================
@@ -3167,6 +3228,8 @@
       display: block;
       object-fit: cover;
       object-position: center;
+      transition: transform 0.44s cubic-bezier(0.2, 0.8, 0.2, 1), filter 0.44s ease;
+      will-change: transform;
     }
 
     .social-proof {
@@ -3203,6 +3266,8 @@
       display: block;
       object-fit: cover;
       border-radius: 50%;
+      transition: transform 0.32s ease, filter 0.32s ease;
+      will-change: transform;
     }
 
     .avatar {
