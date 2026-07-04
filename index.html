@@ -932,16 +932,43 @@
     }
 
     .quick-menu-item {
-      min-height: 142px;
+      min-height: 206px;
       padding: 18px 16px;
       display: grid;
       grid-template-columns: 1fr;
       gap: 12px;
-      align-items: center;
+      align-items: start;
       border: 2px solid rgba(0, 110, 237, 0.14);
       border-radius: 18px;
       background: #f5faff;
       overflow: hidden;
+    }
+
+    .quick-menu-media {
+      width: 96px;
+      height: 96px;
+      margin: 0 auto 2px;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      background: var(--white);
+      border: 2px solid rgba(0, 110, 237, 0.12);
+      border-radius: 50%;
+      box-shadow: 0 10px 22px rgba(0, 62, 145, 0.11);
+    }
+
+    .quick-menu-media img {
+      width: 100%;
+      height: 100%;
+      display: block;
+      object-fit: cover;
+      object-position: center;
+    }
+
+    .quick-menu-media.is-contain img {
+      width: 112%;
+      height: 112%;
+      object-fit: contain;
     }
 
     .quick-menu-body {
@@ -976,7 +1003,7 @@
       min-height: 48px;
       margin: 22px auto 0;
       padding: 0 22px;
-      display: inline-flex;
+      display: flex;
       align-items: center;
       justify-content: center;
       gap: 9px;
@@ -1034,7 +1061,7 @@
       }
 
       .quick-menu-item {
-        min-height: 184px;
+        min-height: 264px;
         grid-template-columns: 1fr;
       }
     }
@@ -4069,6 +4096,9 @@
 
         <div class="quick-menu-grid">
           <article class="quick-menu-item">
+            <div class="quick-menu-media">
+              <img src="assets/img/cevichemixto.webp" alt="Ceviche mixto" loading="lazy" decoding="async" width="160" height="160">
+            </div>
             <div class="quick-menu-body">
               <h3>Ceviche mixto</h3>
               <p>Fresco, cítrico y con sabor marino intenso.</p>
@@ -4077,6 +4107,9 @@
           </article>
 
           <article class="quick-menu-item">
+            <div class="quick-menu-media">
+              <img src="assets/img/arrozconmariscos.webp" alt="Arroz con mariscos" loading="lazy" decoding="async" width="160" height="160">
+            </div>
             <div class="quick-menu-body">
               <h3>Arroz con mariscos</h3>
               <p>Arroz cremoso, mariscos y sazón criolla.</p>
@@ -4085,6 +4118,9 @@
           </article>
 
           <article class="quick-menu-item">
+            <div class="quick-menu-media">
+              <img src="assets/img/parihuela.webp" alt="Parihuela" loading="lazy" decoding="async" width="160" height="160">
+            </div>
             <div class="quick-menu-body">
               <h3>Parihuela</h3>
               <p>Caldo potente con esencia del mar.</p>
@@ -4093,6 +4129,9 @@
           </article>
 
           <article class="quick-menu-item">
+            <div class="quick-menu-media is-contain">
+              <img src="assets/img/combo.svg" alt="Combo para 2" loading="lazy" decoding="async" width="160" height="160">
+            </div>
             <div class="quick-menu-body">
               <h3>Combo para 2</h3>
               <p>Ceviche mixto, jalea mixta, bebidas y causas.</p>
