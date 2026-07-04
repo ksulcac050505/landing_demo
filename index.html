@@ -2536,16 +2536,6 @@
       transform: translate(-50%, -50%) scale(0.72);
     }
 
-    .specialty-card.is-center:hover,
-    .specialty-card.is-center.is-playing {
-      transform: translate(-50%, -53%) rotate(0deg) scale(1.045);
-    }
-
-    .specialty-card.is-center:hover video,
-    .specialty-card.is-center.is-playing video {
-      transform: scale(1.08);
-    }
-
     .specialty-card.is-center:hover::after,
     .specialty-card.is-center.is-playing::after {
       opacity: 1;
@@ -5269,6 +5259,41 @@
       }
     }
 
+    function handleMobileSpecialtyTap(card) {
+      if (!isMobileSpecialty()) return;
+      if (card.dataset.position !== "center") return;
+
+      const video = card.querySelector("video");
+      pauseSpecialtyAutoplay();
+      applySpecialtyVideoSource(card, false);
+      setVideoSound(video, false);
+
+      if (video.paused) {
+        video.play()
+          .then(() => {
+            card.classList.add("is-playing");
+            setSpecialtyControls(card, {
+              playState: "stop",
+              soundState: "muted"
+            });
+          })
+          .catch(() => {
+            card.classList.remove("is-playing");
+            setSpecialtyControls(card, {
+              playState: "play",
+              soundState: "muted"
+            });
+          });
+      } else {
+        video.pause();
+        card.classList.remove("is-playing", "is-sound-on", "is-user-playing");
+        setSpecialtyControls(card, {
+          playState: "play",
+          soundState: "muted"
+        });
+      }
+    }
+
     function moveSpecialtyBySwipe(direction) {
       if (!isMobileSpecialty() || !specialtyInView) return;
 
@@ -5415,8 +5440,14 @@
       }
 
       card.addEventListener("click", (event) => {
-        if (specialtySwipeBlockedClick || isMobileSpecialty()) {
+        if (specialtySwipeBlockedClick) {
           event.preventDefault();
+          return;
+        }
+
+        if (isMobileSpecialty()) {
+          event.preventDefault();
+          handleMobileSpecialtyTap(card);
           return;
         }
 
@@ -5425,6 +5456,12 @@
 
       playButton.addEventListener("click", (event) => {
         event.stopPropagation();
+
+        if (isMobileSpecialty()) {
+          handleMobileSpecialtyTap(card);
+          return;
+        }
+
         handleSpecialtyPlayToggle(card);
       });
 
