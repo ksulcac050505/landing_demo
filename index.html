@@ -932,36 +932,22 @@
     }
 
     .quick-menu-item {
-      min-height: 138px;
-      padding: 0;
+      min-height: 142px;
+      padding: 18px 16px;
       display: grid;
-      grid-template-columns: 120px 1fr;
-      gap: 0;
-      align-items: stretch;
+      grid-template-columns: 1fr;
+      gap: 12px;
+      align-items: center;
       border: 2px solid rgba(0, 110, 237, 0.14);
       border-radius: 18px;
       background: #f5faff;
       overflow: hidden;
     }
 
-    .quick-menu-media {
-      min-height: 138px;
-      background: #d9ecff;
-    }
-
-    .quick-menu-media img {
-      width: 100%;
-      height: 100%;
-      min-height: 138px;
-      display: block;
-      object-fit: cover;
-      object-position: center;
-    }
-
     .quick-menu-body {
-      padding: 15px;
       display: grid;
       align-content: center;
+      text-align: center;
     }
 
     .quick-menu-item h3 {
@@ -1013,27 +999,6 @@
       height: 18px;
     }
 
-    .quick-menu-note {
-      margin-top: 16px;
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 8px;
-      color: var(--white);
-    }
-
-    .quick-menu-note span {
-      min-height: 30px;
-      padding: 0 12px;
-      display: inline-flex;
-      align-items: center;
-      border-radius: var(--pill);
-      background: var(--blue);
-      font-size: 12.5px;
-      font-weight: 700;
-      line-height: 1;
-    }
-
     @media (max-width: 390px) {
       .quick-menu {
         padding-left: 10px;
@@ -1045,7 +1010,7 @@
       }
 
       .quick-menu-drive {
-        width: 100%;
+        max-width: 100%;
       }
     }
 
@@ -1069,14 +1034,8 @@
       }
 
       .quick-menu-item {
-        min-height: 292px;
+        min-height: 184px;
         grid-template-columns: 1fr;
-      }
-
-      .quick-menu-media,
-      .quick-menu-media img {
-        min-height: 154px;
-        height: 154px;
       }
     }
 
@@ -3360,126 +3319,6 @@
       background: var(--blue);
     }
 
-    .offer-alert {
-      position: fixed;
-      left: 14px;
-      top: 50%;
-      z-index: 132;
-      width: min(248px, calc(100vw - 28px));
-      padding: 14px 15px;
-      color: var(--white);
-      background:
-        linear-gradient(135deg, #003f93 0%, var(--blue) 58%, #12b981 100%);
-      border: 1px solid rgba(255, 255, 255, 0.36);
-      border-radius: 18px;
-      box-shadow: 0 18px 44px rgba(0, 26, 78, 0.28);
-      transform: translateY(-50%);
-      touch-action: none;
-    }
-
-    .offer-alert.is-hidden {
-      display: none;
-    }
-
-    .offer-reopen {
-      position: fixed;
-      left: 14px;
-      top: 50%;
-      z-index: 132;
-      min-height: 38px;
-      padding: 0 13px;
-      display: none;
-      align-items: center;
-      justify-content: center;
-      color: var(--white);
-      background: var(--blue);
-      border: 1px solid rgba(255, 255, 255, 0.35);
-      border-radius: var(--pill);
-      box-shadow: 0 14px 34px rgba(0, 26, 78, 0.24);
-      font-size: 12px;
-      font-weight: 700;
-      transform: translateY(-50%);
-    }
-
-    .offer-reopen.is-visible {
-      display: inline-flex;
-    }
-
-    .offer-close {
-      position: absolute;
-      right: 8px;
-      top: 8px;
-      width: 26px;
-      height: 26px;
-      display: grid;
-      place-items: center;
-      color: var(--white);
-      background: rgba(255, 255, 255, 0.16);
-      border-radius: 50%;
-      font-size: 17px;
-      line-height: 1;
-    }
-
-    .offer-alert strong,
-    .offer-alert span {
-      display: block;
-    }
-
-    .offer-alert strong {
-      font-size: 15px;
-      line-height: 1.05;
-    }
-
-    .offer-alert span {
-      margin-top: 5px;
-      font-size: 12px;
-      line-height: 1.2;
-      opacity: 0.95;
-    }
-
-    .offer-countdown {
-      margin-top: 10px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 6px;
-    }
-
-    .offer-countdown span {
-      min-height: 42px;
-      display: grid;
-      place-items: center;
-      padding: 6px 5px;
-      color: var(--blue);
-      background: rgba(255, 255, 255, 0.94);
-      border-radius: 12px;
-      font-size: 10px;
-      font-weight: 700;
-      line-height: 1;
-      text-align: center;
-      opacity: 1;
-    }
-
-    .offer-countdown b {
-      display: block;
-      font-size: 17px;
-      line-height: 1;
-    }
-
-    .offer-alert a {
-      width: fit-content;
-      margin-top: 10px;
-      min-height: 34px;
-      padding: 0 13px;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--blue);
-      background: var(--white);
-      border-radius: var(--pill);
-      font-size: 12.5px;
-      font-weight: 700;
-    }
-
     .sticky-mobile-cta .secondary {
       color: var(--blue);
       background: #eef6ff;
@@ -3741,76 +3580,6 @@
         box-shadow: none;
       }
 
-      .offer-alert {
-        left: auto;
-        right: 10px;
-        top: 10px;
-        width: min(188px, calc(100vw - 20px));
-        padding: 9px 10px 10px;
-        display: block;
-        align-items: center;
-        border-radius: 13px;
-        transform: none;
-        cursor: grab;
-      }
-
-      .offer-alert.is-dragging {
-        cursor: grabbing;
-      }
-
-      .offer-alert strong {
-        padding-right: 26px;
-        font-size: 12px;
-      }
-
-      .offer-alert span {
-        margin-top: 3px;
-        padding-right: 8px;
-        font-size: 9.6px;
-      }
-
-      .offer-close {
-        right: 6px;
-        top: 6px;
-        width: 23px;
-        height: 23px;
-        font-size: 15px;
-      }
-
-      .offer-countdown {
-        margin-top: 7px;
-        grid-template-columns: repeat(3, minmax(0, 1fr));
-        gap: 4px;
-      }
-
-      .offer-countdown span {
-        min-height: 30px;
-        padding: 3px;
-        border-radius: 8px;
-        font-size: 8px;
-      }
-
-      .offer-countdown b {
-        font-size: 13px;
-      }
-
-      .offer-alert a {
-        margin-top: 7px;
-        min-height: 28px;
-        padding: 0 10px;
-        font-size: 10.5px;
-      }
-
-      .offer-reopen {
-        left: auto;
-        right: 10px;
-        top: 10px;
-        min-height: 31px;
-        padding: 0 10px;
-        font-size: 10.5px;
-        transform: none;
-      }
-
       body {
         padding-bottom: 0;
       }
@@ -4022,7 +3791,7 @@
       }
 
       .footer-wrap {
-        grid-template-columns: 1.3fr 0.8fr 1fr 1fr;
+        grid-template-columns: 1.3fr 0.8fr 1fr;
       }
     }
 
@@ -4051,21 +3820,6 @@
 </head>
 
 <body>
-  <aside class="offer-alert" aria-label="Oferta especial por tiempo limitado">
-    <button class="offer-close" type="button" aria-label="Ocultar oferta">x</button>
-    <div>
-      <strong>Expira en 2 días</strong>
-      <span>Comunícate al 933 414 437. Pago único S/350. No pierdas la oportunidad y adquiere ya.</span>
-      <div class="offer-countdown" aria-label="Cuenta regresiva de la oferta">
-        <span><b data-offer-days>02</b>Días</span>
-        <span><b data-offer-hours>00</b>Horas</span>
-        <span><b data-offer-minutes>00</b>Min</span>
-      </div>
-    </div>
-    <a href="https://wa.me/51933414437?text=Hola%2C%20quiero%20aprovechar%20la%20oferta%20especial%20de%20S%2F350%20antes%20de%20que%20expire." target="_blank" rel="noopener">Adquirir ya</a>
-  </aside>
-  <button class="offer-reopen" type="button" aria-label="Volver a mostrar oferta">Oferta</button>
-
   <main class="page">
 
     <header class="site-header">
@@ -4310,14 +4064,11 @@
         <div class="quick-menu-head">
           <span class="quick-menu-kicker">Carta rápida</span>
           <h2>Mira lo más pedido</h2>
-          <p>Imágenes referenciales para abrir el apetito. Revisa la carta completa antes de elegir.</p>
+          <p>Revisa opciones populares y abre la carta completa antes de elegir.</p>
         </div>
 
         <div class="quick-menu-grid">
           <article class="quick-menu-item">
-            <div class="quick-menu-media">
-              <img src="assets/img/cevichemixto.webp" alt="Ceviche mixto referencial" loading="lazy" decoding="async" width="320" height="220">
-            </div>
             <div class="quick-menu-body">
               <h3>Ceviche mixto</h3>
               <p>Fresco, cítrico y con sabor marino intenso.</p>
@@ -4326,9 +4077,6 @@
           </article>
 
           <article class="quick-menu-item">
-            <div class="quick-menu-media">
-              <img src="assets/img/arrozconmariscos.webp" alt="Arroz con mariscos referencial" loading="lazy" decoding="async" width="320" height="220">
-            </div>
             <div class="quick-menu-body">
               <h3>Arroz con mariscos</h3>
               <p>Arroz cremoso, mariscos y sazón criolla.</p>
@@ -4337,9 +4085,6 @@
           </article>
 
           <article class="quick-menu-item">
-            <div class="quick-menu-media">
-              <img src="assets/img/parihuela.webp" alt="Parihuela referencial" loading="lazy" decoding="async" width="320" height="220">
-            </div>
             <div class="quick-menu-body">
               <h3>Parihuela</h3>
               <p>Caldo potente con esencia del mar.</p>
@@ -4348,9 +4093,6 @@
           </article>
 
           <article class="quick-menu-item">
-            <div class="quick-menu-media">
-              <img src="assets/img/combo.svg" alt="Combo para dos referencial" loading="lazy" decoding="async" width="320" height="220">
-            </div>
             <div class="quick-menu-body">
               <h3>Combo para 2</h3>
               <p>Ceviche mixto, jalea mixta, bebidas y causas.</p>
@@ -4363,12 +4105,6 @@
           <span class="svg-icon icon-carta" aria-hidden="true"></span>
           <span>Ver carta</span>
         </a>
-
-        <div class="quick-menu-note" aria-label="Beneficios de pedido">
-          <span>Fotos referenciales</span>
-          <span>Carta completa en Drive</span>
-          <span>Precios sujetos a sede</span>
-        </div>
       </div>
     </section>
 
@@ -4794,12 +4530,6 @@
             </div>
           </div>
 
-          <div class="footer-col">
-            <h3>Información</h3>
-            <a href="#">Términos y condiciones</a>
-            <a href="#">Política de privacidad</a>
-            <a href="#">Libro de reclamaciones</a>
-          </div>
         </div>
 
         <p class="footer-bottom">© 2025 La Barra de Jackili Cevichería Peruana. Todos los derechos reservados.</p>
@@ -4875,71 +4605,6 @@
     const menuToggle = document.getElementById("menuToggle");
     const whatsappPanel = document.querySelector(".whatsapp-branch-float");
     const whatsappPanelClose = document.querySelector(".whatsapp-panel-close");
-    const offerAlert = document.querySelector(".offer-alert");
-    const offerClose = document.querySelector(".offer-close");
-    const offerReopen = document.querySelector(".offer-reopen");
-    const offerDays = document.querySelector("[data-offer-days]");
-    const offerHours = document.querySelector("[data-offer-hours]");
-    const offerMinutes = document.querySelector("[data-offer-minutes]");
-    const offerDeadlineKey = "jackili-offer-deadline";
-    const offerHiddenKey = "jackili-offer-hidden";
-    const offerMobileTopKey = "jackili-offer-mobile-top";
-    let offerDragStartY = 0;
-    let offerDragStartTop = 0;
-    let isOfferDragging = false;
-
-    function setOfferVisibility(isVisible) {
-      offerAlert?.classList.toggle("is-hidden", !isVisible);
-      offerReopen?.classList.toggle("is-visible", !isVisible);
-      localStorage.setItem(offerHiddenKey, isVisible ? "0" : "1");
-    }
-
-    if (localStorage.getItem(offerHiddenKey) === "1") {
-      setOfferVisibility(false);
-    }
-
-    function isMobileViewport() {
-      return window.matchMedia("(max-width: 767px)").matches;
-    }
-
-    function clampOfferTop(top) {
-      const cardHeight = offerAlert?.offsetHeight || 120;
-      const minTop = 8;
-      const maxTop = Math.max(minTop, window.innerHeight - cardHeight - 76);
-      return Math.min(Math.max(top, minTop), maxTop);
-    }
-
-    function applySavedOfferTop() {
-      if (!offerAlert || !isMobileViewport()) return;
-      const savedTop = Number(localStorage.getItem(offerMobileTopKey));
-      if (Number.isFinite(savedTop) && savedTop >= 0) {
-        offerAlert.style.top = `${clampOfferTop(savedTop)}px`;
-      }
-    }
-
-    applySavedOfferTop();
-
-    let offerDeadline = Number(localStorage.getItem(offerDeadlineKey));
-
-    if (!offerDeadline || offerDeadline < Date.now()) {
-      offerDeadline = Date.now() + 48 * 60 * 60 * 1000;
-      localStorage.setItem(offerDeadlineKey, String(offerDeadline));
-    }
-
-    function updateOfferCountdown() {
-      const remaining = Math.max(0, offerDeadline - Date.now());
-      const totalMinutes = Math.floor(remaining / 60000);
-      const days = Math.floor(totalMinutes / 1440);
-      const hours = Math.floor((totalMinutes % 1440) / 60);
-      const minutes = totalMinutes % 60;
-
-      if (offerDays) offerDays.textContent = String(days).padStart(2, "0");
-      if (offerHours) offerHours.textContent = String(hours).padStart(2, "0");
-      if (offerMinutes) offerMinutes.textContent = String(minutes).padStart(2, "0");
-    }
-
-    updateOfferCountdown();
-    setInterval(updateOfferCountdown, 30000);
 
     function closeMobileMenu() {
       navbar.classList.remove("is-open");
@@ -4994,54 +4659,6 @@
 
     whatsappPanelClose?.addEventListener("click", () => {
       whatsappPanel?.removeAttribute("open");
-    });
-
-    offerClose?.addEventListener("click", () => {
-      setOfferVisibility(false);
-    });
-
-    offerReopen?.addEventListener("click", () => {
-      setOfferVisibility(true);
-      applySavedOfferTop();
-    });
-
-    offerAlert?.addEventListener("pointerdown", (event) => {
-      if (!isMobileViewport()) return;
-      if (event.target.closest("a, button")) return;
-
-      isOfferDragging = true;
-      offerDragStartY = event.clientY;
-      offerDragStartTop = offerAlert.getBoundingClientRect().top;
-      offerAlert.classList.add("is-dragging");
-      offerAlert.setPointerCapture?.(event.pointerId);
-    });
-
-    offerAlert?.addEventListener("pointermove", (event) => {
-      if (!isOfferDragging || !isMobileViewport()) return;
-      const nextTop = clampOfferTop(offerDragStartTop + event.clientY - offerDragStartY);
-      offerAlert.style.top = `${nextTop}px`;
-    });
-
-    function stopOfferDrag(event) {
-      if (!isOfferDragging) return;
-      isOfferDragging = false;
-      offerAlert?.classList.remove("is-dragging");
-      offerAlert?.releasePointerCapture?.(event.pointerId);
-
-      if (offerAlert && isMobileViewport()) {
-        const top = offerAlert.getBoundingClientRect().top;
-        localStorage.setItem(offerMobileTopKey, String(Math.round(top)));
-      }
-    }
-
-    offerAlert?.addEventListener("pointerup", stopOfferDrag);
-    offerAlert?.addEventListener("pointercancel", stopOfferDrag);
-
-    window.addEventListener("resize", () => {
-      if (!offerAlert || !isMobileViewport()) return;
-      const top = clampOfferTop(offerAlert.getBoundingClientRect().top);
-      offerAlert.style.top = `${top}px`;
-      localStorage.setItem(offerMobileTopKey, String(Math.round(top)));
     });
 
     const dishes = [
